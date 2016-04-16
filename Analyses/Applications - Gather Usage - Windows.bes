@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Applications - Gather Usage - Windows</Title>
+		<Description><![CDATA[Learn more about this analysis online:  <a href='http://bigfix.me/cdb/analysis/2996919'>http://bigfix.me/cdb/analysis/2996919</a><br /><br />Pulls application usage information from information stored by a manual application usage gather.
+<br>
+This Analysis requires just the following:<br>
+ - "Invoke - Gather Application Usage - Windows" to be scheduled on endpoints.]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists key "HKEY_LOCAL_MACHINE\Software\Inventory" of native registry</Relevance>
+		<MIMEField>
+			<Name>bigfixme-added-time</Name>
+			<Value>Thu, 14 Apr 2016 06:36:40 GMT</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-modification-time</Name>
+			<Value>Thu, 14 Apr 2016 10:05:24 GMT</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-keywords</Name>
+			<Value>Poor Man's Inventory</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-ID</Name>
+			<Value>2996919</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Thu, 14 Apr 2016 17:16:15 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Applications - Gather - Launch Count - Windows" ID="1" EvaluationPeriod="PT12H">(substring before ";" of name of it, substring after ";" of name of it, it as integer) of values of keys "HKEY_LOCAL_MACHINE\Software\Inventory\Count" of native registry</Property>
+		<Property Name="Applications - Gather - Last Usage - Windows" ID="2" EvaluationPeriod="PT12H">(substring before ";" of name of it, substring after ";" of name of it, it as time) of values of keys "HKEY_LOCAL_MACHINE\Software\Inventory\Last Usage" of native registry</Property>
+	</Analysis>
+</BES>
+

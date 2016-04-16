@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Config - Audit Process Creation - Success - Disable - Windows</Title>
+		<Description>Disables auditing process creation. Specifically successful process creations.</Description>
+		<Relevance><![CDATA[windows of operating system and version of operating system >= "6.0"]]></Relevance>
+		<Relevance>audit success of system policy of subcategories whose (name of it is "Process Creation") of detailed tracking categories of audit policy</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-13</SourceReleaseDate>
+		<MIMEField>
+			<Name>bigfixme-added-time</Name>
+			<Value>Wed, 13 Apr 2016 22:26:41 GMT</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-modification-time</Name>
+			<Value>Wed, 13 Apr 2016 22:26:41 GMT</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-keywords</Name>
+			<Value>Poor Man's Inventory</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-ID</Name>
+			<Value>11952</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Thu, 14 Apr 2016 16:26:11 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
+
+wait Auditpol.exe /set /subcategory:"process creation" /success:disable</ActionScript>
+		</DefaultAction>
+		<Action ID="3">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to review this task in the bigfix.me Content Database.</PostLink>
+			</Description>
+			<ActionScript MIMEType="text/x-uri">http://bigfix.me/cdb/fixlet/11952</ActionScript>
+		</Action>
+	</Fixlet>
+</BES>
+

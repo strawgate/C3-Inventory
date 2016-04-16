@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Applications - Audit Usage - Windows</Title>
+		<Description><![CDATA[Learn more about this analysis online: <A href="http://bigfix.me/cdb/analysis/2995919">http://bigfix.me/cdb/analysis/2995919</A><BR><BR>Pulls application usage information from the Windows Security Log if Process Creation Auditing is enabled. <BR><BR>This Analysis requires just the following:<BR>- Audit Process Creation Success is Enabled. <BR><BR>You can use Fixlet "Config - Audit Process Creation - Success - Enable - Windows" to meet the requirements for this fixlet.<BR>]]></Description>
+		<Relevance><![CDATA[windows of operating system and version of operating system >= "6.0"]]></Relevance>
+		<Relevance>audit success of system policy of subcategories whose (name of it is "Process Creation") of detailed tracking categories of audit policy</Relevance>
+		<MIMEField>
+			<Name>bigfixme-added-time</Name>
+			<Value>Wed, 13 Apr 2016 22:23:51 GMT</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-modification-time</Name>
+			<Value>Thu, 14 Apr 2016 10:06:09 GMT</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-keywords</Name>
+			<Value>Poor Man's Inventory</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-ID</Name>
+			<Value>2995919</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Thu, 14 Apr 2016 18:53:10 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Applications - Event Log - Process Launch Count" ID="1" EvaluationPeriod="P1D"><![CDATA[(it & ", " & multiplicity of it as string) of unique values of (preceding text of first "%0d%0a%09" of following text of first "New Process Name:%09" of it) of (descriptions of (records of security event log) whose (event id of it is 4688)) whose (preceding text of first "%0d%0a%09" of following text of first "Creator Process Name:%09" of it contains "explorer.exe")]]></Property>
+		<Property Name="Applications - Event Log - Process Launch Oldest" ID="2">time generated of record (oldest record number of security event log) of security event log</Property>
+	</Analysis>
+</BES>
+

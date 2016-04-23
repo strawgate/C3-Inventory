@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Hibernation - Configuration - Windows</Title>
+		<Description>Hibernation Configuration for Windows </Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>not in proxy agent context</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-21</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Fri, 22 Apr 2016 19:37:30 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Hibernation - State - Windows" ID="1">if (value "HibernateEnabled" of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power" of native registry as string = "1") then "Enabled" else "Disabled"</Property>
+		<Property Name="Hibernation - hiberfil.sys Size (GB) - Windows" ID="2"><![CDATA[(size of file (name of drive of windows folder & "\hiberfil.sys") / 1024 /* KB */ / 1024 /* MB */ / 1024 /* GB */) | 0]]></Property>
+		<Property Name="Hibernation - hiberfil.sys Size (B) - Windows" ID="4"><![CDATA[size of file (name of drive of windows folder & "\hiberfil.sys") | 0]]></Property>
+	</Analysis>
+</BES>
+

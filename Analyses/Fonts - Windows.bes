@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Fonts - Windows</Title>
+		<Description>Reports on the installed fonts on the system</Description>
+		<Relevance>true</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-21</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Fri, 22 Apr 2016 03:14:07 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Fonts - Installed - Windows" ID="1">names of files of folder "C:\Windows\Fonts"</Property>
+	</Analysis>
+</BES>
+

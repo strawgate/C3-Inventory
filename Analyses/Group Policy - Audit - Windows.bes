@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Group Policy - Audit - Windows</Title>
+		<Description><![CDATA[<P>Provides the following pieces of&nbsp;information regarding Group Policy:</P>
+<OL>
+<LI>Average network wait on startup 
+<LI>Applied Group Policies 
+<LI>Enforced Group Policies 
+<LI>The Active Directory site the computer currently falls into 
+<LI>Assigned Software Installations in Group Policy 
+<LI>The currently connected domain controller 
+<LI>If the computer is on a slow link</LI></OL>
+<P>The applied group policies and enforced group policies properties show the name of the group policy object, at what level the policy is linked (Site, Domain, OU) and at what OU in active directory the policy is linked at.</P>]]></Description>
+		<Relevance>true</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-21</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Fri, 22 Apr 2016 19:45:27 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Group Policy - Average Network Wait - Windows" ID="1">value "AvgWaitTimeoutAtStartup" of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\history" of native registry as integer</Property>
+		<Property Name="Group Policy - Applied Policies - Windows" ID="2">(value "DisplayName" of it, (if (it = 0) then "Unknown" else (if (it = 1) then "Local Group Policy" else (if (it = 2) then "Site Linked" else (if (it = 3) then "Domain Linked" else ("OU Linked"))))) of (value "GPOLink" of it as integer), value "Link" of it) of keys of keys of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\history" of native registry</Property>
+		<Property Name="Group Policy - Enforced Policies - Windows" ID="3">(value "DisplayName" of it, (if (it = 0) then "Unknown" else (if (it = 1) then "Local Group Policy" else (if (it = 2) then "Site Linked" else (if (it = 3) then "Domain Linked" else ("OU Linked"))))) of (value "GPOLink" of it as integer), value "Link" of it) of keys whose (bit 1 of (value "Options" of it as integer as bit set) = true) of keys of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\history" of native registry</Property>
+		<Property Name="Group Policy - Site - Windows" ID="4">value "Site-Name" of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\State\Machine" of native registry</Property>
+		<Property Name="Group Policy - Assigned Software Installation - Windows" ID="5">(value "GPO Name" of it, value "Deployment Name" of it, value "GPO ID" of it) of keys of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\Appmgmt" of native registry</Property>
+		<Property Name="Group Policy - Connected Domain Controller - Windows" ID="6">value "DCName" of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\History" of native registry</Property>
+		<Property Name="Group Policy - On Slow Link - Windows" ID="7">if (value "IsSlowLink" of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\History" of native registry as integer = 0) then false else true</Property>
+	</Analysis>
+</BES>
+

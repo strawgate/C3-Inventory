@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Operating System - Audit - Windows</Title>
+		<Description><![CDATA[<P>Provides information regarding the installed Windows Operating System.</P>
+<P>Credit, compliments, and kudos to jgstew for the source of this analysis: <A href="https://bigfix.me/analysis/details/2994800">https://bigfix.me/analysis/details/2994800</A></P>]]></Description>
+		<Relevance>(if (name of operating system starts with "Win") then platform id of operating system != 3 else true) AND (if exists property "in proxy agent context" then (not in proxy agent context) else true) AND (if exists property "android" of type "operating system" then (not android of operating system) else true)</Relevance>
+		<Relevance>name of operating system as lowercase starts with "win"</Relevance>
+		<Relevance><![CDATA[version of client >= "5.0"]]></Relevance>
+		<Relevance>TRUE</Relevance>
+		<Category></Category>
+		<MIMEField>
+			<Name>x-fixlet-first-propagation</Name>
+			<Value>Thu, 23 Jan 2014 23:04:56 +0000</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Fri, 22 Apr 2016 20:44:46 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="OS - Full Name - Windows" ID="1" EvaluationPeriod="P1D"><![CDATA[if (exists wmi AND (not (name of operating system = "WinME" ))) then (string value of selects "caption from win32_operatingsystem" of wmi & " " & csd version of operating system) else ( "Windows " & (following text of first "Win" of (name of operating system as string)) & (if (name of operating system = "WinNT" ) then ((if (exists key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ProductOptions" whose (exists value "ProductType" of it AND (value "ProductType" of it as string as lowercase = "servernt" OR value "ProductType" of it as string as lowercase = "lanmannt" )) of registry) then (if (exists key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ProductOptions" whose (exists value "ProductSuite" of it AND value "ProductSuite" of it as string as lowercase contains "terminal" ) of registry) then " Terminal Server" else " Server" ) else " Workstation" ) & " " & csd version of operating system) else (if (name of operating system = "Win98" ) then (if (csd version of operating system as string contains "A" ) then " Second Edition" else "" ) else (if (name of operating system = "Win95" ) then (if (csd version of operating system as string contains "C" OR csd version of operating system as string contains "B" ) then " OSR2" else "" ) else " " & csd version of operating system ))))]]></Property>
+		<Property Name="OS - Version Number - Windows" ID="2" EvaluationPeriod="P1D"><![CDATA[(major version of it as string & "." & minor version of it as string & "." & (build number high of it + build number low of it) as string ) of operating system]]></Property>
+		<Property Name="OS - Type - Windows" ID="3" EvaluationPeriod="P1D"><![CDATA[if (name of operating system as lowercase starts with "win") then (if (name of operating system = "Win95" OR name of operating system = "Win98" or name of operating system = "WinME") then "Workstation" else (if (value "ProductType" of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ProductOptions" of registry = "WinNT") then "Workstation" else "Server")) else "Unknown - " & name of operating system]]></Property>
+		<Property Name="OS - Product ID - Windows" ID="4" EvaluationPeriod="P1D">(if (exists key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion" whose (exists value "ProductId" of it) of native registry AND NOT (name of operating system = "WinNT")) then (value "ProductId" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion" of native registry as string) else (if (exists key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion" whose (exists value "ProductId" of it) of native registry) then (value "ProductId" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion" of native registry as string) else "Unknown"))</Property>
+		<Property Name="OS - Product Key - Windows" ID="5" EvaluationPeriod="P1D">if (name of operating system = "Win95" AND exists key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion" whose (exists value "ProductId" of it) of registry) then (value "ProductId" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion" of registry as string) else (if ((name of operating system = "Win98" OR name of operating system = "WinME") AND exists key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion" whose (exists value "ProductKey" of it) of registry) then (value "ProductKey" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion" of registry as string) else ("Unknown"))</Property>
+		<Property Name="OS - Installation Date - Windows" ID="6" EvaluationPeriod="P1D"><![CDATA[if (exists wmi AND exists selects "InstallDate from win32_operatingsystem" of wmi AND not ((string value of selects "InstallDate from win32_operatingsystem" of wmi) = "")) then ((first 4 of (first 8 of string value of (selects "InstallDate from Win32_OperatingSystem" of wmi))) & "-" & (first 2 of (last 4 of (first 8 of string value of (selects "InstallDate from Win32_OperatingSystem" of wmi)))) & "-" & (last 2 of (first 8 of string value of (selects "InstallDate from Win32_OperatingSystem" of wmi)))) else ("N/A")]]></Property>
+		<Property Name="OS - Uptime - Windows" ID="7" EvaluationPeriod="P1D"><![CDATA[(if it = 1 then it as string & " day" else it as string & " days") of ((uptime of operating system) / day)]]></Property>
+		<Property Name="OS - Language - Windows" ID="8" EvaluationPeriod="P1D"><![CDATA[language of version block of file "kernel32.dll" of system folder & (if (exists key "HKLM\System\CurrentControlSet\Control\Nls\MUILanguages" of registry AND exists value of key "HKLM\System\CurrentControlSet\Control\Nls\MUILanguages" of registry) then " | MUI Installed" else "")]]></Property>
+		<Property Name="OS - System Language - Windows" ID="9" EvaluationPeriod="P1D">system language</Property>
+		<Property Name="OS - User Language - Windows" ID="10" EvaluationPeriod="P1D">user language</Property>
+		<Property Name="OS - Architecture - Windows" ID="11">if (x64 of operating system) then "64-bit" else if (not x64 of operating system) then "32-bit" else "Undefined"</Property>
+		<Property Name="OS - Uptime - Windows" ID="12">uptime of operating system</Property>
+		<Property Name="OS - Installed Roles and Features - Windows" ID="13" EvaluationPeriod="P1D">(if (exists true whose (if true then (exists select object "* from Win32_ServerFeature" of wmi) else false)) then (string values of (selects "Name from Win32_ServerFeature" of wmi)) else "None")</Property>
+	</Analysis>
+</BES>
+

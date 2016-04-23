@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - Group Policy Refresh - Windows</Title>
+		<Description><![CDATA[<P>This will invoke a group policy refresh on the target endpoint.</P>
+<P><FONT color=#ff0000><STRONG>NOTE: </STRONG></FONT><FONT color=#000000>Performing a group policy refresh may cause a explorer to flash during a user session and it may drop a connected user's remote desktop session.</FONT></P>]]></Description>
+		<Relevance><![CDATA[windows of operating system and version of operating system > "5.1"]]></Relevance>
+		<Relevance>exists file "gpupdate.exe" of system folder</Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-22</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Fri, 22 Apr 2016 19:40:58 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
+
+wait gpupdate /target:computer /force
+wait gpupdate /target:user /force</ActionScript>
+			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
+		</DefaultAction>
+	</Fixlet>
+</BES>
+

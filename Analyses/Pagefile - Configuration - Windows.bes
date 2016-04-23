@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Pagefile - Configuration - Windows</Title>
+		<Description>Covers Pagefile configuration for Windows </Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>not in proxy agent context</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-21</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Fri, 22 Apr 2016 02:58:45 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Pagefile - Location and Size - Windows" ID="1">(preceding text of first " " of it | it, preceding text of first " " of following text of first " " of it | "Default", following text of first " " of following text of first " " of it | "Default") of (substrings separated by "%00" whose (it != "") of (value "PagingFiles" of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" of native registry as string))</Property>
+		<Property Name="Pagefile - Clear on Shutdown - Windows" ID="2">if (value "ClearPageFileAtShutdown" of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" of native registry as string = "0") then "Disabled" else "Enabled"</Property>
+	</Analysis>
+</BES>
+

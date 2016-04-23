@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Drivers - Printers - Windows</Title>
+		<Description>Lists the currently installed printer drivers. </Description>
+		<Relevance>true</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-22</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sat, 23 Apr 2016 03:34:59 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Drivers - Printers - Windows" ID="1">unique values of names of keys of keys of keys "Drivers" of keys of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Environments" of native registry</Property>
+		<Property Name="Drivers - Printers Version - Windows" ID="2">(names of it, value "DriverVersion" of it as string) of keys of keys of keys "Drivers" of keys of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Environments" of native registry</Property>
+	</Analysis>
+</BES>
+

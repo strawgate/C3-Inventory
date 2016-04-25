@@ -4,7 +4,7 @@
 		<Title>Warning - Hosts files contains manually defined hosts - Win\Mac</Title>
 		<Description>This fixlet is relevant if there are manually defined hosts in the system's hosts file </Description>
 		<Relevance>windows of operating system or mac of operating system</Relevance>
-		<Relevance><![CDATA[number of lines whose (it as trimmed string does not equal "" and it does not start with "#") of file "hosts" of (if windows of operating system then folder "drivers\etc" of (if (x64 of operating system ) then (system x64 folder) else (system x32 folder)) else (if mac of operating system then folder "/private/etc" else folder "/etc")) > 0]]></Relevance>
+		<Relevance><![CDATA[number of lines whose (it as trimmed string does not equal "" and it does not start with "#" and it does not start with "127.0.0.1" and it does not start with "255.255.255.255" and it does not start with "::1" and it does not start with "fe80::1") of file "hosts" of (if windows of operating system then folder "drivers\etc" of (if (x64 of operating system ) then (system x64 folder) else (system x32 folder)) else (if mac of operating system then folder "/private/etc" else folder "/etc")) > 0]]></Relevance>
 		<Category></Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -14,7 +14,7 @@
 		<SANSID></SANSID>
 		<MIMEField>
 			<Name>x-fixlet-modification-time</Name>
-			<Value>Sat, 23 Apr 2016 16:59:53 +0000</Value>
+			<Value>Sun, 24 Apr 2016 20:08:31 +0000</Value>
 		</MIMEField>
 		<Domain>BESC</Domain>
 	</Fixlet>

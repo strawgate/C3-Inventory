@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Applications - Universal</Title>
+		<Description>Application Inventory</Description>
+		<Relevance>true</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Mon, 25 Apr 2016 02:26:28 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Applications - Currently Running - Universal" ID="1">running applications</Property>
+		<Property Name="Applications - Registered Applications - Universal" ID="2" EvaluationPeriod="PT1H">regapps</Property>
+		<Property Name="Applications - Installed - Windows" ID="4" EvaluationPeriod="P1D">unique values of (it as string) of (value "DisplayName" of it as string as trimmed string, (value "DisplayVersion" of it as string | "None")) of keys whose (exists value "DisplayName" of it) of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall" of (if x64 of operating system then (x64 registry;x32 registry) else x32 registry)</Property>
+		<Property Name="Applications - Uninstall Strings - Windows" ID="5" EvaluationPeriod="P2D">(value "DisplayName" of it as string | "N\A", value "UninstallString" of it as string | "N\A") of (keys of keys "HKLM\software\microsoft\windows\currentversion\uninstall" of ( x32 registry; (if exists x64 registry then x64 registry else nothing) )) whose ((exists (it) and it as string does not contain "Oarpmany.exe") of value "UninstallString" of it)</Property>
+		<Property Name="Applications - Silent Uninstall Strings - Windows" ID="6" EvaluationPeriod="P2D">(value "DisplayName" of it as string | "N\A", value "QuietUninstallString" of it as string | "N\A") of (keys of keys "HKLM\software\microsoft\windows\currentversion\uninstall" of ( x32 registry; (if exists x64 registry then x64 registry else nothing) )) whose ((exists (it) and it as string does not contain "Oarpmany.exe") of value "QuietUninstallString" of it)</Property>
+	</Analysis>
+</BES>
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Stability - Mac</Title>
+		<Description><![CDATA[This analysis provides stability information for Mac OS devices. 
+<P>Kudos, compliments, and credit for the majority of this analysis to: rustymyers</P>
+<P>The original analysis this is based off of is available here: <A href="https://bigfix.me/analysis/details/2994700">https://bigfix.me/analysis/details/2994700</A></P>]]></Description>
+		<Relevance>mac of operating system</Relevance>
+		<MIMEField>
+			<Name>bigfixme-added-time</Name>
+			<Value>Wed, 06 Aug 2014 07:44:27 GMT</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-modification-time</Name>
+			<Value>Wed, 06 Aug 2014 07:44:27 GMT</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-keywords</Name>
+			<Value>mac stability report errors</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-ID</Name>
+			<Value>2994700</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>bigfixme-versions-ids</Name>
+			<Value>2994652,2994699</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sun, 24 Apr 2016 15:43:06 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Stability - system.log error count - Mac" ID="3" EvaluationPeriod="PT12H">number of lines whose ( it as lowercase contains "error") of file "/var/log/system.log"</Property>
+		<Property Name="Stability - opendirectoryd error count - Mac" ID="4" EvaluationPeriod="PT6H">number of lines whose ( it as lowercase contains "com.apple.opendirectoryd") of file "/var/log/system.log" </Property>
+		<Property Name="Stability - I/O error count - Mac" ID="7" EvaluationPeriod="PT1H">number of lines whose (it contains "kernel[0]" and it contains "I/O error") of file "/var/log/system.log"</Property>
+		<Property Name="Stability - I/O error lines - Mac" ID="8" EvaluationPeriod="PT1H">if (exists lines whose (it contains "kernel[0]" and it contains "I/O error") of file "/var/log/system.log") then lines whose (it contains "kernel[0]" and it contains "I/O error") of file "/var/log/system.log" else ERROR "none"</Property>
+		<Property Name="Stability - I/O error disks - Mac" ID="9" EvaluationPeriod="PT1H">if (exists lines whose (it contains "kernel[0]" and it contains "I/O error") of file "/var/log/system.log") then concatenation ", " of unique values of preceding texts of firsts ": I/O error." of following texts of firsts "kernel[0]: " of lines whose (it contains "kernel[0]:" and it contains "I/O error") of file "/var/log/system.log" else ERROR "none"</Property>
+		<Property Name="Stability - system.log besagent lines - Mac" ID="10" EvaluationPeriod="PT1H">if (exists lines whose (it contains "BESAgent") of file "/var/log/system.log") then lines whose (it contains "BESAgent") of file "/var/log/system.log" else ERROR "none"</Property>
+		<Property Name="Stability - system.log besagent count - Mac" ID="11">if (exists lines whose (it contains "BESAgent") of file "/var/log/system.log") then number of lines whose (it contains "BESAgent") of file "/var/log/system.log" else ERROR "none"</Property>
+		<Property Name="Stability - system.log besagent spindump lines - Mac" ID="12" EvaluationPeriod="PT1H">if (exists lines whose (it contains "BESAgent" and it contains "spindump") of file "/var/log/system.log") then lines whose (it contains "BESAgent" and it contains "spindump") of file "/var/log/system.log" else ERROR "none"</Property>
+		<Property Name="Stability - system.log besagent spindump count - Mac" ID="13" EvaluationPeriod="PT1H">if (exists lines whose (it contains "BESAgent" and it contains "spindump") of file "/var/log/system.log") then number of lines whose (it contains "BESAgent" and it contains "spindump") of file "/var/log/system.log" else ERROR "none"</Property>
+	</Analysis>
+</BES>
+

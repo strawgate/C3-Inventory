@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Services - Universal</Title>
+		<Description>Services on the system</Description>
+		<Relevance>true</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-14</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Mon, 25 Apr 2016 01:56:00 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Services - Installed - Universal" ID="1"><![CDATA[(display name of it & " (" & service name of it & ")") of services whose (exists display name of it AND (length of (display name of it as string)) > 0 AND (number of substrings " " of (display name of it as string) < (length of (display name of it as string))) AND exists service name of it AND (length of (service name of it as string)) > 0 AND (number of substrings " " of (service name of it as string) < (length of (service name of it as string))))]]></Property>
+		<Property Name="Services - State - Universal" ID="2"><![CDATA[(display name of it & " (" & service name of it & ") | " & state of it) of services whose (exists display name of it AND (length of (display name of it as string)) > 0 AND (number of substrings " " of (display name of it as string) < (length of (display name of it as string))) AND exists service name of it AND (length of (service name of it as string)) > 0 AND (number of substrings " " of (service name of it as string) < (length of (service name of it as string))) AND exists state of it)]]></Property>
+	</Analysis>
+</BES>
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Warning - Group Policy Service debug logging may be enabled</Title>
+		<Description>This fixlet evaluates to true if Group Policy debug logging is enabled on the target system. </Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists value "GPSvcDebugLevel" of key "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion" of native registry</Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-23</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sat, 23 Apr 2016 22:23:17 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+	</Fixlet>
+</BES>
+

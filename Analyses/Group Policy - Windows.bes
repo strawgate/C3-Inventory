@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
-		<Title>Group Policy - Audit - Windows</Title>
+		<Title>Group Policy - Windows</Title>
 		<Description><![CDATA[<P>Provides the following pieces of&nbsp;information regarding Group Policy:</P>
 <OL>
 <LI>Average network wait on startup 
@@ -10,14 +10,17 @@
 <LI>The Active Directory site the computer currently falls into 
 <LI>Assigned Software Installations in Group Policy 
 <LI>The currently connected domain controller 
-<LI>If the computer is on a slow link</LI></OL>
+<LI>If the computer is on a slow link 
+<LI>Currently running startup and shutdown scripts 
+<LI>Group Policy Preferences with tracing or debug logging enabled</LI></OL>
 <P>The applied group policies and enforced group policies properties show the name of the group policy object, at what level the policy is linked (Site, Domain, OU) and at what OU in active directory the policy is linked at.</P>]]></Description>
-		<Relevance>true</Relevance>
+		<Relevance>Windows of operating system</Relevance>
+		<Relevance>not in proxy agent context</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-21</SourceReleaseDate>
 		<MIMEField>
 			<Name>x-fixlet-modification-time</Name>
-			<Value>Fri, 22 Apr 2016 19:45:27 +0000</Value>
+			<Value>Sun, 24 Apr 2016 19:51:28 +0000</Value>
 		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="Group Policy - Average Network Wait - Windows" ID="1">value "AvgWaitTimeoutAtStartup" of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\history" of native registry as integer</Property>
@@ -27,6 +30,10 @@
 		<Property Name="Group Policy - Assigned Software Installation - Windows" ID="5">(value "GPO Name" of it, value "Deployment Name" of it, value "GPO ID" of it) of keys of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\Appmgmt" of native registry</Property>
 		<Property Name="Group Policy - Connected Domain Controller - Windows" ID="6">value "DCName" of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\History" of native registry</Property>
 		<Property Name="Group Policy - On Slow Link - Windows" ID="7">if (value "IsSlowLink" of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\History" of native registry as integer = 0) then false else true</Property>
+		<Property Name="Group Policy - Startup Scripts - Windows" ID="8">(value "DisplayName" of it as string, value "FileSysPath" of it as string) of keys of (key "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup" of native registry | ERROR "No Startup Scripts")</Property>
+		<Property Name="Group Policy - Shutdown Scripts - Windows" ID="9">(value "DisplayName" of it as string, value "FileSysPath" of it as string) of keys of (key "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown" of native registry | ERROR "No Shutdown Scripts") </Property>
+		<Property Name="Group Policy - Extensions with Debug Logging - Windows" ID="10">(default value of it) of keys whose (set of names of (keys whose (value "LogLevel" of it as string != "0") of key "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Group Policy" of native registry) contains name of it ) of key "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions" of native registry</Property>
+		<Property Name="Group Policy - Extensions with Tracing Enabled - Windows" ID="11">(default value of it) of keys whose (set of names of (keys whose (value "LogLevel" of it as string != "0") of key "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Group Policy" of native registry) contains name of it ) of key "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions" of native registry</Property>
 	</Analysis>
 </BES>
 

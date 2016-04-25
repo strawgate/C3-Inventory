@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Warning - System ignores driver's digital signature state - Windows</Title>
+		<Description><![CDATA[<P>If this fixlet is relevant then the system is configured to ignore (not prompt on installation) when an attempt is made to install a driver that does not have a digital signature.</P>
+<P>This is&nbsp;a potentially dangerous non-default configuration.&nbsp;</P>]]></Description>
+		<Relevance><![CDATA[windows of operating system and version of operating system >= "5.1"]]></Relevance>
+		<Relevance>not in proxy agent context</Relevance>
+		<Relevance>(value "Policy" of key "HKEY_LOCAL_MACHINE\Software\Microsoft\Non-Driver Signing" of native registry as string) = "00"</Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-23</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sat, 23 Apr 2016 21:05:36 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+	</Fixlet>
+</BES>
+

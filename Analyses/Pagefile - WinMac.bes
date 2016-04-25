@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Pagefile - Win\Mac</Title>
+		<Description>Information about Pagefile across Mac and Windows</Description>
+		<Relevance>windows of operating system or Mac of Operating System</Relevance>
+		<Relevance>not in proxy agent context</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-24</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Mon, 25 Apr 2016 01:55:13 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Pagefile - Current Size - Win\Mac" ID="1"><![CDATA[sum of sizes of (if (Windows of Operating System) then (files "pagefile.sys" of folders ((name of it & "\") of drives)) else (if (Mac of Operating System) then (files whose (name of it starts with "swapfile") of folder "/private/var/vm") else (ERROR "Unknown")))]]></Property>
+	</Analysis>
+</BES>
+

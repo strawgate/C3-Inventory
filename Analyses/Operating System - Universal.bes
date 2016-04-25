@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Operating System - Universal</Title>
+		<Description>Provides information across operating systems </Description>
+		<Relevance>true</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-24</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sun, 24 Apr 2016 15:28:42 +0000</Value>
+		</MIMEField>
+		<Domain>BES </Domain>
+		<Property Name="OS - Full Name - Universal" ID="1"><![CDATA[if (windows of operating system) then (string value of selects "caption from win32_operatingsystem" of wmi & " " & csd version of operating system) else (if (Mac of Operating System) then (name of operating system) else (if (unix of operating system) then (name of operating system) else ERROR "Unknown")) ]]></Property>
+		<Property Name="OS - Version Number - Universal" ID="2">version of operating system</Property>
+		<Property Name="OS - Uptime - Universal" ID="3">uptime of operating system</Property>
+		<Property Name="OS - Time Zone - Universal" ID="4">local time zone</Property>
+		<Property Name="OS - Architecture - Universal" ID="5">Architecture of Operating System</Property>
+		<Property Name="OS - Boot Time - Universal" ID="6">boot time of operating system</Property>
+	</Analysis>
+</BES>
+

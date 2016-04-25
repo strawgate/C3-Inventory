@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Drivers - Windows</Title>
+		<Description>This analysis covers the action that Windows takes when loading drivers with invalid or missing digital signatures as well as the install printer drivers on the system.</Description>
+		<Relevance><![CDATA[windows of operating system and version of operating system >= "5.1"]]></Relevance>
+		<Relevance>not in proxy agent context</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-23</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sun, 24 Apr 2016 20:13:38 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Drivers - Behavior on Signature Failure - Windows" ID="1">(if (it = "00") then ("Ignore") else (if (it = "01") then "Warn" else "Block")) of (value "Policy" of key "HKEY_LOCAL_MACHINE\Software\Microsoft\Non-Driver Signing" of native registry as string)</Property>
+		<Property Name="Drivers - Printers - Windows" ID="3">unique values of names of keys of keys of keys "Drivers" of keys of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Environments" of native registry</Property>
+		<Property Name="Drivers - Printers with Versions - Windows" ID="4">(names of it, value "DriverVersion" of it as string) of keys of keys of keys "Drivers" of keys of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Environments" of native registry</Property>
+	</Analysis>
+</BES>
+

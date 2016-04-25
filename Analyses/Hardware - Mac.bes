@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Hardware - Mac</Title>
+		<Description>Provides hardware information of Macs</Description>
+		<Relevance>(if (name of operating system starts with "Win") then platform id of operating system != 3 else true) AND (if exists property "in proxy agent context" then (not in proxy agent context) else true) AND (if exists property "android" of type "operating system" then (not android of operating system) else true)</Relevance>
+		<Relevance><![CDATA[version of client >= "5.0"]]></Relevance>
+		<Relevance>(it contains "mac os x") of (name of operating system as lowercase)</Relevance>
+		<Category></Category>
+		<MIMEField>
+			<Name>x-fixlet-first-propagation</Name>
+			<Value>Thu, 23 Jan 2014 23:04:56 +0000</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Mon, 25 Apr 2016 02:26:50 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Hardware - Serial Number - Mac" ID="10">string "IOPlatformSerialNumber" of dictionary of service plane of iokit registry</Property>
+	</Analysis>
+</BES>
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Operating System - Mac</Title>
+		<Description><![CDATA[<TABLE>
+<TBODY>
+<TR>
+<TD>
+<P><FONT size=2>This analysis contains information about the Apple Mac OS X operating system&nbsp;running on BES Client computers.&nbsp;</FONT></P>
+<P>Since this information does not change often, these properties are only evaluated <STRONG>once per day</STRONG> to avoid excess CPU or other computer resource usage.</P>
+<P><FONT size=2>After activating this analysis, you will see the following properties: </P>
+<UL>
+<LI>Full OS Name 
+<LI>OS Release 
+<LI>OS Build 
+<LI>Uptime (days) 
+<LI>Local Time Zone 
+<LI>Number of Running Processes</LI></UL></FONT></TD></TR></TBODY></TABLE>]]></Description>
+		<Relevance>mac of operating system</Relevance>
+		<Relevance>not in proxy agent context</Relevance>
+		<Category></Category>
+		<MIMEField>
+			<Name>x-fixlet-first-propagation</Name>
+			<Value>Thu, 23 Jan 2014 23:04:56 +0000</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sun, 24 Apr 2016 15:32:59 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="OS - Build (Mac OS)" ID="4" EvaluationPeriod="P1D">build number of operating system</Property>
+	</Analysis>
+</BES>
+

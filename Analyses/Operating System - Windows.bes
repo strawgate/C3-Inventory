@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Operating System - Windows</Title>
+		<Description><![CDATA[<P>Provides information regarding the installed Windows Operating System.</P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>not in proxy agent context</Relevance>
+		<Category></Category>
+		<MIMEField>
+			<Name>x-fixlet-first-propagation</Name>
+			<Value>Thu, 23 Jan 2014 23:04:56 +0000</Value>
+		</MIMEField>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sun, 24 Apr 2016 15:32:25 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="OS - Type - Windows" ID="3" EvaluationPeriod="P1D">(if (value "ProductType" of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ProductOptions" of registry = "WinNT" | ERROR "Unknown Operating System Type") then "Workstation" else "Server") </Property>
+		<Property Name="OS - Install Date - Windows" ID="6" EvaluationPeriod="P1D"><![CDATA[(substring (0,4) of it & "-" & substring(4,2) of it & "-" & substring (6,2) of it) of (string value of selects "InstallDate from win32_operatingsystem" of wmi | ERROR "No Install Date found in WMI")]]></Property>
+		<Property Name="OS - System Language - Windows" ID="9" EvaluationPeriod="P1D">system language</Property>
+		<Property Name="OS - User Language - Windows" ID="10" EvaluationPeriod="P1D">user language</Property>
+		<Property Name="OS - Architecture - Windows" ID="11">architecture of operating system</Property>
+		<Property Name="OS - Installed Roles and Features - Windows" ID="13" EvaluationPeriod="P1D">(if (exists true whose (if true then (exists select object "* from Win32_ServerFeature" of wmi) else false)) then (string values of (selects "Name from Win32_ServerFeature" of wmi)) else "None") </Property>
+	</Analysis>
+</BES>
+

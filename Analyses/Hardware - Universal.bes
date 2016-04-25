@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Hardware - Universal</Title>
+		<Description>Provides hardware information in a universal way across all platforms. </Description>
+		<Relevance>true</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-24</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sun, 24 Apr 2016 19:42:16 +0000</Value>
+		</MIMEField>
+		<Domain>BES </Domain>
+		<Property Name="Hardware - CPU Brand Name - Universal" ID="1">unique values of brand strings of processors</Property>
+		<Property Name="Hardware - CPU Socket Count - Universal" ID="2">count of cpupackage</Property>
+		<Property Name="Hardware - CPU Core Count - Universal" ID="3">number of processors</Property>
+		<Property Name="Hardware - CPU Hyperthreading - Universal" ID="4">smt enabled of cpupackage</Property>
+		<Property Name="Hardware - Network Adapters - Universal" ID="5">descriptions of adapters of network</Property>
+		<Property Name="Hardware - CPU Speed - Universal" ID="7"><![CDATA[(speed of main processor / mhz) as string & " MHz "]]></Property>
+		<Property Name="Hardware - CPU Family Name - Windows" ID="8">unique values of family names of processors</Property>
+		<Property Name="Hardware - Model - Win\Mac" ID="10">if (windows of operating system) then (string values of selects "Model from Win32_ComputerSystem" of wmi) else (if (Mac of Operating System) then (machine name) else ("N\A"))</Property>
+		<Property Name="Hardware - RAM ECC - Win\Mac" ID="11"><![CDATA[if (Windows of Operating System) then ( conjunction of ((item 0 of it as integer < item 1 of it as integer) of (integer value of property "DataWidth" of it, string value of property "TotalWidth" of it) of select objects "DataWidth,TotalWidth from Win32_PhysicalMemory" of wmi) ) else ( if (Mac of Operating System) then (boolean "ecc-enabled" of dictionary of node "memory" of devicetree plane of iokit registry) else (ERROR "Unkown"))]]></Property>
+		<Property Name="Hardware - RAM Speed - Win\Mac" ID="12"><![CDATA[if (Windows of Operating System) then ((it & " MHz") of unique values of string values of selects "ConfiguredClockSpeed from Win32_PhysicalMemory" of wmi) else (if (Mac of Operating System) then (unique values of substrings separated by "%00" whose (it != "") of (it as trimmed string) of data "dimm-speeds" of dictionary of node "memory" of devicetree plane of iokit registry) else (ERROR "Unknown"))]]></Property>
+		<Property Name="Hardware - RAM Total Slots - Win\Mac" ID="13"> if (Windows of Operating System) then ((sum of (string values of selects "MemoryDevices from Win32_PhysicalMemoryArray where Use='3'" of wmi as integer)) as string) else (if (Mac of Operating System) then (number of substrings separated by "%00" whose (it != "") of (it as trimmed string) of data "slot-names" of dictionary of node "memory" of devicetree plane of iokit registry) else (ERROR "Unknown"))</Property>
+		<Property Name="Hardware - RAM Used Slots - Win\Mac" ID="14"> if (Windows of Operating System) then (number of (selects "DeviceLocator from Win32_PhysicalMemory where MemoryType!='11'" of wmi) as string) else (if (Mac of Operating System) then (number of substrings separated by "%00" whose (it != "") of data "dimm-types" of dictionary of node "memory" of devicetree plane of iokit registry) else (ERROR "Unknown"))</Property>
+		<Property Name="Hardware - RAM Size (MB) - Universal" ID="16">(left shift 5  of right shift 5 /* Round to nearest 32mb, 2^5 = 32 */ of right shift 20  /*Convert to Megabytes: 2^10 = 1024 */ of (size of ram as bit set)) as integer</Property>
+	</Analysis>
+</BES>
+

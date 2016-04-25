@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Network - Hosts File - Universal</Title>
+		<Description><![CDATA[<P>Covers the configuration of the system hosts file. </P>
+<P>Kudos, compliments and credit to jgstew for posting the source of this analysis: <A href="https://bigfix.me/analysis/details/2994561">https://bigfix.me/analysis/details/2994561</A></P>]]></Description>
+		<Relevance>windows of operating system or mac of operating system</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-23</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Mon, 25 Apr 2016 02:21:49 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Hosts File - Manual Entries Count - Universal" ID="1" EvaluationPeriod="P1D"><![CDATA[number of lines whose (it as trimmed string does not equal "" and it does not start with "#" and it does not start with "127.0.0.1" and it does not start with "255.255.255.255" and it does not start with "::1" and it does not start with "fe80::1") of file "hosts" of (if windows of operating system then folder "drivers\etc" of (if (x64 of operating system ) then (system x64 folder) else (system x32 folder)) else (if mac of operating system then folder "/private/etc" else folder "/etc")) > 0]]></Property>
+		<Property Name="Hosts File - Manual Entries - Universal" ID="2" EvaluationPeriod="P1D">lines whose (it as trimmed string does not equal "" and it does not start with "#" and it does not start with "127.0.0.1" and it does not start with "255.255.255.255" and it does not start with "::1" and it does not start with "fe80::1") of file "hosts" of (if windows of operating system then folder "drivers\etc" of (if (x64 of operating system ) then (system x64 folder) else (system x32 folder)) else (if mac of operating system then folder "/private/etc" else folder "/etc"))</Property>
+		<Property Name="Hosts File - Exists - Universal" ID="3">exists file "hosts" of (if windows of operating system then folder "drivers\etc" of (if (x64 of operating system ) then (system x64 folder) else (system x32 folder)) else (if mac of operating system then folder "/private/etc" else folder "/etc"))</Property>
+	</Analysis>
+</BES>
+

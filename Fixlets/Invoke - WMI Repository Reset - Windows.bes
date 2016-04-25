@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - WMI Repository Reset - Windows</Title>
+		<Description><![CDATA[<P>This fixlet will reset WMI it will be relevant on any Windows computer.</P>
+<P><STRONG><FONT color=#ff0000>NOTE</FONT></STRONG>: Setting this fixlet to reapply will cause it to constantly reset the WMI repository. Apply once and DO NOT reapply.</P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-24</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sun, 24 Apr 2016 20:03:35 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Action ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[action uses wow64 redirection {not x64 of operating system}
+delete __createfile
+delete wmi_simple.bat
+
+createfile until __END
+
+taskkill /IM "wmiprvse.exe" /f
+net stop winmgmt /Y
+
+winmgmt /resetrepository
+for /f %%s in ('dir /b *.mof *.mfl') do mofcomp %%s
+for /f %%s in ('dir /b *.dll') do regsvr32 /s %%s
+
+net start winmgmt
+
+__END
+
+
+copy __createfile wmi_simple.bat
+
+waithidden cmd.exe /c wmi_simple.bat > {value of variable "temp" of environment}\wmi_simple.log 2>&1]]></ActionScript>
+		</Action>
+	</Fixlet>
+</BES>
+

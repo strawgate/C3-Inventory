@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Network - Windows</Title>
+		<Description>Provides network information</Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>not in proxy agent context</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sun, 24 Apr 2016 20:10:39 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Network - DHCP Server - Windows" ID="1" EvaluationPeriod="P1D">(friendly name of it, dhcp server of it as string | "Static IP") of adapters whose (address of it != "0.0.0.0") of network as string</Property>
+		<Property Name="Network - DNS Servers - Windows" ID="2" EvaluationPeriod="P1D">addresses of dns servers of network</Property>
+		<Property Name="Network - Domain - Windows" ID="3" EvaluationPeriod="P1D">string values of selects "Domain from Win32_ComputerSystem" of wmi</Property>
+		<Property Name="Network - MAC Addresses - Windows" ID="5">mac addresses of adapters of network</Property>
+		<Property Name="Network - Subnet Masks - Windows" ID="6">subnet masks of ip interfaces whose (loopback of it = false) of network</Property>
+		<Property Name="Network - Wireless SSID Name - Windows" ID="7">ssids of wifis of adapters of network </Property>
+		<Property Name="Network - Wireless SSID Encryption - Windows" ID="8">encryptions of wifis of adapters of network</Property>
+	</Analysis>
+</BES>
+

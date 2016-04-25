@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Hibernation - Win\Mac</Title>
+		<Description><![CDATA[Hibernation Configuration for Windows&nbsp;and Mac OS ]]></Description>
+		<Relevance>windows of operating system or mac of operating system</Relevance>
+		<Relevance>not in proxy agent context</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-21</SourceReleaseDate>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sun, 24 Apr 2016 19:16:06 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<Property Name="Hibernation - State - Win\Mac" ID="1">if ( if (Windows of Operating system) then (value "HibernateEnabled" of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power" of native registry as string = "1") else ( if (Mac of Operating System) then (integer "Hibernate Mode" of dictionary of node "IOPMrootDomain" of node "IOPowerConnection" of power plane of iokit registry != 0) else (ERROR "Unknown error"))) then "Enabled" else "Disabled"</Property>
+		<Property Name="Hibernation - Image Size (GB) - Win\Mac" ID="2"><![CDATA[(size of file (if (Windows of Operating System) then ((name of drive of windows folder & "\hiberfil.sys")) else (if (Mac of Operating system) then ("/var/vm/sleepimage") else (ERROR "Unkown Error"))) / 1024 /* KB */ / 1024 /* MB */ / 1024 /* GB */) | 0]]></Property>
+		<Property Name="Hibernation - Image Size (B) - Win\Mac" ID="4"><![CDATA[(size of file (if (Windows of Operating System) then ((name of drive of windows folder & "\hiberfil.sys")) else (if (Mac of Operating system) then ("/var/vm/sleepimage") else (ERROR "Unkown Error")))) | 0]]></Property>
+	</Analysis>
+</BES>
+

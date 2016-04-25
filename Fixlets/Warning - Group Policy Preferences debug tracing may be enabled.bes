@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Warning - Group Policy Preferences debug tracing may be enabled</Title>
+		<Description><![CDATA[<P>This fixlet is relevant if tracing is enabled for one or more Group Policy Preferences Extensions.</P>
+<P>Tracing creates detailed log files on the system and may reduce performance of the Group Policy client. This could impact start-up and login times.</P>]]></Description>
+		<Relevance>Windows of operating system</Relevance>
+		<Relevance>exists keys whose (value "TraceLevel" of it as string != "0") of key "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Group Policy" of native registry</Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-23</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<MIMEField>
+			<Name>x-fixlet-modification-time</Name>
+			<Value>Sat, 23 Apr 2016 22:23:05 +0000</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+	</Fixlet>
+</BES>
+

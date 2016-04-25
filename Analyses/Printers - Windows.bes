@@ -3,17 +3,12 @@
 	<Analysis>
 		<Title>Printers - Windows</Title>
 		<Description>Analysis of local and AD installed printers for Windows systems only </Description>
-		<GroupRelevance JoinByIntersection="true">
-			<SearchComponentPropertyReference PropertyName="OS" Comparison="Contains">
-				<SearchText>win</SearchText>
-				<Relevance>exists (operating system) whose (it as string as lowercase contains "win" as lowercase)</Relevance>
-			</SearchComponentPropertyReference>
-		</GroupRelevance>
+		<Relevance>windows of operating system</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2013-07-25</SourceReleaseDate>
 		<MIMEField>
 			<Name>x-fixlet-modification-time</Name>
-			<Value>Sun, 24 Apr 2016 01:19:37 +0000</Value>
+			<Value>Mon, 25 Apr 2016 02:51:59 +0000</Value>
 		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="Printers - Local - Windows" ID="1" EvaluationPeriod="P1D">(value "name" of it, value "printer driver" of it, value "port" of it) of keys whose (value "Port" of it as string contains "LPT" OR value "Port" of it as string contains "DOT4" OR value "Port" of it as string contains "USB" OR value "Port" of it as string contains ".") of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print\Printers" of registry as string</Property>

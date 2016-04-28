@@ -1,2 +1,2 @@
-# Poor-Man-s-Inventory
-Poor Man's Inventory
+# C3 Inventory
+C3 Inventory

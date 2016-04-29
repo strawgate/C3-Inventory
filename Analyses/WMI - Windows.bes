@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>WMI - Windows</Title>
@@ -7,10 +8,6 @@
 		<Relevance>exists wmi</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Sun, 24 Apr 2016 19:55:04 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="WMI - Query Error - Windows" ID="4" EvaluationPeriod="PT1H">not exists string values of selects "Domain from Win32_ComputerSystem" of wmi | true</Property>
 		<Property Name="WMI - Backup Repository Exists - Windows" ID="5" EvaluationPeriod="PT1H">exists folders whose (name of it starts with "repository.") of (folder "wbem" of (if (x64 of operating system) then (system x64 folder) else (system x32 folder)))</Property>
@@ -19,4 +16,3 @@
 		<Property Name="WMI - Repository Size - Windows" ID="8"><![CDATA[size of file "objects.data" of (if (x64 of operating system) then (x64 folder (pathname of windows folder & "\system32\wbem\repository")) else (folder (pathname of windows folder & "\system32\wbem\repository")))]]></Property>
 	</Analysis>
 </BES>
-

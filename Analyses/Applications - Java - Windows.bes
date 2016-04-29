@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Applications - Java - Windows</Title>
@@ -6,14 +7,9 @@
 		<Relevance>true</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-12</SourceReleaseDate>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Mon, 25 Apr 2016 01:43:51 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="Java - Installed - Windows (x86)" ID="1">values "DisplayName" of (keys whose (value "DisplayName" of it as string starts with "Java") of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" of ( x32 registry)) as string</Property>
 		<Property Name="Java - Installed - Windows (x64)" ID="2">if (x64 of operating system) then (values "DisplayName" of (keys whose (value "DisplayName" of it as string starts with "Java") of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" of ( x64 registry)) as string) else ("N/A (not 64-bit)")</Property>
 		<Property Name="Java - Config - exceptions.sites - Windows" ID="3">unique values of (it as string) of lines of files "exception.sites" of folders "AppData\LocalLow\Sun\Java\Deployment\security" of folders whose(exists folders "AppData\LocalLow\Sun\Java\Deployment\security" of it) of folder "C:\Users"</Property>
 	</Analysis>
 </BES>
-

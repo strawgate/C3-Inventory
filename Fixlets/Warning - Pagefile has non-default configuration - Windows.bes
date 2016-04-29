@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
 		<Title>Warning - Pagefile has non-default configuration - Windows</Title>
@@ -12,11 +13,6 @@
 		<SourceSeverity></SourceSeverity>
 		<CVENames></CVENames>
 		<SANSID></SANSID>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Sat, 23 Apr 2016 21:06:18 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 	</Fixlet>
 </BES>
-

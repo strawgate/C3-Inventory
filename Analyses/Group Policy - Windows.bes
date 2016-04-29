@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Group Policy - Windows</Title>
@@ -18,10 +19,6 @@
 		<Relevance>not in proxy agent context</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-21</SourceReleaseDate>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Sun, 24 Apr 2016 19:51:28 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="Group Policy - Average Network Wait - Windows" ID="1">value "AvgWaitTimeoutAtStartup" of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\history" of native registry as integer</Property>
 		<Property Name="Group Policy - Applied Policies - Windows" ID="2">(value "DisplayName" of it, (if (it = 0) then "Unknown" else (if (it = 1) then "Local Group Policy" else (if (it = 2) then "Site Linked" else (if (it = 3) then "Domain Linked" else ("OU Linked"))))) of (value "GPOLink" of it as integer), value "Link" of it) of keys of keys of key "HKEY_LOCAL_MACHINE\Software\microsoft\windows\currentversion\group policy\history" of native registry</Property>
@@ -36,4 +33,3 @@
 		<Property Name="Group Policy - Extensions with Tracing Enabled - Windows" ID="11">(default value of it) of keys whose (set of names of (keys whose (value "LogLevel" of it as string != "0") of key "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Group Policy" of native registry) contains name of it ) of key "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions" of native registry</Property>
 	</Analysis>
 </BES>
-

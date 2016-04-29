@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Fonts - Win\Mac</Title>
@@ -6,12 +7,7 @@
 		<Relevance>windows of operating system or mac of operating system</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-21</SourceReleaseDate>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Sun, 24 Apr 2016 00:07:30 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="Fonts - Installed - Win\Mac" ID="1">names of files of (if (Windows of operating system) then (folder "C:\Windows\Fonts") else (unique values of names of files of folders ("/Library/Fonts/";"/System/Library/Fonts")))</Property>
 	</Analysis>
 </BES>
-

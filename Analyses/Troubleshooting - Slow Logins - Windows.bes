@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Troubleshooting - Slow Logins - Windows</Title>
@@ -7,13 +8,8 @@
 		<Relevance>true</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Sun, 24 Apr 2016 19:54:59 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="User - Slow User Policy Processing - Windows" ID="1" EvaluationPeriod="P1D"><![CDATA[exists ( (parenthesized parts of matches (regex "in (\d*) seconds.") of descriptions of records whose ((event id of it = 8001)) of event log "Microsoft-Windows-GroupPolicy/Operational") whose (it as integer > 300 /* seconds */) )]]></Property>
 		<Property Name="User - Slow Winlogon - Windows" ID="4" EvaluationPeriod="P1D">(time generated of it, description of it) of (records  whose ((event id of it = 6006 or event id of it = 2147489654) and description of it contains "Logon") of event log "Application")</Property>
 	</Analysis>
 </BES>
-

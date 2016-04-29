@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
 		<Title>Warning - Client clock is off by more than 5 minutes</Title>
@@ -11,11 +12,6 @@
 		<SourceSeverity></SourceSeverity>
 		<CVENames></CVENames>
 		<SANSID></SANSID>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Sun, 24 Apr 2016 00:47:59 +0000</Value>
-		</MIMEField>
 		<Domain>BES </Domain>
 	</Fixlet>
 </BES>
-

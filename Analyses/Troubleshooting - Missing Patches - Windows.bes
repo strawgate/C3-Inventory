@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Troubleshooting - Missing Patches - Windows</Title>
@@ -6,13 +7,8 @@
 		<Relevance>true</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-07</SourceReleaseDate>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Mon, 25 Apr 2016 01:42:20 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="Patches - Missing OS Security Patches Count - Windows" ID="2">number of (concatenation "" of matches (regex "[a-z]") of (values of headers "X-Fixlet-Source-Severity" of it as lowercase)) whose (it = "critical" or it = "important" or it = "moderate") of relevant fixlets whose (not exists (headers "X-Fixlet-Type" of it) whose (value of it is contained by set of ("Task";"Analysis";"Baseline")) and exists headers "X-Fixlet-Default-Action" of it) of sites whose (name of it is contained by set of ("Enterprise Security"))</Property>
 		<Property Name="Patches - Missing App Security Patches Count - Windows" ID="3">number of (concatenation "" of matches (regex "[a-z]") of (values of headers "X-Fixlet-Source-Severity" of it as lowercase)) whose (it = "critical" or it = "important" or it = "moderate") of relevant fixlets whose (not exists (headers "X-Fixlet-Type" of it) whose (value of it is contained by set of ("Task";"Analysis";"Baseline")) and exists headers "X-Fixlet-Default-Action" of it) of sites whose (name of it is contained by set of ("Updates for Windows Applications"))</Property>
 	</Analysis>
 </BES>
-

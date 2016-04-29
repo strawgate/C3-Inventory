@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Applications - Universal</Title>
@@ -6,10 +7,6 @@
 		<Relevance>true</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Mon, 25 Apr 2016 02:26:28 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="Applications - Currently Running - Universal" ID="1">running applications</Property>
 		<Property Name="Applications - Registered Applications - Universal" ID="2" EvaluationPeriod="PT1H">regapps</Property>
@@ -18,4 +15,3 @@
 		<Property Name="Applications - Silent Uninstall Strings - Windows" ID="6" EvaluationPeriod="P2D">(value "DisplayName" of it as string | "N\A", value "QuietUninstallString" of it as string | "N\A") of (keys of keys "HKLM\software\microsoft\windows\currentversion\uninstall" of ( x32 registry; (if exists x64 registry then x64 registry else nothing) )) whose ((exists (it) and it as string does not contain "Oarpmany.exe") of value "QuietUninstallString" of it)</Property>
 	</Analysis>
 </BES>
-

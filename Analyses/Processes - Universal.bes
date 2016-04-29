@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Processes - Universal</Title>
@@ -6,12 +7,7 @@
 		<Relevance>true</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Mon, 25 Apr 2016 01:55:38 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="Processes - Running - Universal" ID="1">(name of it | "Name Missing", pathname of image file of it | "No path" ) of processes</Property>
 	</Analysis>
 </BES>
-

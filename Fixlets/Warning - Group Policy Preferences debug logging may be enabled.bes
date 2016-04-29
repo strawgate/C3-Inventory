@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
 		<Title>Warning - Group Policy Preferences debug logging may be enabled</Title>
@@ -13,11 +14,6 @@
 		<SourceSeverity></SourceSeverity>
 		<CVENames></CVENames>
 		<SANSID></SANSID>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Sat, 23 Apr 2016 22:25:08 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 	</Fixlet>
 </BES>
-

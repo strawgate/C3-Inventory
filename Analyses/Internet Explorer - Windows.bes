@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Internet Explorer - Windows</Title>
@@ -6,12 +7,7 @@
 		<Relevance>true</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-23</SourceReleaseDate>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Sun, 24 Apr 2016 19:22:29 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="IE - Trusted Sites - Windows" ID="1">(name of it, it) of values of key "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMapKey" of native registry</Property>
 	</Analysis>
 </BES>
-

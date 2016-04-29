@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Hardware - Universal</Title>
@@ -6,10 +7,6 @@
 		<Relevance>true</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-24</SourceReleaseDate>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Sun, 24 Apr 2016 19:42:16 +0000</Value>
-		</MIMEField>
 		<Domain>BES </Domain>
 		<Property Name="Hardware - CPU Brand Name - Universal" ID="1">unique values of brand strings of processors</Property>
 		<Property Name="Hardware - CPU Socket Count - Universal" ID="2">count of cpupackage</Property>
@@ -26,4 +23,3 @@
 		<Property Name="Hardware - RAM Size (MB) - Universal" ID="16">(left shift 5  of right shift 5 /* Round to nearest 32mb, 2^5 = 32 */ of right shift 20  /*Convert to Megabytes: 2^10 = 1024 */ of (size of ram as bit set)) as integer</Property>
 	</Analysis>
 </BES>
-

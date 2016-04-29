@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Stability - Windows</Title>
@@ -7,30 +8,6 @@
 <P>Kudos, compliments, and credit for the majority of this analysis to: jgstew</P>
 <P>The original analysis this is based off of is available here: <A href="https://bigfix.me/analysis/details/2994781">https://bigfix.me/analysis/details/2994781</A></P></FONT>]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<MIMEField>
-			<Name>bigfixme-added-time</Name>
-			<Value>Wed, 06 May 2015 07:38:01 GMT</Value>
-		</MIMEField>
-		<MIMEField>
-			<Name>bigfixme-modification-time</Name>
-			<Value>Wed, 06 May 2015 07:38:01 GMT</Value>
-		</MIMEField>
-		<MIMEField>
-			<Name>bigfixme-keywords</Name>
-			<Value></Value>
-		</MIMEField>
-		<MIMEField>
-			<Name>bigfixme-ID</Name>
-			<Value>2994781</Value>
-		</MIMEField>
-		<MIMEField>
-			<Name>bigfixme-versions-ids</Name>
-			<Value>2994619</Value>
-		</MIMEField>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Sun, 24 Apr 2016 13:44:45 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="Stability - Hard Reboots - Windows" ID="1" EvaluationPeriod="P1D"><![CDATA[if (152000 < record count of system event log) then ERROR "too many log records" else ( number of (records whose (event id of it = 41) of system event log) /* http://support.microsoft.com/kb/2028504 */ )]]></Property>
 		<Property Name="Stability - WER Type/Count - Windows" ID="3" EvaluationPeriod="P1D"><![CDATA[if (version of operating system > "6.0") then ((it, multiplicity of it) of unique values of preceding texts of firsts "_" of names of folders of folders whose(name of it = "ReportArchive" OR name of it = "ReportQueue") of ((folders "AppData\Local\Microsoft\Windows\WER" of folders whose(exists folder "AppData\Local\Microsoft\Windows\WER" of it) of folder "C:\Users");(folder "C:\ProgramData\Microsoft\Windows\WER"))) else ERROR "NotApplicable"]]></Property>
@@ -43,4 +20,3 @@
 		<Property Name="Events - System Log - Oldest - Windows" ID="11">time written of record (oldest record number of system event log) of system event log</Property>
 	</Analysis>
 </BES>
-

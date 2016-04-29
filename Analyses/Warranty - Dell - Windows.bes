@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Warranty - Dell - Windows</Title>
@@ -7,10 +8,6 @@
 		<Relevance>exists key "HKLM\Software\DellWarrantyInfo" of registry</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2014-12-02</SourceReleaseDate>
-		<MIMEField>
-			<Name>x-fixlet-modification-time</Name>
-			<Value>Sun, 24 Apr 2016 19:25:30 +0000</Value>
-		</MIMEField>
 		<Domain>BESC</Domain>
 		<Property Name="Warranty - Dell Hardware - Start Date" ID="1" EvaluationPeriod="P1D"><![CDATA[if (exists string value whose (it as lowercase contains "dell") of selects "Manufacturer, Model from Win32_ComputerSystem" of wmi) then (year of it as string & "-" & month of it as two digits as string & "-" & day_of_month of it as two digits as string) of minima of ((substring (6,2) of it & " " & substring (0,3) of ((month (substring (4,2) of it as integer)) as string) & " " & substring (0,4) of it) of ((concatenations of substrings separated by "-" of it) of (values "Start Date" of ((keys of (key "HKLM\Software\DellWarrantyInfo" of registry)) whose (value "Description" of it as string contains "Business Day")) as string)) as date) else error "None"]]></Property>
 		<Property Name="Warranty - Dell Hardware - End Date" ID="2" EvaluationPeriod="P1D"><![CDATA[if (exists string value whose (it as lowercase contains "dell") of selects "Manufacturer, Model from Win32_ComputerSystem" of wmi) then (year of it as string & "-" & month of it as two digits as string & "-" & day_of_month of it  as two digits as string) of maxima of ((substring (6,2) of it & " " & substring (0,3) of ((month (substring (4,2) of it as integer)) as string) & " " & substring (0,4) of it) of ((concatenations of substrings separated by "-" of it) of (values "End Date" of ((keys of (key "HKLM\Software\DellWarrantyInfo" of registry)) whose (value "Description" of it as string contains "Business Day")) as string)) as date) else error "None"]]></Property>
@@ -22,4 +19,3 @@
 		<Property Name="Warranty - Dell Complete Care - Days Left" ID="8" EvaluationPeriod="P1D"><![CDATA[if (exists string value whose (it as lowercase contains "dell") of selects "Manufacturer, Model from Win32_ComputerSystem" of wmi) then ((maximum of ((substring (6,2) of it & " " & substring (0,3) of ((month (substring (4,2) of it as integer)) as string) & " " & substring (0,4) of it) of ((concatenations of substrings separated by "-" of it) of (values "End Date" of ((keys of (key "HKLM\Software\DellWarrantyInfo" of registry)) whose (value "Description" of it as string contains "Complete Care")) as string)) as date)) - (current date)) else error "None"]]></Property>
 	</Analysis>
 </BES>
-

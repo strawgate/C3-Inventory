@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>BIOS - Dell - Windows</Title>
+		<Description><![CDATA[<P>This analysis provides information on the current configuration of the bios on Dell devices.</P>
+<P>This analysis relies on <STRONG>Fixlet</STRONG>: <STRONG>Invoke - Dell Command | Configure Probe - Windows</STRONG> in the C3-Inventory site.</P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-29</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="Dell - System Name - Windows" ID="1">key "sysname" of section "cctk" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - Bios Version - Windows" ID="2">key "biosver" of section "cctk" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - Auto On - Windows" ID="3">key "autoon" of section "cctk" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - Auto On: Hour - Windows" ID="4">key "autoonhr" of section "cctk" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - Auto On: Minute - Windows" ID="5">key "autoonmn" of section "cctk" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - Boot Order - Windows" ID="6">key "bootorder" of section "cctk" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - Chassis Intrusion - Windows" ID="7">key "chasintrusion" of section "cctk" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - First Power On Date - Windows" ID="8">following text of first "=" of lines containing ";firstpowerondate" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - TPM - Windows" ID="9">key "TPM" of section "cctk" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - TPM Activation - Windows" ID="10">key "tpmactivation" of section "cctk" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - Virtualization - Windows" ID="11">key "virtualization" of section "cctk" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - WakeOnLan - Windows" ID="12">key "wakeonlan" of section "cctk" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - Wireless Lan - Windows" ID="13">key "wirelesslan" of section "cctk" of file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+	</Analysis>
+</BES>

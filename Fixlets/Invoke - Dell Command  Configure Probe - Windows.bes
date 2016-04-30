@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - Dell Command | Configure Probe - Windows</Title>
+		<Description><![CDATA[<P>This fixlet probes the Dell Bios using Dell Command | Configure and outputs a report for consumption by BigFix.</P>
+<P>The relevance of this fixlet means it will be relevant if there is not currently a bios report saved to disk or whenever after the computer reboots.</P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists file "CCTK.exe" of folder (if (x64 of operating system) then ("X86_64") else ("X86")) of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Relevance>
+		<Relevance><![CDATA[((not exists it or (now - modification time of it ) > uptime of operating system) of (file (pathname of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string) & "\report.ini"))) | true]]></Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-29</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
+
+wait "{pathname of file "CCTK.exe" of folder (if (x64 of operating system) then ("X86_64") else ("X86")) of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}" -o "{pathname of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}\report.ini"
+</ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

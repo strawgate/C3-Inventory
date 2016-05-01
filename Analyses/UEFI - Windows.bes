@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>UEFI - Windows</Title>
+		<Description><![CDATA[<P>UEFI status on Windows using the setupact log and SecureBoot using system registry</P>
+<P>Credit, kudos, and thanks to jgstew: <A href="https://bigfix.me/relevance/details/3007539">https://bigfix.me/relevance/details/3007539</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-05-01</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="UEFI - State - Windows" ID="1">(following text of last ", " of it | it) of concatenations ", " of following texts of firsts "Detected boot environment: " of lines containing "Detected boot environment: " of files "setupact.log" of folders "Panther" of windows folders</Property>
+		<Property Name="SecureBoot - State - Windows" ID="2">if (value "UEFISecureBootEnabled" of keys "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecureBoot\State" of native registry = 1) then "Enabled" else "Disabled"</Property>
+	</Analysis>
+</BES>

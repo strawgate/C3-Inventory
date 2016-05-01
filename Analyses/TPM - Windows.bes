@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>TPM - Windows</Title>
+		<Description>This analysis provides information on the current state of the Trusted Platform Module</Description>
+		<Relevance>true</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-04-30</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="TPM - Enabled in OS - Windows" ID="1">if (exists wmi "root\CIMV2\Security\MicrosoftTpm" and exists selects "* from Win32_Tpm" of wmi "root\CIMV2\Security\MicrosoftTpm") then (if (boolean value of select "IsEnabled_InitialValue from Win32_Tpm" of wmi "root\CIMV2\Security\MicrosoftTpm" = true) then "Enabled" ELSE "Disabled") else ERROR "TPM not visible to OS"</Property>
+		<Property Name="TPM - Activated in OS - Windows" ID="2">if (exists wmi "root\CIMV2\Security\MicrosoftTpm" and exists selects "* from Win32_Tpm" of wmi "root\CIMV2\Security\MicrosoftTpm") then (if (boolean value of select "IsActivated_InitialValue from Win32_Tpm" of wmi "root\CIMV2\Security\MicrosoftTpm" = true) then "Activated" ELSE "Not Activated") else ERROR "TPM not visible to OS"</Property>
+		<Property Name="TPM - Owned in OS - Windows" ID="3">if (exists wmi "root\CIMV2\Security\MicrosoftTpm" and exists selects "* from Win32_Tpm" of wmi "root\CIMV2\Security\MicrosoftTpm") then (if (boolean value of select "IsActivated_InitialValue from Win32_Tpm" of wmi "root\CIMV2\Security\MicrosoftTpm" = true) then "Owned" ELSE "Not Owned") else ERROR "TPM not visible to OS"</Property>
+		<Property Name="TPM - Visible to OS - Windows" ID="4">exists selects "* from Win32_Tpm" of wmi "root\CIMV2\Security\MicrosoftTpm"</Property>
+	</Analysis>
+</BES>

@@ -4,7 +4,8 @@
 	<Fixlet>
 		<Title>Invoke - Dell Command | Configure Probe - Windows</Title>
 		<Description><![CDATA[<P>This fixlet probes the Dell Bios using Dell Command | Configure and outputs a report for consumption by BigFix.</P>
-<P>The relevance of this fixlet means it will be relevant if there is not currently a bios report saved to disk or whenever after the computer reboots.</P>]]></Description>
+<P>The relevance of this fixlet means it will be relevant if there is not currently a bios report saved to disk or whenever after the computer reboots.</P>
+<P>Information on using this content is available here: <A href="https://github.com/strawgate/C3-Inventory/wiki/Dell-Command-%7C-Configure-Usage">https://github.com/strawgate/C3-Inventory/wiki/Dell-Command-%7C-Configure-Usage</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists file "CCTK.exe" of folder (if (x64 of operating system) then ("X86_64") else ("X86")) of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Relevance>
 		<Relevance><![CDATA[((not exists it or (now - modification time of it ) > uptime of operating system) of (file (pathname of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string) & "\report.ini"))) | true]]></Relevance>

@@ -2,12 +2,12 @@
 
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
-		<Title>Virtualization - Windows</Title>
+		<Title>VMWare Guest - Windows</Title>
 		<Description>This analysis provides VM Guest IDs where available. </Description>
 		<Relevance>((value "manufacturer" of structure "system_information" of smbios as string) contains "VMware")</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="VM - VMWare Guest ID - Universal" ID="1"><![CDATA[if ((value "manufacturer" of structure "system_information" of smbios as string) contains "VMware") then if version of client >= "8.0" then (value "uuid" of structure "system_information" of smbios) as string as hexadecimal else "N/A" else "N/A"]]></Property>
+		<Property Name="VMWare Guest - ID - Universal" ID="1">if ((value "manufacturer" of structure "system_information" of smbios as string) contains "VMware") then (value "uuid" of structure "system_information" of smbios) as string as hexadecimal else "N/A"</Property>
 	</Analysis>
 </BES>

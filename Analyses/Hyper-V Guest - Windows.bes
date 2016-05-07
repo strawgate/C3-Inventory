@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Hyper-V Guest - Windows</Title>
+		<Description><![CDATA[&lt;enter a description of the analysis here&gt; ]]></Description>
+		<Relevance>((value "manufacturer" of structure "system_information" of smbios as string) contains "Microsoft")</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-05-07</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="Hyper-V Guest - ID - Windows" ID="1">value "VirtualMachineId" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters" of native registry</Property>
+		<Property Name="Hyper-V Guest - Display Name - Windows" ID="2">value "VirtualMachineName" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters" of native registry</Property>
+		<Property Name="Hyper-V Guest - Physical Host - Windows" ID="3">value "PhysicalHostNameFullyQualified" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters" of native registry</Property>
+	</Analysis>
+</BES>

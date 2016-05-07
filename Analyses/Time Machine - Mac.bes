@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Time Machine - Mac</Title>
+		<Description>Information on the current configuration of Time Machine on the Mac device </Description>
+		<Relevance>mac of operating system</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-05-06</SourceReleaseDate>
+		<Domain>BES </Domain>
+		<Property Name="Time Machine - Exclusions - Mac" ID="1">if (exists file "com.apple.TimeMachine.plist" of folder "/Library/Preferences") then ((string of it) of values of (if (exists array "ExcludeByPath" of it) then (array "ExcludeByPath" of it) else (none); (if (exists array "SkipPaths" of it) then (array "SkipPaths" of it) else (none))) of dictionary of file "com.apple.TimeMachine.plist" of folder "/Library/Preferences") else "None"</Property>
+		<Property Name="Time Machine - Skip System Files - Mac" ID="2">(boolean "SkipSystemFiles" of dictionary of file "com.apple.TimeMachine.plist" of folder "/Library/Preferences") | False</Property>
+		<Property Name="Time Machine - Requires AC Power - Mac" ID="3">(boolean "RequiresACPower" of dictionary of file "com.apple.TimeMachine.plist" of folder "/Library/Preferences") | False</Property>
+		<Property Name="Time Machine - Auto Backup - Mac" ID="4">(boolean "AutoBackup" of dictionary of file "com.apple.TimeMachine.plist" of folder "/Library/Preferences") | False</Property>
+	</Analysis>
+</BES>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Services - Windows</Title>
+		<Description><![CDATA[<P>Provides information relating to the Windows services on the system.</P>
+<P><STRONG>Services - Log On As - Windows</STRONG> - Provides the account that the service operates under. For the majority of services this will be a NT Authority\System </P>
+<P><STRONG>Services - Log On As Domain Account - Windows </STRONG>- Provides the services on the system that are running as a domain account</P>
+<P><STRONG>Services - Log On As Local Account - Windows </STRONG>- Provides the services on the system that are running as a local account on the system</P>
+<P>&nbsp;</P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-05-06</SourceReleaseDate>
+		<Domain>BES </Domain>
+		<Property Name="Services - Log On As - Windows" ID="1"><![CDATA[(display name of it & " (" & service name of it & ")", login account of it) of services whose (exists display name of it AND (length of (display name of it as string)) > 0 AND (number of substrings " " of (display name of it as string) < (length of (display name of it as string))) AND exists service name of it AND (length of (service name of it as string)) > 0 AND (number of substrings " " of (service name of it as string) < (length of (service name of it as string))) AND exists state of it)]]></Property>
+		<Property Name="Services - Log On As Domain Account - Windows" ID="2"><![CDATA[(display name of it & " (" & service name of it & ")",  login account of it) of it whose (login account of it contains "@") of (services whose (exists display name of it AND (length of (display name of it as string)) > 0 AND (number of substrings " " of (display name of it as string) < (length of (display name of it as string))) AND exists service name of it AND (length of (service name of it as string)) > 0 AND (number of substrings " " of (service name of it as string) < (length of (service name of it as string))) AND exists state of it))]]></Property>
+		<Property Name="Services - Log On As Local Account - Windows" ID="3"><![CDATA[(display name of it & " (" & service name of it & ")",  login account of it) of it whose (login account of it contains ".\") of (services whose (exists display name of it AND (length of (display name of it as string)) > 0 AND (number of substrings " " of (display name of it as string) < (length of (display name of it as string))) AND exists service name of it AND (length of (service name of it as string)) > 0 AND (number of substrings " " of (service name of it as string) < (length of (service name of it as string))) AND exists state of it))]]></Property>
+	</Analysis>
+</BES>

@@ -15,11 +15,15 @@ Content in this site includes:
 * Bios (Dell) Configuration and Analyses
 * Group Policy Analyses
 * Hardware Analyses
+* Hyper-V Analyses
 * Network Analyses
 * Operating System Analyses
 * Pagefile Analyses
+* Printer Analyses
+* Services Analyses
 * Users Analyses
 * TPM Analyses
+* UEFI Analyses
 * Volumes Analyses
 * WMI Analyses
 

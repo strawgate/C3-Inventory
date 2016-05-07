@@ -41,6 +41,7 @@ __END
 copy __createfile wmi_simple.bat
 
 waithidden cmd.exe /c wmi_simple.bat > {value of variable "temp" of environment}\wmi_simple.log 2>&1]]></ActionScript>
+			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
 		</Action>
 	</Fixlet>
 </BES>

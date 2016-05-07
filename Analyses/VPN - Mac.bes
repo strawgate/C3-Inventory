@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>VPN - Mac</Title>
+		<Description>Provides information on the current VPN configuration in Mac OS </Description>
+		<Relevance>Mac of Operating System</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-05-06</SourceReleaseDate>
+		<Domain>BES </Domain>
+		<Property Name="VPN - PPTP Connections - Mac" ID="1">(string "UserDefinedName" of it, string "SubType" of dictionary "Interface" of it, string "CommRemoteAddress" of dictionary "PPP" of it) of dictionaries whose (exists dictionary "IPv4" of it and string "SubType" of dictionary "Interface" of it = "PPTP") of values of entries of dictionary "NetworkServices" of dictionary of file "preferences.plist" of folder "/Library/Preferences/SystemConfiguration"</Property>
+		<Property Name="VPN - IPSec Connections - Mac" ID="2">(string "UserDefinedName" of it, string "Type" of dictionary "Interface" of it, string "RemoteAddress" of dictionary "IPSec" of it) of dictionaries whose (exists dictionary "IPv4" of it and string "Type" of dictionary "Interface" of it = "IPSec") of values of entries of dictionary "NetworkServices" of dictionary of file "preferences.plist" of folder "/Library/Preferences/SystemConfiguration"</Property>
+		<Property Name="VPN - L2TP Connections - Mac" ID="3">(string "UserDefinedName" of it, string "SubType" of dictionary "Interface" of it, string "CommRemoteAddress" of dictionary "PPP" of it) of dictionaries whose (exists dictionary "IPv4" of it and string "SubType" of dictionary "Interface" of it = "L2TP") of values of entries of dictionary "NetworkServices" of dictionary of file "preferences.plist" of folder "/Library/Preferences/SystemConfiguration"</Property>
+	</Analysis>
+</BES>

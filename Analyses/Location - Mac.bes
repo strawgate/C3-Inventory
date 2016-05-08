@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Location - Mac</Title>
+		<Description>Provides Longitude and Latitude co-ordinates for Mac OS devices with Location Services enabled</Description>
+		<Relevance>mac of operating system</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-05-07</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="Location - Mac" ID="1"><![CDATA[((tuple string item 0 of it & ", " & tuple string item 1 of it) as time, tuple string item 2 of it, tuple string item 3 of it) of unique values of ((column "Timestamp" of it as string as floating point as integer * second + "01 Jan 2001 00:00:00" as universal time) as string & ", " & column "Latitude" of it as string & ", " & column "Longitude" of it as string) of rows whose (column "Latitude" of it as string != "0.0") of statement "select * from WifiLocation limit 100" of sqlite database of file "/private/var/folders/zz/zyxvpxvq6csfxvn_n00000sm00006d/C/cache_encryptedA.db"]]></Property>
+	</Analysis>
+</BES>

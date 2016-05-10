@@ -3,7 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Launch Daemons - Mac</Title>
-		<Description>Information on the registered Launch Daemons on Mac OS </Description>
+		<Description><![CDATA[Information on the registered Launch Daemons on Mac OS 
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>mac of operating system</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-05-06</SourceReleaseDate>

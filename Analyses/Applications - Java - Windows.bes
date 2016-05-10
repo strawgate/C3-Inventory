@@ -3,7 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Applications - Java - Windows</Title>
-		<Description>Information about Java </Description>
+		<Description><![CDATA[Information about Java 
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>true</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-12</SourceReleaseDate>

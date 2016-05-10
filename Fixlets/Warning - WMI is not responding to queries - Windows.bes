@@ -4,7 +4,8 @@
 	<Fixlet>
 		<Title>Warning - WMI is not responding to queries - Windows</Title>
 		<Description><![CDATA[<P>This fixlet is relevant on machines where WMI is failing.</P>
-<P>Failing WMI causes a number of issues from slow login, failing group policy, etc.</P>]]></Description>
+<P>Failing WMI causes a number of issues from slow login, failing group policy, etc.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>not exists string values of selects "Domain from Win32_ComputerSystem" of wmi | true</Relevance>
 		<Category></Category>

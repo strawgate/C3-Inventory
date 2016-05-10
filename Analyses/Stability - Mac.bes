@@ -5,7 +5,8 @@
 		<Title>Stability - Mac</Title>
 		<Description><![CDATA[This analysis provides stability information for Mac OS devices. 
 <P>Kudos, compliments, and credit for the majority of this analysis to: rustymyers</P>
-<P>The original analysis this is based off of is available here: <A href="https://bigfix.me/analysis/details/2994700">https://bigfix.me/analysis/details/2994700</A></P>]]></Description>
+<P>The original analysis this is based off of is available here: <A href="https://bigfix.me/analysis/details/2994700">https://bigfix.me/analysis/details/2994700</A></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>mac of operating system</Relevance>
 		<Domain>BESC</Domain>
 		<Property Name="Stability - system.log error count - Mac" ID="3" EvaluationPeriod="PT12H">number of lines whose ( it as lowercase contains "error") of file "/var/log/system.log"</Property>

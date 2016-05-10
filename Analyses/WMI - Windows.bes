@@ -3,7 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>WMI - Windows</Title>
-		<Description>Provides information on the state of WMI on the endpoint. </Description>
+		<Description><![CDATA[<P>Provides information on the state of WMI on the endpoint. </P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists wmi</Relevance>
 		<Source>Internal</Source>

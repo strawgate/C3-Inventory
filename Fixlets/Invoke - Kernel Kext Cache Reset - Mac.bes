@@ -4,7 +4,8 @@
 	<Fixlet>
 		<Title>Invoke - Kernel Kext Cache Reset - Mac</Title>
 		<Description><![CDATA[<P>Invokes a Kernel Kext Cache reset on Mac OS.</P>
-<P>Reseting the Kernel kext can often reduce the boot time of a Mac device but should only be done as a troubleshooting measure. The first reboot after reseting the kernel kext may take a little while longer.</P>]]></Description>
+<P>Reseting the Kernel kext can often reduce the boot time of a Mac device but should only be done as a troubleshooting measure. The first reboot after reseting the kernel kext may take a little while longer.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>mac of operating system</Relevance>
 		<Category></Category>
 		<Source>Internal</Source>

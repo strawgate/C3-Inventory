@@ -4,7 +4,8 @@
 	<Fixlet>
 		<Title>Invoke - Group Policy Refresh - Windows</Title>
 		<Description><![CDATA[<P>This will invoke a group policy refresh on the target endpoint.</P>
-<P><FONT color=#ff0000><STRONG>NOTE: </STRONG></FONT><FONT color=#000000>Performing a group policy refresh may cause a explorer to flash during a user session and it may drop a connected user's remote desktop session.</FONT></P>]]></Description>
+<P><FONT color=#ff0000><STRONG>NOTE: </STRONG></FONT><FONT color=#000000>Performing a group policy refresh may cause a explorer to flash during a user session and it may drop a connected user's remote desktop session.</FONT></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance><![CDATA[windows of operating system and version of operating system > "5.1"]]></Relevance>
 		<Relevance>exists file "gpupdate.exe" of system folder</Relevance>
 		<Category></Category>

@@ -3,7 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Troubleshooting - Missing Patches - Windows</Title>
-		<Description>This analysis provides a count of missing patches from the Endpoint's perspective to allow capturing of this data without session relevance queries. </Description>
+		<Description><![CDATA[This analysis provides a count of missing patches from the Endpoint's perspective to allow capturing of this data without session relevance queries. 
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>true</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-07</SourceReleaseDate>

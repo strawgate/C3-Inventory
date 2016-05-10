@@ -4,7 +4,8 @@
 	<Fixlet>
 		<Title>Warning - Update installation may cause WU reboot prompt</Title>
 		<Description><![CDATA[<P>This fixlet is relevant on computers where Windows Updates is configured to prompt after update installation if the update itself requires a reboot.</P>
-<P>This should likely be disabled if using BigFix to perform update installation.</P>]]></Description>
+<P>This should likely be disabled if using BigFix to perform update installation.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>(value "NoAutoRebootWithLoggedOnUsers" of key "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" of native registry as string | "-1") != "1"</Relevance>
 		<Category></Category>

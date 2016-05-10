@@ -3,7 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Printers - Windows</Title>
-		<Description>Analysis of local and AD installed printers for Windows systems only </Description>
+		<Description><![CDATA[<P>Analysis of local and AD installed printers for Windows systems only</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2013-07-25</SourceReleaseDate>

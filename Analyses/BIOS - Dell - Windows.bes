@@ -5,7 +5,8 @@
 		<Title>BIOS - Dell - Windows</Title>
 		<Description><![CDATA[<P>This analysis provides information on the current configuration of the bios on Dell devices.</P>
 <P>This analysis relies on <STRONG>Fixlet</STRONG>: <STRONG>Invoke - Dell Command | Configure Probe - Windows</STRONG> in the C3-Inventory site.</P>
-<P>Information on using this content is available here: <A href="https://github.com/strawgate/C3-Inventory/wiki/Dell-Command-%7C-Configure-Usage">https://github.com/strawgate/C3-Inventory/wiki/Dell-Command-%7C-Configure-Usage</A></P>]]></Description>
+<P>Information on using this content is available here: <A href="https://github.com/strawgate/C3-Inventory/wiki/Dell-Command-%7C-Configure-Usage">https://github.com/strawgate/C3-Inventory/wiki/Dell-Command-%7C-Configure-Usage</A></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists file "report.ini" of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Relevance>
 		<Source>Internal</Source>

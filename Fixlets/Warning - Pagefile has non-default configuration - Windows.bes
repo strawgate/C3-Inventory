@@ -4,7 +4,8 @@
 	<Fixlet>
 		<Title>Warning - Pagefile has non-default configuration - Windows</Title>
 		<Description><![CDATA[<P>The system pagefile has a non-default configuration.</P>
-<P>This is normally done as a troubleshooting step but is often not undone after troubleshooting.</P>]]></Description>
+<P>This is normally done as a troubleshooting step but is often not undone after troubleshooting.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>(value "PagingFiles" of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" of native registry as string) != "?:\pagefile.sys%00%00"</Relevance>
 		<Category></Category>
 		<Source>Internal</Source>

@@ -3,7 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>VMWare Guest - Windows</Title>
-		<Description>This analysis provides VM Guest IDs where available. </Description>
+		<Description><![CDATA[This analysis provides VM Guest IDs where available. 
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>((value "manufacturer" of structure "system_information" of smbios as string) contains "VMware")</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>

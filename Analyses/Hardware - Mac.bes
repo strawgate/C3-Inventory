@@ -3,7 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Hardware - Mac</Title>
-		<Description>Provides hardware information of Macs</Description>
+		<Description><![CDATA[Provides hardware information of Macs 
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>(if (name of operating system starts with "Win") then platform id of operating system != 3 else true) AND (if exists property "in proxy agent context" then (not in proxy agent context) else true) AND (if exists property "android" of type "operating system" then (not android of operating system) else true)</Relevance>
 		<Relevance><![CDATA[version of client >= "5.0"]]></Relevance>
 		<Relevance>(it contains "mac os x") of (name of operating system as lowercase)</Relevance>

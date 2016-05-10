@@ -3,7 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Event Log - Windows</Title>
-		<Description><![CDATA[Learn more about this analysis online: <A href="http://bigfix.me/cdb/analysis/2995921">http://bigfix.me/cdb/analysis/2995921</A><BR><BR>Pulls the maximum size of various event logs from the Windows Registry and formats them as megabytes ]]></Description>
+		<Description><![CDATA[Learn more about this analysis online: <A href="http://bigfix.me/cdb/analysis/2995921">http://bigfix.me/cdb/analysis/2995921</A><BR><BR>Pulls the maximum size of various event logs from the Windows Registry and formats them as megabytes 
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance><![CDATA[windows of operating system and version of operating system >= "6.0"]]></Relevance>
 		<Domain>BESC</Domain>
 		<Property Name="Event Log - Security Max Size (MB) - Windows" ID="1">(value "MaxSize" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\Security" of registry) as string as integer / 1024 / 1024</Property>

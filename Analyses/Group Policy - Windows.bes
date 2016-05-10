@@ -14,7 +14,8 @@
 <LI>If the computer is on a slow link 
 <LI>Currently running startup and shutdown scripts 
 <LI>Group Policy Preferences with tracing or debug logging enabled</LI></OL>
-<P>The applied group policies and enforced group policies properties show the name of the group policy object, at what level the policy is linked (Site, Domain, OU) and at what OU in active directory the policy is linked at.</P>]]></Description>
+<P>The applied group policies and enforced group policies properties show the name of the group policy object, at what level the policy is linked (Site, Domain, OU) and at what OU in active directory the policy is linked at.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>Windows of operating system</Relevance>
 		<Relevance>not in proxy agent context</Relevance>
 		<Source>Internal</Source>

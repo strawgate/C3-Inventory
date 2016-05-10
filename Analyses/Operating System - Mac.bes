@@ -16,7 +16,8 @@
 <LI>OS Build 
 <LI>Uptime (days) 
 <LI>Local Time Zone 
-<LI>Number of Running Processes</LI></UL></FONT></TD></TR></TBODY></TABLE>]]></Description>
+<LI>Number of Running Processes</LI></UL></FONT></TD></TR></TBODY></TABLE>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>mac of operating system</Relevance>
 		<Relevance>not in proxy agent context</Relevance>
 		<Category></Category>

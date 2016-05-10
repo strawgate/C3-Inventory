@@ -7,7 +7,7 @@
 <P><STRONG>Services - Log On As - Windows</STRONG> - Provides the account that the service operates under. For the majority of services this will be a NT Authority\System </P>
 <P><STRONG>Services - Log On As Domain Account - Windows </STRONG>- Provides the services on the system that are running as a domain account</P>
 <P><STRONG>Services - Log On As Local Account - Windows </STRONG>- Provides the services on the system that are running as a local account on the system</P>
-<P>&nbsp;</P>]]></Description>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-05-06</SourceReleaseDate>

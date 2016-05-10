@@ -4,7 +4,8 @@
 	<Analysis>
 		<Title>Network - Hosts File - Universal</Title>
 		<Description><![CDATA[<P>Covers the configuration of the system hosts file. </P>
-<P>Kudos, compliments and credit to jgstew for posting the source of this analysis: <A href="https://bigfix.me/analysis/details/2994561">https://bigfix.me/analysis/details/2994561</A></P>]]></Description>
+<P>Kudos, compliments and credit to jgstew for posting the source of this analysis: <A href="https://bigfix.me/analysis/details/2994561">https://bigfix.me/analysis/details/2994561</A></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system or mac of operating system</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-23</SourceReleaseDate>

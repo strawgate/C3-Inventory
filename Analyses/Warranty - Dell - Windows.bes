@@ -3,7 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Warranty - Dell - Windows</Title>
-		<Description>This analysis pairs with the "Invoke - Gather Dell Warranty - Windows" fixlet in order to provide warranty information about Dell devices. </Description>
+		<Description><![CDATA[This analysis pairs with the "Invoke - Gather Dell Warranty - Windows" fixlet in order to provide warranty information about Dell devices. 
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>Windows of Operating System</Relevance>
 		<Relevance>exists key "HKLM\Software\DellWarrantyInfo" of registry</Relevance>
 		<Source>Internal</Source>

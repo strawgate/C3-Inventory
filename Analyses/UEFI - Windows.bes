@@ -4,7 +4,8 @@
 	<Analysis>
 		<Title>UEFI - Windows</Title>
 		<Description><![CDATA[<P>UEFI status on Windows using the setupact log and SecureBoot using system registry</P>
-<P>Credit, kudos, and thanks to jgstew: <A href="https://bigfix.me/relevance/details/3007539">https://bigfix.me/relevance/details/3007539</A></P>]]></Description>
+<P>Credit, kudos, and thanks to jgstew: <A href="https://bigfix.me/relevance/details/3007539">https://bigfix.me/relevance/details/3007539</A></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-05-01</SourceReleaseDate>

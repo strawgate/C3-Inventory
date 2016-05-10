@@ -5,7 +5,8 @@
 		<Title>Invoke - Gather Dell Warranty - Windows</Title>
 		<Description><![CDATA[<P>This fixlet writes a VBS script that collects Dell Warranty information via a SOAP request to the Dell website.</P>
 <P>It writes the results to HKLM\Software\DellWarrantyInfo&nbsp;</P>
-<P><FONT color=#ff0000><STRONG>NOTE: </STRONG><FONT color=#000000>This fixlet has no default action because it requires every endpoint to make an external web request. This request does not traverse the BigFix infrastructure and does require internet access.</FONT></FONT></P>]]></Description>
+<P><FONT color=#ff0000><STRONG>NOTE: </STRONG><FONT color=#000000>This fixlet has no default action because it requires every endpoint to make an external web request. This request does not traverse the BigFix infrastructure and does require internet access.</FONT></FONT></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists string value whose (it as lowercase contains "dell") of selects "Manufacturer, Model from Win32_ComputerSystem" of wmi</Relevance>
 		<Category></Category>

@@ -6,7 +6,8 @@
 		<Description><![CDATA[<FONT size=2>
 <P>This analysis provides stability information for Windows devices.</P>
 <P>Kudos, compliments, and credit for the majority of this analysis to: jgstew</P>
-<P>The original analysis this is based off of is available here: <A href="https://bigfix.me/analysis/details/2994781">https://bigfix.me/analysis/details/2994781</A></P></FONT>]]></Description>
+<P>The original analysis this is based off of is available here: <A href="https://bigfix.me/analysis/details/2994781">https://bigfix.me/analysis/details/2994781</A></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P></FONT>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Domain>BESC</Domain>
 		<Property Name="Stability - Hard Reboots - Windows" ID="1" EvaluationPeriod="P1D"><![CDATA[if (152000 < record count of system event log) then ERROR "too many log records" else ( number of (records whose (event id of it = 41) of system event log) /* http://support.microsoft.com/kb/2028504 */ )]]></Property>

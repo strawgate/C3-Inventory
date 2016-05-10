@@ -4,7 +4,8 @@
 	<Fixlet>
 		<Title>Warning - Group Policy Preferences debug logging may be enabled</Title>
 		<Description><![CDATA[<P>This fixlet is relevant if tracing is enabled for one or more Group Policy Preferences Extensions.</P>
-<P>Tracing creates detailed log files on the system and may reduce performance of the Group Policy client. This could impact start-up and login time.</P>]]></Description>
+<P>Tracing creates detailed log files on the system and may reduce performance of the Group Policy client. This could impact start-up and login time.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists keys whose (value "LogLevel" of it as string != "0") of key "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Group Policy" of native registry</Relevance>
 		<Category></Category>

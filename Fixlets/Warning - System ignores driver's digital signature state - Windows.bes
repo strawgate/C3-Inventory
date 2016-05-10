@@ -4,7 +4,8 @@
 	<Fixlet>
 		<Title>Warning - System ignores driver's digital signature state - Windows</Title>
 		<Description><![CDATA[<P>If this fixlet is relevant then the system is configured to ignore (not prompt on installation) when an attempt is made to install a driver that does not have a digital signature.</P>
-<P>This is&nbsp;a potentially dangerous non-default configuration.&nbsp;</P>]]></Description>
+<P>This is&nbsp;a potentially dangerous non-default configuration.&nbsp;</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance><![CDATA[windows of operating system and version of operating system >= "5.1"]]></Relevance>
 		<Relevance>not in proxy agent context</Relevance>
 		<Relevance>(value "Policy" of key "HKEY_LOCAL_MACHINE\Software\Microsoft\Non-Driver Signing" of native registry as string) = "00"</Relevance>

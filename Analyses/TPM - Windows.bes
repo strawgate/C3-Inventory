@@ -5,7 +5,7 @@
 		<Title>TPM - Windows</Title>
 		<Description><![CDATA[This analysis provides information on the current state of the Trusted Platform Module 
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
-		<Relevance>true</Relevance>
+		<Relevance>windows of operating system</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-30</SourceReleaseDate>
 		<Domain>BESC</Domain>

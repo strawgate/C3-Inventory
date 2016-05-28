@@ -10,7 +10,7 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-24</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Users - Last Logged on - Windows" ID="1">names of folders whose(exists files "NTUSER.DAT" of it AND modification time of file "NTUSER.DAT" of it = maximum of modification times of files "NTUSER.DAT" of folders whose(exists files "NTUSER.DAT" of it) of parent folder of it) of folder "c:\users"</Property>
+		<Property Name="Users - Last Logged on - Windows" ID="1" EvaluationPeriod="P1D">names of folders whose(exists files "NTUSER.DAT" of it AND modification time of file "NTUSER.DAT" of it = maximum of modification times of files "NTUSER.DAT" of folders whose(exists files "NTUSER.DAT" of it) of parent folder of it) of folder "c:\users"</Property>
 		<Property Name="Users - Local Users - Windows" ID="7">(concatenation ", " of (members whose (it as string contains computer name) of local group "Users" as string))</Property>
 		<Property Name="Users - Local Administrators - Windows" ID="8">(concatenation ", " of (members whose (it as string contains computer name) of local group "Administrators" as string))</Property>
 		<Property Name="Current User - Drive Mappings - Windows" ID="9"><![CDATA[if (exists current user) then (if (exists key "Network" whose (exists key whose (exists value "RemotePath" of it) of it) of (current user keys (logged on users) of registry)) then (((name of it as string) & ": - " & (value "RemotePath" of it as string)) of keys of key "Network" of (current user keys (logged on users) of registry) as string) else "No Mapped Drives") else "No Current User"]]></Property>

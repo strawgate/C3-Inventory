@@ -10,6 +10,6 @@
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
 		<Domain>BESC</Domain>
 		<Property Name="Applications - Currently Running - Universal" ID="1">running applications</Property>
-		<Property Name="Applications - Registered Applications - Universal" ID="2" EvaluationPeriod="PT1H">regapps</Property>
+		<Property Name="Applications - Registered Applications - Universal" ID="2" EvaluationPeriod="P1D">regapps</Property>
 	</Analysis>
 </BES>

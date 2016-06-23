@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Shares - Windows</Title>
+		<Description><![CDATA[<P>Provides information regarding the configured network shares on the system.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-06-23</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="Shares - Paths - Windows" ID="1">(name of it, path of it) of network shares</Property>
+		<Property Name="Shares - Accounts with Read Permission - Windows" ID="2">(name of it, account names of trustees of entries whose (read permission of it) of dacls of security descriptors of it) of network shares</Property>
+		<Property Name="Shares - Accounts with Change Permission - Windows" ID="3">(name of it, account names of trustees of entries whose (write permission of it) of dacls of security descriptors of it) of network shares</Property>
+		<Property Name="Shares - Accounts with Full Control Permission - Windows" ID="4">(name of it, account names of trustees of entries whose (write owner permission of it) of dacls of security descriptors of it) of network shares</Property>
+		<Property Name="Shares - Active Connections - Windows" ID="5">(name of it, use count of it) of network shares</Property>
+		<Property Name="Shares - Maximum Connections - Windows" ID="6">(name of it, use limit of it as string | "N\A") of network shares</Property>
+	</Analysis>
+</BES>

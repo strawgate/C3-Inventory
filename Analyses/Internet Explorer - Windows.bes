@@ -5,7 +5,7 @@
 		<Title>Internet Explorer - Windows</Title>
 		<Description><![CDATA[Provides the trusted sites being pushed to a client via Group Policy. 
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
-		<Relevance>true</Relevance>
+		<Relevance>windows of operating system</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-23</SourceReleaseDate>
 		<Domain>BESC</Domain>

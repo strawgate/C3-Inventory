@@ -17,5 +17,8 @@
 		<Property Name="Network - Subnet Masks - Windows" ID="6">subnet masks of ip interfaces whose (loopback of it = false) of network</Property>
 		<Property Name="Network - Wireless SSID Name - Windows" ID="7">ssids of wifis of adapters of network </Property>
 		<Property Name="Network - Wireless SSID Encryption - Windows" ID="8">encryptions of wifis of adapters of network</Property>
+		<Property Name="Network - DHCP Lease Obtained - Windows" ID="9">(friendly name of it, lease obtained of it as string) of adapters whose (address of it != "0.0.0.0" and exists lease obtained of it) of network as string</Property>
+		<Property Name="Network - DHCP Lease Expires - Windows" ID="10">(friendly name of it, lease expires of it as string) of adapters whose (address of it != "0.0.0.0" and exists lease expires of it) of network as string</Property>
+		<Property Name="Network - DHCP Lease Length - Windows" ID="11">(friendly name of it, lease expires of it - lease obtained of it) of adapters whose (address of it != "0.0.0.0" and exists lease obtained of it and exists lease expires of it) of network</Property>
 	</Analysis>
 </BES>

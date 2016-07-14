@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Groups - Windows</Title>
+		<Description><![CDATA[Provides information on the&nbsp;groups defined on the System 
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>not in proxy agent context</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-07-13</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="Groups - Users - Windows" ID="1"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of members of local group "Users" as string]]></Property>
+		<Property Name="Groups - Administrators - Windows" ID="2"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of members of local group "Administrators" as string]]></Property>
+		<Property Name="Groups - Remote Desktop Users - Windows" ID="3"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of members of local group "Remote Desktop Users" as string]]></Property>
+		<Property Name="Groups - Access Control Assistance Operators - Windows" ID="4"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of (members of (local group "Access Control Assistance Operators" | error "none"))]]></Property>
+		<Property Name="Groups - Backup Operators - Windows" ID="5"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of members of local group "Backup Operators" as string]]></Property>
+		<Property Name="Groups - Cryptographic Operators - Windows" ID="6"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of members of local group "Cryptographic Operators" as string]]></Property>
+		<Property Name="Groups - Event Log Readers - Windows" ID="7"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of members of local group "Event Log Readers" as string]]></Property>
+		<Property Name="Groups - Guests - Windows" ID="8"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of members of local group "Guests" as string]]></Property>
+		<Property Name="Groups - Hyper-V Administrators - Windows" ID="9"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of members of local group "Hyper-V Administrators" as string]]></Property>
+		<Property Name="Groups - Network Configuration Operators - Windows" ID="10"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of members of local group "Network Configuration Operators" as string]]></Property>
+		<Property Name="Groups - Performance Log Users - Windows" ID="11"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of members of local group "Performance Log Users" as string]]></Property>
+		<Property Name="Groups - Performance Monitor Users - Windows" ID="12"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of members of local group "Performance Monitor Users" as string]]></Property>
+		<Property Name="Groups - Power Users - Windows" ID="13"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of members of local group "Power Users" as string]]></Property>
+		<Property Name="Groups - Remote Managment Users - Windows" ID="14"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of (members of (local group "Remote Managment Users" | error "none"))]]></Property>
+		<Property Name="Groups - Replicator - Windows" ID="15"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of (members of (local group "Replicator" | error "none"))]]></Property>
+		<Property Name="Groups - Systems Managed Accounts Group - Windows" ID="16"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of (members of (local group "Systems Managed Accounts Group" | error "none"))]]></Property>
+		<Property Name="Groups - Offer Remote Assistance Helpers - Windows" ID="17"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of (members of (local group "Offer Remote Assistance Helpers" | error "none"))]]></Property>
+		<Property Name="Groups - Windows" ID="18">names of local groups</Property>
+	</Analysis>
+</BES>

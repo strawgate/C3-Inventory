@@ -9,6 +9,6 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-05-06</SourceReleaseDate>
 		<Domain>BES </Domain>
-		<Property Name="Apple Update - Last Successful Update - Mac" ID="1">date "LastSuccessfulDate" of dictionary of file "com.apple.SoftwareUpdate.plist" of folder "/Library/Preferences"</Property>
+		<Property Name="Apple Update - Last Successful Update - Mac" ID="1" EvaluationPeriod="P1D">date "LastSuccessfulDate" of dictionary of file "com.apple.SoftwareUpdate.plist" of folder "/Library/Preferences"</Property>
 	</Analysis>
 </BES>

@@ -9,6 +9,6 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-07-07</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="NTP - Windows" ID="1">if (value "Type" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\Parameters" of registry = "NT5DS") then ("Domain Controller") else (value "NtpServer" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\Parameters" of registry as string)</Property>
+		<Property Name="NTP - Windows" ID="1" EvaluationPeriod="P1D">if (value "Type" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\Parameters" of registry = "NT5DS") then ("Domain Controller") else (value "NtpServer" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\Parameters" of registry as string)</Property>
 	</Analysis>
 </BES>

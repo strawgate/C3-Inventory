@@ -18,6 +18,6 @@
 		<Property Name="Stability - BSOD Last 30 Days - Windows" ID="8" EvaluationPeriod="P2D"><![CDATA[number of records whose (now - time generated of it < 30*day and source of it as lowercase ="bugcheck") of system event log]]></Property>
 		<Property Name="Stability - BSOD Last 90 Days - Windows" ID="9" EvaluationPeriod="P2D"><![CDATA[number of records whose (now - time generated of it < 90*day and source of it as lowercase ="bugcheck") of system event log]]></Property>
 		<Property Name="Stability - BSOD Last 180 Days - Windows" ID="10" EvaluationPeriod="P7D"><![CDATA[number of records whose (now - time generated of it < 180*day and source of it as lowercase ="bugcheck") of system event log]]></Property>
-		<Property Name="Events - System Log - Oldest - Windows" ID="11">time written of record (oldest record number of system event log) of system event log</Property>
+		<Property Name="Events - System Log - Oldest - Windows" ID="11" EvaluationPeriod="P1D">time written of record (oldest record number of system event log) of system event log</Property>
 	</Analysis>
 </BES>

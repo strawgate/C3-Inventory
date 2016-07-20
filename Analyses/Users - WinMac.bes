@@ -10,8 +10,8 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-24</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Current User - Explicit Administrator - Win\Mac" ID="3">if (Windows of Operating System) then (exists members whose (sid of it = sid of logged on user) of local group "administrators") else (exists strings of it whose (string of it = (name of logged on user) ) of values of array "users" of dictionary of file "/private/var/db/dslocal/nodes/Default/groups/admin.plist")</Property>
-		<Property Name="Users - Profiles on disk - Win\Mac" ID="4">if (windows of operating system) then (names of folders of folder "Users" of drive of system folder) else (if (mac of operating system) then ((names of folders of folder "/users/") whose (it != "Shared")) else ("Error"))</Property>
-		<Property Name="Current User - Domain Groups - Win\Mac" ID="5">(name of it, names of groups of it) of (logged on users of active directory)</Property>
+		<Property Name="Current User - Explicit Administrator - Win\Mac" ID="3" EvaluationPeriod="PT1H">if (Windows of Operating System) then (exists members whose (sid of it = sid of logged on user) of local group "administrators") else (exists strings of it whose (string of it = (name of logged on user) ) of values of array "users" of dictionary of file "/private/var/db/dslocal/nodes/Default/groups/admin.plist")</Property>
+		<Property Name="Users - Profiles on disk - Win\Mac" ID="4" EvaluationPeriod="P1D">if (windows of operating system) then (names of folders of folder "Users" of drive of system folder) else (if (mac of operating system) then ((names of folders of folder "/users/") whose (it != "Shared")) else ("Error"))</Property>
+		<Property Name="Current User - Domain Groups - Win\Mac" ID="5" EvaluationPeriod="PT1H">(name of it, names of groups of it) of (logged on users of active directory)</Property>
 	</Analysis>
 </BES>

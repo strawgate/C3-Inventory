@@ -9,7 +9,7 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-24</SourceReleaseDate>
 		<Domain>BES </Domain>
-		<Property Name="OS - Codename - Unix" ID="1">codename of operating system</Property>
-		<Property Name="OS - Run Level - Unix" ID="2">value of runlevel</Property>
+		<Property Name="OS - Codename - Unix" ID="1" EvaluationPeriod="P1D">codename of operating system</Property>
+		<Property Name="OS - Run Level - Unix" ID="2" EvaluationPeriod="P1D">value of runlevel</Property>
 	</Analysis>
 </BES>

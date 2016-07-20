@@ -9,11 +9,11 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-24</SourceReleaseDate>
 		<Domain>BES </Domain>
-		<Property Name="OS - Full Name - Universal" ID="1"><![CDATA[if (windows of operating system) then (string value of selects "caption from win32_operatingsystem" of wmi & " " & csd version of operating system) else (if (Mac of Operating System) then (name of operating system) else (if (unix of operating system) then (name of operating system) else ERROR "Unknown")) ]]></Property>
-		<Property Name="OS - Version Number - Universal" ID="2">version of operating system</Property>
-		<Property Name="OS - Uptime - Universal" ID="3">uptime of operating system</Property>
-		<Property Name="OS - Time Zone - Universal" ID="4">local time zone</Property>
-		<Property Name="OS - Architecture - Universal" ID="5">Architecture of Operating System</Property>
-		<Property Name="OS - Boot Time - Universal" ID="6">boot time of operating system</Property>
+		<Property Name="OS - Full Name - Universal" ID="1" EvaluationPeriod="P1D"><![CDATA[if (windows of operating system) then (string value of selects "caption from win32_operatingsystem" of wmi & " " & csd version of operating system) else (if (Mac of Operating System) then (name of operating system) else (if (unix of operating system) then (name of operating system) else ERROR "Unknown")) ]]></Property>
+		<Property Name="OS - Version Number - Universal" ID="2" EvaluationPeriod="P1D">version of operating system</Property>
+		<Property Name="OS - Uptime - Universal" ID="3" EvaluationPeriod="PT1H">uptime of operating system</Property>
+		<Property Name="OS - Time Zone - Universal" ID="4" EvaluationPeriod="P1D">local time zone</Property>
+		<Property Name="OS - Architecture - Universal" ID="5" EvaluationPeriod="P1D">Architecture of Operating System</Property>
+		<Property Name="OS - Boot Time - Universal" ID="6" EvaluationPeriod="PT1H">boot time of operating system</Property>
 	</Analysis>
 </BES>

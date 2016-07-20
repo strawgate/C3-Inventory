@@ -10,6 +10,6 @@
 		<Relevance>(it contains "mac os x") of (name of operating system as lowercase)</Relevance>
 		<Category></Category>
 		<Domain>BESC</Domain>
-		<Property Name="Hardware - Serial Number - Mac" ID="10">string "IOPlatformSerialNumber" of dictionary of service plane of iokit registry</Property>
+		<Property Name="Hardware - Serial Number - Mac" ID="10" EvaluationPeriod="P1D">string "IOPlatformSerialNumber" of dictionary of service plane of iokit registry</Property>
 	</Analysis>
 </BES>

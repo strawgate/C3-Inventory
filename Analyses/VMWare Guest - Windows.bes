@@ -9,6 +9,6 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="VMWare Guest - ID - Universal" ID="1">if ((value "manufacturer" of structure "system_information" of smbios as string) contains "VMware") then (value "uuid" of structure "system_information" of smbios) as string as hexadecimal else "N/A"</Property>
+		<Property Name="VMWare Guest - ID - Universal" ID="1" EvaluationPeriod="P1D">if ((value "manufacturer" of structure "system_information" of smbios as string) contains "VMware") then (value "uuid" of structure "system_information" of smbios) as string as hexadecimal else "N/A"</Property>
 	</Analysis>
 </BES>

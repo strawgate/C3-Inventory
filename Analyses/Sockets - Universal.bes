@@ -21,7 +21,7 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-06-23</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Sockets - Listening - Universal" ID="1">(name of process of it | (if (windows of operating system) then "SYSTEM" else "N\A"), (if (udp of it) then ("UDP") else ("TCP")), local port of it) of sockets whose (udp of it or listening of tcp state of it) of network</Property>
-		<Property Name="Sockets - Established - Universal" ID="2">(name of process of it | (if (windows of operating system) then "SYSTEM" else "N\A"), "TCP", local port of it, remote address of it as string | "none", remote port of it) of sockets whose ((established of tcp state of it and remote address of it != "127.0.0.1")) of network</Property>
+		<Property Name="Sockets - Listening - Universal" ID="1" EvaluationPeriod="PT1H">(name of process of it | (if (windows of operating system) then "SYSTEM" else "N\A"), (if (udp of it) then ("UDP") else ("TCP")), local port of it) of sockets whose (udp of it or listening of tcp state of it) of network</Property>
+		<Property Name="Sockets - Established - Universal" ID="2" EvaluationPeriod="PT1H">(name of process of it | (if (windows of operating system) then "SYSTEM" else "N\A"), "TCP", local port of it, remote address of it as string | "none", remote port of it) of sockets whose ((established of tcp state of it and remote address of it != "127.0.0.1")) of network</Property>
 	</Analysis>
 </BES>

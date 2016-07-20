@@ -9,8 +9,8 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-05-07</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Hyper-V Guest - ID - Windows" ID="1">value "VirtualMachineId" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters" of native registry</Property>
-		<Property Name="Hyper-V Guest - Display Name - Windows" ID="2">value "VirtualMachineName" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters" of native registry</Property>
-		<Property Name="Hyper-V Guest - Physical Host - Windows" ID="3">value "PhysicalHostNameFullyQualified" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters" of native registry</Property>
+		<Property Name="Hyper-V Guest - ID - Windows" ID="1" EvaluationPeriod="P1D">value "VirtualMachineId" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters" of native registry</Property>
+		<Property Name="Hyper-V Guest - Display Name - Windows" ID="2" EvaluationPeriod="P1D">value "VirtualMachineName" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters" of native registry</Property>
+		<Property Name="Hyper-V Guest - Physical Host - Windows" ID="3" EvaluationPeriod="P1D">value "PhysicalHostNameFullyQualified" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters" of native registry</Property>
 	</Analysis>
 </BES>

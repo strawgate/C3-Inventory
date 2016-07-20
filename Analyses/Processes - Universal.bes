@@ -9,6 +9,6 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Processes - Running - Universal" ID="1">(name of it | "Name Missing", pathname of image file of it | "No path" ) of processes</Property>
+		<Property Name="Processes - Running - Universal" ID="1" EvaluationPeriod="PT1H">(name of it | "Name Missing", pathname of image file of it | "No path" ) of processes</Property>
 	</Analysis>
 </BES>

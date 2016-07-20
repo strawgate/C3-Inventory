@@ -13,12 +13,12 @@
 		<Property Name="Network - DHCP Server - Windows" ID="1" EvaluationPeriod="P1D">(friendly name of it, dhcp server of it as string | "Static IP") of adapters whose (address of it != "0.0.0.0") of network as string</Property>
 		<Property Name="Network - DNS Servers - Windows" ID="2" EvaluationPeriod="P1D">addresses of dns servers of network</Property>
 		<Property Name="Network - Domain - Windows" ID="3" EvaluationPeriod="P1D">string values of selects "Domain from Win32_ComputerSystem" of wmi</Property>
-		<Property Name="Network - MAC Addresses - Windows" ID="5">mac addresses of adapters of network</Property>
-		<Property Name="Network - Subnet Masks - Windows" ID="6">subnet masks of ip interfaces whose (loopback of it = false) of network</Property>
-		<Property Name="Network - Wireless SSID Name - Windows" ID="7">ssids of wifis of adapters of network </Property>
-		<Property Name="Network - Wireless SSID Encryption - Windows" ID="8">encryptions of wifis of adapters of network</Property>
-		<Property Name="Network - DHCP Lease Obtained - Windows" ID="9">(friendly name of it, lease obtained of it as string) of adapters whose (address of it != "0.0.0.0" and exists lease obtained of it) of network as string</Property>
-		<Property Name="Network - DHCP Lease Expires - Windows" ID="10">(friendly name of it, lease expires of it as string) of adapters whose (address of it != "0.0.0.0" and exists lease expires of it) of network as string</Property>
-		<Property Name="Network - DHCP Lease Length - Windows" ID="11">(friendly name of it, lease expires of it - lease obtained of it) of adapters whose (address of it != "0.0.0.0" and exists lease obtained of it and exists lease expires of it) of network</Property>
+		<Property Name="Network - MAC Addresses - Windows" ID="5" EvaluationPeriod="P1D">mac addresses of adapters of network</Property>
+		<Property Name="Network - Subnet Masks - Windows" ID="6" EvaluationPeriod="P1D">subnet masks of ip interfaces whose (loopback of it = false) of network</Property>
+		<Property Name="Network - Wireless SSID Name - Windows" ID="7" EvaluationPeriod="P1D">ssids of wifis of adapters of network </Property>
+		<Property Name="Network - Wireless SSID Encryption - Windows" ID="8" EvaluationPeriod="P1D">encryptions of wifis of adapters of network</Property>
+		<Property Name="Network - DHCP Lease Obtained - Windows" ID="9" EvaluationPeriod="P1D">(friendly name of it, lease obtained of it as string) of adapters whose (address of it != "0.0.0.0" and exists lease obtained of it) of network as string</Property>
+		<Property Name="Network - DHCP Lease Expires - Windows" ID="10" EvaluationPeriod="P1D">(friendly name of it, lease expires of it as string) of adapters whose (address of it != "0.0.0.0" and exists lease expires of it) of network as string</Property>
+		<Property Name="Network - DHCP Lease Length - Windows" ID="11" EvaluationPeriod="P1D">(friendly name of it, lease expires of it - lease obtained of it) of adapters whose (address of it != "0.0.0.0" and exists lease obtained of it and exists lease expires of it) of network</Property>
 	</Analysis>
 </BES>

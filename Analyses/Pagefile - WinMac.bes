@@ -10,6 +10,6 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-24</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Pagefile - Current Size - Win\Mac" ID="1"><![CDATA[sum of sizes of (if (Windows of Operating System) then (files "pagefile.sys" of folders ((name of it & "\") of drives)) else (if (Mac of Operating System) then (files whose (name of it starts with "swapfile") of folder "/private/var/vm") else (ERROR "Unknown")))]]></Property>
+		<Property Name="Pagefile - Current Size - Win\Mac" ID="1" EvaluationPeriod="P1D"><![CDATA[sum of sizes of (if (Windows of Operating System) then (files "pagefile.sys" of folders ((name of it & "\") of drives)) else (if (Mac of Operating System) then (files whose (name of it starts with "swapfile") of folder "/private/var/vm") else (ERROR "Unknown")))]]></Property>
 	</Analysis>
 </BES>

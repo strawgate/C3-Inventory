@@ -7,10 +7,10 @@
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance><![CDATA[windows of operating system and version of operating system >= "6.0"]]></Relevance>
 		<Domain>BESC</Domain>
-		<Property Name="Event Log - Security Max Size (MB) - Windows" ID="1">(value "MaxSize" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\Security" of registry) as string as integer / 1024 / 1024</Property>
-		<Property Name="Event Log - Hardware Events Max Size (MB) - Windows" ID="2">(value "MaxSize" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\HardwareEvents" of registry) as string as integer / 1024 / 1024</Property>
-		<Property Name="Event Log - Key Management Service Max Size (MB) - Windows" ID="4">(value "MaxSize" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\Key Management Service" of registry) as string as integer / 1024 / 1024</Property>
-		<Property Name="Event Log - System Max Size (MB) - Windows" ID="5">(value "MaxSize" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\System" of registry) as string as integer / 1024 / 1024</Property>
-		<Property Name="Event Log - Powershell - Max Size (MB) - Windows" ID="6">(value "MaxSize" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\Windows PowerShell" of registry) as string as integer / 1024 / 1024</Property>
+		<Property Name="Event Log - Security Max Size (MB) - Windows" ID="1" EvaluationPeriod="P1D">(value "MaxSize" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\Security" of registry) as string as integer / 1024 / 1024</Property>
+		<Property Name="Event Log - Hardware Events Max Size (MB) - Windows" ID="2" EvaluationPeriod="P1D">(value "MaxSize" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\HardwareEvents" of registry) as string as integer / 1024 / 1024</Property>
+		<Property Name="Event Log - Key Management Service Max Size (MB) - Windows" ID="4" EvaluationPeriod="P1D">(value "MaxSize" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\Key Management Service" of registry) as string as integer / 1024 / 1024</Property>
+		<Property Name="Event Log - System Max Size (MB) - Windows" ID="5" EvaluationPeriod="P1D">(value "MaxSize" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\System" of registry) as string as integer / 1024 / 1024</Property>
+		<Property Name="Event Log - Powershell - Max Size (MB) - Windows" ID="6" EvaluationPeriod="P1D">(value "MaxSize" of key "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\Windows PowerShell" of registry) as string as integer / 1024 / 1024</Property>
 	</Analysis>
 </BES>

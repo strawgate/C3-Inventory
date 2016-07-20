@@ -9,6 +9,6 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-21</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Fonts - Installed - Win\Mac" ID="1">unique values of names of files of (if (Windows of operating system) then (folder "C:\Windows\Fonts") else (folders ("/Library/Fonts/";"/System/Library/Fonts")))</Property>
+		<Property Name="Fonts - Installed - Win\Mac" ID="1" EvaluationPeriod="P7D">unique values of names of files of (if (Windows of operating system) then (folder "C:\Windows\Fonts") else (folders ("/Library/Fonts/";"/System/Library/Fonts")))</Property>
 	</Analysis>
 </BES>

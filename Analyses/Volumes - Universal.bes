@@ -9,8 +9,8 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2015-03-05</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Volume - System Drive - &lt;2% Free" ID="1"><![CDATA[(free space of drive of system folder as floating point / total space of drive of system folder as floating point) < ".02" as floating point]]></Property>
-		<Property Name="Volume - System Drive - &lt;5% Free" ID="2"><![CDATA[(free space of drive of system folder as floating point / total space of drive of system folder as floating point) < ".05" as floating point]]></Property>
-		<Property Name="Volume - System Drive - % Free" ID="3">relative significance place 2 of (free space of drive of system folder as floating point / total space of drive of system folder as floating point) * 100</Property>
+		<Property Name="Volume - System Drive - &lt;2% Free" ID="1" EvaluationPeriod="P1D"><![CDATA[(free space of drive of system folder as floating point / total space of drive of system folder as floating point) < ".02" as floating point]]></Property>
+		<Property Name="Volume - System Drive - &lt;5% Free" ID="2" EvaluationPeriod="P1D"><![CDATA[(free space of drive of system folder as floating point / total space of drive of system folder as floating point) < ".05" as floating point]]></Property>
+		<Property Name="Volume - System Drive - % Free" ID="3" EvaluationPeriod="P1D">relative significance place 2 of (free space of drive of system folder as floating point / total space of drive of system folder as floating point) * 100</Property>
 	</Analysis>
 </BES>

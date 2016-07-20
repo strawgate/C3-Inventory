@@ -10,7 +10,7 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-21</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Pagefile - Location and Size - Windows" ID="1">(preceding text of first " " of it | it, preceding text of first " " of following text of first " " of it | "Default", following text of first " " of following text of first " " of it | "Default") of (substrings separated by "%00" whose (it != "") of (value "PagingFiles" of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" of native registry as string))</Property>
-		<Property Name="Pagefile - Clear on Shutdown - Windows" ID="2">if (value "ClearPageFileAtShutdown" of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" of native registry as string = "0") then "Disabled" else "Enabled"</Property>
+		<Property Name="Pagefile - Location and Size - Windows" ID="1" EvaluationPeriod="P1D">(preceding text of first " " of it | it, preceding text of first " " of following text of first " " of it | "Default", following text of first " " of following text of first " " of it | "Default") of (substrings separated by "%00" whose (it != "") of (value "PagingFiles" of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" of native registry as string))</Property>
+		<Property Name="Pagefile - Clear on Shutdown - Windows" ID="2" EvaluationPeriod="P1D">if (value "ClearPageFileAtShutdown" of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" of native registry as string = "0") then "Disabled" else "Enabled"</Property>
 	</Analysis>
 </BES>

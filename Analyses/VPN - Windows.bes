@@ -3,7 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>VPN - Windows</Title>
-		<Description><![CDATA[Provides information on the current VPN configuration in Windows 
+		<Description><![CDATA[<P>Provides information on the current VPN configuration in Windows.</P>
+<P>Special thanks to Jason Walker for helping with the Windows VPN file parsing.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>(exists file "rasphone.pbk" of folder "AppData\Roaming\Microsoft\Network\Connections\Pbk" of folders (profile folders of users of logged on users)) or (exists file "rasphone.pbk" of folder "Microsoft\Network\Connections\Pbk" of folder (expand environment string of "%25ALLUSERSPROFILE%25"))</Relevance>

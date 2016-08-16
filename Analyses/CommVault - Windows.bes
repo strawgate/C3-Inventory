@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>CommVault - Windows</Title>
+		<Description><![CDATA[&lt;enter a description of the analysis here&gt; ]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists services whose (service name of it starts with "GxEvMgrC")</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-08-15</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="CommVault - State - Windows" ID="1" EvaluationPeriod="PT1H">state of services whose (service name of it starts with "GxEvMgrC")</Property>
+		<Property Name="CommVault - Target - Windows" ID="2" EvaluationPeriod="PT1H">( name of it, value "sCSHOSTNAME" of key "CommServe" of it) of keys of key "HKEY_LOCAL_MACHINE\SOFTWARE\CommVault Systems\Galaxy" of native registry</Property>
+		<Property Name="CommVault - Version - Windows" ID="3" EvaluationPeriod="PT1H">(name of it, value "sVERSION" of key "Base" of it) of keys of key "HKEY_LOCAL_MACHINE\SOFTWARE\CommVault Systems\Galaxy" of native registry</Property>
+		<Property Name="CommVault - Client Port - Windows" ID="4" EvaluationPeriod="P1D">(name of it, value "nCLIENT_PORT" of key "Firewall" of it) of keys of key "HKEY_LOCAL_MACHINE\SOFTWARE\CommVault Systems\Galaxy" of native registry</Property>
+		<Property Name="CommVault - Installed Packages - Windows" ID="5" EvaluationPeriod="P1D">(name of it, concatenations "; " of (values "Pkgname" of keys of key "InstalledPackages" of it as string)) of keys of key "HKEY_LOCAL_MACHINE\SOFTWARE\CommVault Systems\Galaxy" of native registry</Property>
+	</Analysis>
+</BES>

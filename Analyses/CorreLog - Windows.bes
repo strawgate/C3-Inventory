@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>CorreLog - Windows</Title>
+		<Description><![CDATA[&lt;enter a description of the analysis here&gt; ]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists service "CorreLog Message"</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-08-15</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="Correlog - Destination Address - Windows" ID="1" EvaluationPeriod="P1D">following text of last " " of line containing "DestinationAddress" of file "CO-sysmsg.cnf" of folder "CorreLog\wintools" of drive of system folder</Property>
+		<Property Name="Correlog - Destination Port - Windows" ID="2" EvaluationPeriod="P1D">following text of last " " of line containing "DestinationPort" of file "CO-sysmsg.cnf" of folder "CorreLog\wintools" of drive of system folder</Property>
+		<Property Name="Correlog - Listen Authentication Mode - Windows" ID="4" EvaluationPeriod="P1D">following text of last " " of line containing "ListenAuthMode" of file "CO-sysmsg.cnf" of folder "CorreLog\wintools" of drive of system folder</Property>
+		<Property Name="Correlog - Listen Authentication Port - Windows" ID="5" EvaluationPeriod="P1D">following text of last " " of line containing "ListenPort" of file "CO-sysmsg.cnf" of folder "CorreLog\wintools" of drive of system folder</Property>
+		<Property Name="Correlog - Message Encryption - Windows" ID="6" EvaluationPeriod="P1D">following text of last " " of line containing "EncryptData" of file "CO-sysmsg.cnf" of folder "CorreLog\wintools" of drive of system folder</Property>
+		<Property Name="Correlog - Monitored Event Logs - Windows" ID="7" EvaluationPeriod="P1D">parenthesized parts 1 of matches (regex ("EventLog\s{12}(.*)")) of lines containing "EventLog" of file "CO-sysmsg.cnf" of folder "CorreLog\wintools" of drive of system folder</Property>
+		<Property Name="Correlog - State - Windows" ID="8" EvaluationPeriod="PT15M">state of service "CorreLog Message"</Property>
+	</Analysis>
+</BES>

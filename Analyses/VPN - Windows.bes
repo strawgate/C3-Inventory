@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>VPN - Windows</Title>
+		<Description><![CDATA[Provides information on the current VPN configuration in Windows 
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-08-15</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="VPN - PPTP Connections (All Users) - Windows" ID="1" EvaluationPeriod="P1D">key "PhoneNumber" of (sections (parenthesized part of matches (regex "\[(.*)\]") of lines of file "rasphone.pbk" of folder "Microsoft\Network\Connections\Pbk" of folder (expand environment string of "%25ALLUSERSPROFILE%25")) of file "rasphone.pbk" of folder "Microsoft\Network\Connections\Pbk" of folder (expand environment string of "%25ALLUSERSPROFILE%25")) whose (key "DEVICE" of it contains "PPTP")</Property>
+		<Property Name="VPN - IPSec Connections (All Users) - Windows" ID="2" EvaluationPeriod="P1D">key "PhoneNumber" of (sections (parenthesized part of matches (regex "\[(.*)\]") of lines of file "rasphone.pbk" of folder "Microsoft\Network\Connections\Pbk" of folder (expand environment string of "%25ALLUSERSPROFILE%25")) of file "rasphone.pbk" of folder "Microsoft\Network\Connections\Pbk" of folder (expand environment string of "%25ALLUSERSPROFILE%25")) whose (key "DEVICE" of it contains "IPSec")</Property>
+		<Property Name="VPN - SSTP Connections (All Users) - Windows" ID="3" EvaluationPeriod="P1D">key "PhoneNumber" of (sections (parenthesized part of matches (regex "\[(.*)\]") of lines of file "rasphone.pbk" of folder "Microsoft\Network\Connections\Pbk" of folder (expand environment string of "%25ALLUSERSPROFILE%25")) of file "rasphone.pbk" of folder "Microsoft\Network\Connections\Pbk" of folder (expand environment string of "%25ALLUSERSPROFILE%25")) whose (key "DEVICE" of it contains "SSTP")</Property>
+		<Property Name="VPN - L2TP Connections (All Users) - Windows" ID="4" EvaluationPeriod="P1D">key "PhoneNumber" of (sections (parenthesized part of matches (regex "\[(.*)\]") of lines of file "rasphone.pbk" of folder "Microsoft\Network\Connections\Pbk" of folder (expand environment string of "%25ALLUSERSPROFILE%25")) of file "rasphone.pbk" of folder "Microsoft\Network\Connections\Pbk" of folder (expand environment string of "%25ALLUSERSPROFILE%25")) whose (key "DEVICE" of it contains "L2TP")</Property>
+		<Property Name="VPN - IKEv2 Connections (All Users) - Windows" ID="5" EvaluationPeriod="P1D">key "PhoneNumber" of (sections (parenthesized part of matches (regex "\[(.*)\]") of lines of file "rasphone.pbk" of folder "Microsoft\Network\Connections\Pbk" of folder (expand environment string of "%25ALLUSERSPROFILE%25")) of file "rasphone.pbk" of folder "Microsoft\Network\Connections\Pbk" of folder (expand environment string of "%25ALLUSERSPROFILE%25")) whose (key "DEVICE" of it contains "IKEv2")</Property>
+	</Analysis>
+</BES>

@@ -13,5 +13,6 @@
 		<Property Name="TPM - Activated in OS - Windows" ID="2" EvaluationPeriod="P1D">if (exists wmi "root\CIMV2\Security\MicrosoftTpm" and exists selects "* from Win32_Tpm" of wmi "root\CIMV2\Security\MicrosoftTpm") then (if (boolean value of select "IsActivated_InitialValue from Win32_Tpm" of wmi "root\CIMV2\Security\MicrosoftTpm" = true) then "Activated" ELSE "Not Activated") else ERROR "TPM not visible to OS"</Property>
 		<Property Name="TPM - Owned in OS - Windows" ID="3" EvaluationPeriod="P1D">if (exists wmi "root\CIMV2\Security\MicrosoftTpm" and exists selects "* from Win32_Tpm" of wmi "root\CIMV2\Security\MicrosoftTpm") then (if (boolean value of select "IsActivated_InitialValue from Win32_Tpm" of wmi "root\CIMV2\Security\MicrosoftTpm" = true) then "Owned" ELSE "Not Owned") else ERROR "TPM not visible to OS"</Property>
 		<Property Name="TPM - Visible to OS - Windows" ID="4" EvaluationPeriod="P1D">exists selects "* from Win32_Tpm" of wmi "root\CIMV2\Security\MicrosoftTpm"</Property>
+		<Property Name="TPM - Version - Windows" ID="5" EvaluationPeriod="P1D">string value of selects "ManufacturerVersion from Win32_Tpm" of wmis "root\CIMv2\Security\MicrosoftTpm"</Property>
 	</Analysis>
 </BES>

@@ -58,8 +58,6 @@ loadScript(CODE_SITE_NAME, scriptLoaded);
 				<PostLink> to deploy this action.</PostLink>
 			</Description>
 			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">
-action log all
-			
 parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
 
 delete __createfile

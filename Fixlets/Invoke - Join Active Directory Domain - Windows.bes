@@ -46,6 +46,10 @@ loadScript(CODE_SITE_NAME, scriptLoaded);
 		<SourceSeverity></SourceSeverity>
 		<CVENames></CVENames>
 		<SANSID></SANSID>
+		<MIMEField>
+			<Name>parametermetadatatag</Name>
+			<Value>{    "Section1":{       "Name":"ADConfiguration",       "Title":"AD Configuration",       "UIType":"accordion",       "Values":[          {             "Name":"ADDomain",             "Title":"Active Directory Domain",             "Description":"Active Directory Domain",             "Override":"True",             "ValueType":"relevance",             "UIType":"Select",             "Values":"unique values of (concatenations \".\" of substrings separated by \",DC=\" of following texts of firsts \"DC=\" of it) whose (it != \"\") of values of results from (bes property \"Active Directory Path\") of bes computers"          },          {             "Name":"ADUser",             "Title":"Active Directory Account Username",             "Description":"Active Directory Account Username",             "UIType":"TextBox",             "Default":"NetBIOS\\Username"          },          {             "Name":"ADpwd",             "Title":"Active Directory Account Password",             "Description":"Active Directory Account Password",             "UIType":"Textbox",             "Encrypt":"true",             "SubUIType":"Password"          },          {             "Name":"ADOU",             "Title":"Active Directory Organizational Unit",             "Description":"Active Directory Organizational Unit",             "Override":"True",             "ValueType":"relevance",             "UIType":"Select",             "Values":"unique values of (concatenations \";\" of substrings separated by \",\" of it) of following texts of firsts \",\" of values of results from (bes property \"Active Directory Path\") of bes computers"          }       ]    } }</Value>
+		</MIMEField>
 		<Domain>BESC</Domain>
 		<Action ID="Action1">
 			<Description>

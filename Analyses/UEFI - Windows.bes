@@ -10,7 +10,7 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-05-01</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="UEFI - State - Windows" ID="1" EvaluationPeriod="P1D">exists Selects "* from Win32_DiskPartition Where Type = 'GPT: System'" of wmi</Property>
-		<Property Name="SecureBoot - State - Windows" ID="2" EvaluationPeriod="P1D">if (value "UEFISecureBootEnabled" of keys "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecureBoot\State" of native registry = 1) then "Enabled" else "Disabled"</Property>
+		<Property Name="UEFI - State - Windows" ID="1" EvaluationPeriod="P1D">if (exists Selects "* from Win32_DiskPartition Where Type = 'GPT: System'" of wmi) then "UEFI" else "BIOS"</Property>
+		<Property Name="SecureBoot - State - Windows" ID="2" EvaluationPeriod="P1D">if (exists key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecureBoot\State" of native registry and value "UEFISecureBootEnabled" of keys "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecureBoot\State" of native registry = 1)  then "Enabled" else "Disabled"</Property>
 	</Analysis>
 </BES>

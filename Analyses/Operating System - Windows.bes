@@ -10,7 +10,7 @@
 		<Category></Category>
 		<Domain>BESC</Domain>
 		<Property Name="OS - Type - Windows" ID="3" EvaluationPeriod="P1D">(if (value "ProductType" of key "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ProductOptions" of registry = "WinNT" | ERROR "Unknown Operating System Type") then "Workstation" else "Server") </Property>
-		<Property Name="OS - Install Date - Windows" ID="6" EvaluationPeriod="P1D"><![CDATA[(substring (0,4) of it & "-" & substring(4,2) of it & "-" & substring (6,2) of it) of (string value of selects "InstallDate from win32_operatingsystem" of wmi | ERROR "No Install Date found in WMI")]]></Property>
+		<Property Name="OS - Install Date - Windows" ID="6" EvaluationPeriod="P1D">time value of (select "InstallDate from win32_operatingsystem" of wmi | ERROR "No Install Date found in WMI")</Property>
 		<Property Name="OS - System Language - Windows" ID="9" EvaluationPeriod="P1D">system language</Property>
 		<Property Name="OS - User Language - Windows" ID="10" EvaluationPeriod="P1D">user language</Property>
 		<Property Name="OS - Architecture - Windows" ID="11" EvaluationPeriod="P1D">architecture of operating system</Property>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Warning - Files exist in Logs folder of System Driver - Windows</Title>
+		<Description><![CDATA[<P>This will delete any files in the SystemDrive:\Logs folder.</P>
+<P>SystemDrive:\Logs is typically used by Intel installers and various programs. If there is ever a log that is not safe to delete shame on whomever put it here.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists folder "logs" of drive of system folder</Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-08-25</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">delete __createfile
+delete run.bat
+
+createfile until _end_
+
+rmdir /s /q "{pathname of folder "logs" of drive of system folder}"
+
+_end_
+
+move __createfile run.bat
+
+waithidden run.bat</ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

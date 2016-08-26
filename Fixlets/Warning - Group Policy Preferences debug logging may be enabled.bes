@@ -8,7 +8,7 @@
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists keys whose (value "LogLevel" of it as string != "0") of key "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Group Policy" of native registry</Relevance>
-		<Category></Category>
+		<Category>Group Policy</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
 		<SourceReleaseDate>2016-04-23</SourceReleaseDate>

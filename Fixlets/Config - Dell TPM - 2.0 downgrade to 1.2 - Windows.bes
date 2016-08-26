@@ -16,7 +16,7 @@
               of structures "bios_information" of smbios</Relevance>
 		<Relevance>string value of selects "ManufacturerVersion from Win32_Tpm" of wmis "root\CIMv2\Security\MicrosoftTpm" = "1.3" /* Machines has TPM 2.0 */</Relevance>
 		<Relevance>not exists Selects "* from Win32_DiskPartition Where Type = 'GPT: System'" of wmi /* Machine is not UEFI */</Relevance>
-		<Category></Category>
+		<Category>Disk Encryption</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
 		<SourceReleaseDate>2016-07-29</SourceReleaseDate>

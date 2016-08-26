@@ -8,7 +8,7 @@
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>not exists string values of selects "Domain from Win32_ComputerSystem" of wmi | true</Relevance>
-		<Category></Category>
+		<Category>WMI</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
 		<SourceReleaseDate>2016-04-24</SourceReleaseDate>

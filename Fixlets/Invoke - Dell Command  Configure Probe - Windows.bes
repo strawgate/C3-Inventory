@@ -10,7 +10,7 @@
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists file "CCTK.exe" of folder (if (x64 of operating system) then ("X86_64") else ("X86")) of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Relevance>
 		<Relevance><![CDATA[((not exists it or (now - modification time of it ) > uptime of operating system) of (file (pathname of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string) & "\report.ini"))) | true]]></Relevance>
-		<Category></Category>
+		<Category>BIOS Settings</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
 		<SourceReleaseDate>2016-04-29</SourceReleaseDate>

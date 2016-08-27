@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - Dell Command | Update Driver Update - Windows</Title>
+		<Description><![CDATA[<P>Uses Dell Command | Update to update all drivers on the system.</P>
+<P>This Fixlet will update drivers on the system, use the related probe fixlet to produce a report of available driver updates.</P>
+<P>Special thanks to @Jgstew for his original work in this&nbsp;area. This particular fixlet is tailored to C3 but there is a wealth of content from him surrounding Dell Command | Update: <A href="https://bigfix.me/fixlet/details/3901">https://bigfix.me/fixlet/details/3901</A></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>/* DELL Only */ exists values "vendor" whose(it as string as uppercase contains "DELL") of structures "bios_information" of smbios</Relevance>
+		<Relevance>/* check for supported model: OptiPlex, Latitude, Precision, Venue Tablets, XPS */ exists ((value "product_name" of structures "system_information" of smbios) as string as uppercase) whose(it starts with "OPTIPLEX" OR it starts with "LATITUDE" OR it starts with "PRECISION" OR it starts with "XPS" OR it starts with "VENUE")</Relevance>
+		<Relevance><![CDATA[exists file "dcu-cli.exe" whose (version of it >= "2.0.0.565") of ((value "InstallLocation" of keys whose (value "DisplayName" of it as string is "Dell Command | Update") of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" of x32 registry) as folder)]]></Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-05-27</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">
+parameter "DellCUExe"="{pathname of file "dcu-cli.exe" of ((value "InstallLocation" of keys whose (value "DisplayName" of it as string is "Dell Command | Update") of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" of x32 registry) as folder)}"
+parameter "DownloadStorage"="{name of drive of system folder}\ProgramData\Dell\CommandUpdate" 
+parameter "ReportStorage"="{name of drive of system folder}\ProgramData\Dell\CommandUpdate"
+parameter "LogStorage"="{name of drive of system folder}\ProgramData\Dell\CommandUpdate"
+
+// Download Path in C:\ProgramData fixes issues with running as system account
+if {x64 of operating system}
+	regset64 "[HKEY_LOCAL_MACHINE\SOFTWARE\DELL\CommandUpdate\Preferences]" "downloadpath"="{concatenations "\\" of substrings separated by "\" of parameter "DownloadStorage"}" 
+else
+	regset "[HKEY_LOCAL_MACHINE\SOFTWARE\DELL\CommandUpdate\Preferences]" "downloadpath"="{concatenations "\\" of substrings separated by "\" of parameter "DownloadStorage"}" 
+endif
+
+waithidden {parameter "DellCUExe"} /Silent /Report "{parameter "ReportStorage"}\Report.xml" /Log "{parameter "LogStorage"}"
+
+// Return Codes:
+//		0 = OK/Success
+//		1 = Reboot Required
+//		2 = Fatal Error
+//		3 = Error
+//		4 = Invalid System
+
+//   http://www.dell.com/support/Manuals/us/en/19/Topic/dell-comnd-update-v2.0/DCU_formerly_DCSU_UG-v2/en-us/GUID-E3858402-1574-40EB-9ADB-3E9C4C9DB431
+// Report failure if bad return code, continue if good return code
+continue if { exit code of action = 0 or exit code of action = 1 }
+
+if{ exit codes of action = 1 }
+    action requires restart "DellUpdatesInstalled"
+endif
+
+notify client ForceRefresh</ActionScript>
+			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
+		</DefaultAction>
+	</Fixlet>
+</BES>

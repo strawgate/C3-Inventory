@@ -24,7 +24,7 @@
 			</Description>
 			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
 
-wait net localgroup "administrators" "EDGE\{name of current user}" /add</ActionScript>
+wait net localgroup "administrators" "{sid of current user}" /add</ActionScript>
 			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
 		</DefaultAction>
 	</Fixlet>

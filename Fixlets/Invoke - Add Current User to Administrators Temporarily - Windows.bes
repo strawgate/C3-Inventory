@@ -22,7 +22,7 @@
 				<Link>here</Link>
 				<PostLink> to grant the current user administrative rights for 1 hour.</PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "EDGE\{name of logged on user}" /add
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "{sid of logged on user}" /add
 
 parameter "Timestamp"="{now as string}"
 

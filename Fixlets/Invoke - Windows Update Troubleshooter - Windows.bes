@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - Windows Update Troubleshooter - Windows</Title>
+		<Description><![CDATA[<P>This runs the Windows Update Troubleshooter on the targeted endpoint. </P>
+<P>For more information on the Windows Update Troubleshooter see:</P>
+<UL>
+<LI><A href="https://support.microsoft.com/en-us/kb/2714434">https://support.microsoft.com/en-us/kb/2714434</A> 
+<LI><A href="https://support.microsoft.com/en-us/kb/971058">https://support.microsoft.com/en-us/kb/971058</A></LI></UL>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance><![CDATA[version of operating system >= "5.1"]]></Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-08-29</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
+
+delete __createfile
+delete run.ps1
+
+createfile until _end_
+
+Import-Module troubleshootingpack
+
+Get-TroubleshootingPack -Path "{pathname of windows folder}\diagnostics\system\WindowsUpdate" | Invoke-TroubleshootingPack -Unattended
+
+_end_
+
+move __createfile run.ps1
+
+waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File run.ps1</ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

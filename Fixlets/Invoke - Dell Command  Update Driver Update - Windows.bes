@@ -51,7 +51,7 @@ waithidden {parameter "DellCUExe"} /Silent /Report "{parameter "ReportStorage"}\
 // Report failure if bad return code, continue if good return code
 continue if { exit code of action = 0 or exit code of action = 1 }
 
-if{ exit codes of action = 1 }
+if {exit code of action = 1}
     action requires restart "DellUpdatesInstalled"
 endif
 

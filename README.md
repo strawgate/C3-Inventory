@@ -13,18 +13,23 @@ Content in this site includes:
 
 * Applications Analyses
 * Bios (Dell) Configuration and Analyses
+* Dell Driver Update Fixlets
 * Group Policy Analyses
 * Hardware Analyses
 * Hyper-V Analyses
 * Network Analyses
 * Operating System Analyses
 * Pagefile Analyses
+* Pending Restart Analyses
 * Printer Analyses
 * Services Analyses
 * Users Analyses
+* Temporary Administrative Fixlets and Analyses
 * TPM Analyses
 * UEFI Analyses
+* VMWare Analyses
 * Volumes Analyses
+* Windows Automatic Repair Fixlets
 * WMI Analyses
 
 ### Having issues?

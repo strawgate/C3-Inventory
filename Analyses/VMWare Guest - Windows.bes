@@ -9,7 +9,7 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="VMWare Guest - ID - Universal" ID="1" EvaluationPeriod="P1D">if ((value "manufacturer" of structure "system_information" of smbios as string) contains "VMware") then (value "uuid" of structure "system_information" of smbios) as string as hexadecimal else "N/A"</Property>
+		<Property Name="VMWare Guest - ID - Universal" ID="1" EvaluationPeriod="P1D">if ((value "manufacturer" of structure "system_information" of smbios as string) contains "VMware") then ((if exists property "hexadecimal" then hexadecimal of it else it as string as hexadecimal) of (value "uuid" of structure "system_information" of smbios)) else "N/A"</Property>
 		<Property Name="VMWare Tools - Drivers - Windows" ID="2" EvaluationPeriod="P1D">if (windows of operating system) then ((name of it, substrings between "|" of (it as string)) of values of key "HKEY_LOCAL_MACHINE\SOFTWARE\VMWare, Inc.\VMware Drivers" of native registry) else (error "not applicable")</Property>
 		<Property Name="VMWare Tools - Version - Windows" ID="3" EvaluationPeriod="P1D">if (windows of operating system) then ( valueS "DisplayVersion" of keys whose (value "DisplayName" of it = "VMware Tools")of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" of native registry) else (error "not applicable")</Property>
 		<Property Name="VMWare Tools - State - Windows" ID="4" EvaluationPeriod="PT1H">if (windows of operating system) then (state of service "VMTools" | "Not Installed") else (error "not applicable")</Property>

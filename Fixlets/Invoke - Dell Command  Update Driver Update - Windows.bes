@@ -38,7 +38,7 @@ else
 	regset "[HKEY_LOCAL_MACHINE\SOFTWARE\DELL\CommandUpdate\Preferences]" "downloadpath"="{concatenations "\\" of substrings separated by "\" of parameter "DownloadStorage"}" 
 endif
 
-waithidden {parameter "DellCUExe"} /Silent /Report "{parameter "ReportStorage"}\Report.xml" /Log "{parameter "LogStorage"}"
+waithidden {parameter "DellCUExe"} /Silent /Log "{parameter "LogStorage"}"
 
 // Return Codes:
 //		0 = OK/Success

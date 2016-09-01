@@ -41,7 +41,7 @@ regset "[HKEY_LOCAL_MACHINE\Software\Admin Expiration History\{parameter "Timest
 				<Link>here</Link>
 				<PostLink> to grant the current user administrative rights for 8 hours. </PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "EDGE\{name of logged on user}" /add
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "{sid of logged on user}" /add
 
 parameter "Timestamp"="{now as string}"
 
@@ -59,7 +59,7 @@ regset "[HKEY_LOCAL_MACHINE\Software\Admin Expiration History\{parameter "Timest
 				<Link>here</Link>
 				<PostLink> to grant the current user administrative rights for 1 day. </PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "EDGE\{name of logged on user}" /add
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "{sid of logged on user}" /add
 
 parameter "Timestamp"="{now as string}"
 
@@ -77,7 +77,7 @@ regset "[HKEY_LOCAL_MACHINE\Software\Admin Expiration History\{parameter "Timest
 				<Link>here</Link>
 				<PostLink><![CDATA[ to grant the current user administrative rights for&nbsp;5 days. ]]></PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "EDGE\{name of logged on user}" /add
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "{sid of logged on user}" /add
 
 parameter "Timestamp"="{now as string}"
 

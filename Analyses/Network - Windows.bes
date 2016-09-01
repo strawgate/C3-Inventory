@@ -20,5 +20,6 @@
 		<Property Name="Network - DHCP Lease Obtained - Windows" ID="9" EvaluationPeriod="P1D">(friendly name of it, lease obtained of it as string) of adapters whose (address of it != "0.0.0.0" and exists lease obtained of it) of network as string</Property>
 		<Property Name="Network - DHCP Lease Expires - Windows" ID="10" EvaluationPeriod="P1D">(friendly name of it, lease expires of it as string) of adapters whose (address of it != "0.0.0.0" and exists lease expires of it) of network as string</Property>
 		<Property Name="Network - DHCP Lease Length - Windows" ID="11" EvaluationPeriod="P1D">(friendly name of it, lease expires of it - lease obtained of it) of adapters whose (address of it != "0.0.0.0" and exists lease obtained of it and exists lease expires of it) of network</Property>
+		<Property Name="Network - WINS Servers - Winddows" ID="12" EvaluationPeriod="P1D">(primary wins servers of it; secondary wins servers of it) of adapters of network</Property>
 	</Analysis>
 </BES>

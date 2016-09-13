@@ -3,16 +3,17 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Pending Restart - Windows</Title>
-		<Description><![CDATA[&lt;enter a description of the analysis here&gt; ]]></Description>
+		<Description><![CDATA[<P>Provides information on the various sources that the BigFix Agent uses when assessing whether a Windows computer has a pending restart.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>pending restart</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-07-13</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Pending Restart - File Rename Operations - Windows" ID="1" EvaluationPeriod="P1D">(substrings separated by "%00" whose (it != "") of (value "PendingFileRenameOperations" of key "HKLM\System\CurrentControlSet\Control\Session Manager" of native registry as string | error "none")) </Property>
-		<Property Name="Pending Restart - Windows Updates - Windows" ID="2" EvaluationPeriod="P1D">names of values of (key "HKLM\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired" of native registry | error "None")</Property>
-		<Property Name="Pending Restart - Component Based Servicing - Windows" ID="3" EvaluationPeriod="P1D">key "HKLM\Software\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending" of native registry | error "none"</Property>
-		<Property Name="Pending Restart - Volatile Update Executable - Windows" ID="4" EvaluationPeriod="P1D">value "Flags" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Updates\UpdateExeVolatile" of native registry | error "none"</Property>
-		<Property Name="Pending Restart - BigFix Action - Windows" ID="5" EvaluationPeriod="P1D">values whose (it != "") of (key "HKEY_LOCAL_MACHINE\SOFTWARE\BigFix\EnterpriseClient\BESPendingRestart" of x32 registry | error "none")</Property>
+		<Property Name="Pending Restart - File Rename Operations - Windows" ID="1" EvaluationPeriod="P1D">substrings separated by "%00" whose (it != "") of (values "PendingFileRenameOperations" of keys "HKLM\System\CurrentControlSet\Control\Session Manager" of native registry as string)</Property>
+		<Property Name="Pending Restart - Windows Updates - Windows" ID="2" EvaluationPeriod="P1D">names of values of keys "HKLM\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired" of native registry</Property>
+		<Property Name="Pending Restart - Component Based Servicing - Windows" ID="3" EvaluationPeriod="P1D">exists key "HKLM\Software\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending" of native registry</Property>
+		<Property Name="Pending Restart - Volatile Update Executable - Windows" ID="4" EvaluationPeriod="P1D">values "Flags" of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Updates\UpdateExeVolatile" of native registry </Property>
+		<Property Name="Pending Restart - BigFix Action - Windows" ID="5" EvaluationPeriod="P1D">values whose (it != "") of keys "HKEY_LOCAL_MACHINE\SOFTWARE\BigFix\EnterpriseClient\BESPendingRestart" of x32 registry</Property>
 	</Analysis>
 </BES>

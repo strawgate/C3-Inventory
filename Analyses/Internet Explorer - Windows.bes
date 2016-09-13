@@ -9,6 +9,6 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-04-23</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="IE - Trusted Sites - Windows" ID="1" EvaluationPeriod="P1D">(name of it, it) of values of (key "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMapKey" of native registry | error "none")</Property>
+		<Property Name="IE - Trusted Sites - Windows" ID="1" EvaluationPeriod="P1D">(name of it, it) of values of keys "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMapKey" of native registry</Property>
 	</Analysis>
 </BES>

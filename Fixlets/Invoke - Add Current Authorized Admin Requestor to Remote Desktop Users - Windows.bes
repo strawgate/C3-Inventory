@@ -7,6 +7,7 @@
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists logged on user</Relevance>
+		<Relevance>/* exclude Built-In Administrator */ component string of sid of logged on user does not start with "S-1-5-21-" or component string of sid of logged on user does not end with "-500"</Relevance>
 		<Relevance>exists key (sid of logged on user as string) of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Authorized Requestors" of x32 registry</Relevance>
 		<Relevance><![CDATA[/*not exists members whose (sid of it = sid of logged on user) of local group "administrators" <-- Replaced by line below */ true]]></Relevance>
 		<Relevance><![CDATA[not exists elements of intersection /*Check user and groups they are apart of and compare against the members of the local administrators group */ of (set of (((sids of groups of logged on users of active directory) as string) /*<-- User Group Memberships */ /*User SID -->*/; (sid of logged on user) as string); /*All users/groups in Administrators */union of ((set of (sids of members of local group "remote desktop users" as string));(set of (sids of members of local group "administrators" as string))) )]]></Relevance>

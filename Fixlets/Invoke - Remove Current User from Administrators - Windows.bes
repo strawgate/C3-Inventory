@@ -6,6 +6,7 @@
 		<Description><![CDATA[<P>This Fixlet removes the currently logged on user to the Administrators group.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
+		<Relevance>/* exclude Built-In Administrator */ component string of sid of logged on user does not start with "S-1-5-21-" or component string of sid of logged on user does not end with "-500"</Relevance>
 		<Relevance>exists members whose (sid of it = sid of logged on user) of local group "administrators"</Relevance>
 		<Category>Administrative Rights</Category>
 		<Source>Internal</Source>

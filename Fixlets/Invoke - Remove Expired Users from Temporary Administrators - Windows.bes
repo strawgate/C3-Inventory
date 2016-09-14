@@ -2,12 +2,12 @@
 
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
-		<Title>Invoke - Remove Expired Users from Temporary Administrators- Windows</Title>
+		<Title>Invoke - Remove Expired Users from Temporary Administrators - Windows</Title>
 		<Description><![CDATA[<P>This Fixlet removes any expired temporary administrators as provisioned by the temporary administrator fixlet in the C3-Inventory site.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<Relevance><![CDATA[exists ((it as time) of values "Expiration" of keys of keys of key "HKEY_LOCAL_MACHINE\Software\Admin Expiration" of x32 registry) whose (it < now)]]></Relevance>
-		<Category></Category>
+		<Relevance><![CDATA[exists ((it as time) of values "Expiration" of keys of keys of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Current" of x32 registry) whose (it < now)]]></Relevance>
+		<Category>Temporary Administrative Rights</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
 		<SourceReleaseDate>2016-04-25</SourceReleaseDate>
@@ -25,9 +25,9 @@
 
 delete run.bat
 
-appendfile {("net localgroup " & character(34) & "administrators" & character(34)& " " & character(34) & name of parent key of it & "\" & name of it & character(34) & " /add" & "%0d%0a") of keys whose (value "Expiration" of it as string as time < now) of keys of key "HKEY_LOCAL_MACHINE\Software\Admin Expiration" of x32 registry}
+appendfile {("net localgroup " & character(34) & "administrators" & character(34)& " " & character(34) & name of parent key of it & "\" & name of it & character(34) & " /delete" & "%0d%0a") of keys whose (value "Expiration" of it as string as time < now) of keys of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Current" of x32 registry}
 
-appendfile {("reg delete " & character(34) & (parent of it as string) & character(34) & " /va /f" & "%0d%0a") of keys whose (value "Expiration" of it as string as time < now) of keys of key "HKEY_LOCAL_MACHINE\Software\Admin Expiration" of x32 registry}
+appendfile {("reg delete " & character(34) & (it as string) & character(34) & " /f" & "%0d%0a") of keys whose (value "Expiration" of it as string as time < now) of keys of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Current" of x32 registry}
 
 move __appendfile run.bat
 

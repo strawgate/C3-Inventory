@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - Add Current Authorized Admin Requestor to Remote Desktop Users - Windows</Title>
+		<Description><![CDATA[<P>This Fixlet adds the currently logged on user, who is an Authorized Admin Requestor, to the Remote Desktop Users group permanently.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists logged on user</Relevance>
+		<Relevance>exists key (sid of logged on user as string) of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Authorized Requestors" of x32 registry</Relevance>
+		<Relevance><![CDATA[/*not exists members whose (sid of it = sid of logged on user) of local group "administrators" <-- Replaced by line below */ true]]></Relevance>
+		<Relevance><![CDATA[not exists elements of intersection /*Check user and groups they are apart of and compare against the members of the local administrators group */ of (set of (((sids of groups of logged on users of active directory) as string) /*<-- User Group Memberships */ /*User SID -->*/; (sid of logged on user) as string); /*All users/groups in Administrators */union of ((set of (sids of members of local group "remote desktop users" as string));(set of (sids of members of local group "administrators" as string))) )]]></Relevance>
+		<Category>Temporary Administrative Rights</Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-25</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink><![CDATA[ to grant the current user authorized admin requestor&nbsp;remote desktop access.]]></PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">
+wait net localgroup "Remote Desktop Users" "{sid of current user}" /add
+</ActionScript>
+			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
+		</DefaultAction>
+	</Fixlet>
+</BES>

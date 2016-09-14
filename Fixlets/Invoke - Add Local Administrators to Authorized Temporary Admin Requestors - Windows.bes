@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - Add Local Administrators to Authorized Temporary Admin Requestors - Windows</Title>
+		<Description><![CDATA[<P>This all all explicit members of the local administrators group as Authorized Temporary Administartive Rights Requestors.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance><![CDATA[number of (set of ((members of local groups "Administrators") whose (exists user of sid of it) as string) - set of ((name of parent key of it & "\" & name of it) of keys of keys of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Authorized Requestors" of x32 registry)) > 0]]></Relevance>
+		<Category>Temporary Administrative Rights</Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-25</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink><![CDATA[ to add all local administrators&nbsp;as&nbsp;Authorized Temporary Administrative&nbsp;Rights&nbsp;Requestors.]]></PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[delete __appendfile
+
+delete run.bat
+
+appendfile {("reg add " & character(34) & "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Authorized Requestors\" & sid of it as string & character(34) & " /v Added /d " & character(34) & now as string & character(34) & "%0d%0a") of (members of local group "Administrators") whose (exists user of sid of it)}
+
+move __appendfile run.bat
+
+wait run.bat]]></ActionScript>
+			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
+		</DefaultAction>
+	</Fixlet>
+</BES>

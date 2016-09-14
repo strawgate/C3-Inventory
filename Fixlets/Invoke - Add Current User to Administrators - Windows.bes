@@ -8,7 +8,7 @@
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists logged on user</Relevance>
 		<Relevance>not exists members whose (sid of it = sid of logged on user) of local group "administrators"</Relevance>
-		<Category></Category>
+		<Category>Administrative Rights</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
 		<SourceReleaseDate>2016-04-25</SourceReleaseDate>

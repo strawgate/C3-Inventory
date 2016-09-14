@@ -2,12 +2,14 @@
 
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
-		<Title>Invoke - Add Current User to Administrators Temporarily - Windows</Title>
-		<Description><![CDATA[<P>This Fixlet grants a user administrative rights and creates a store of users with their expirations dates/times.</P>
+		<Title>Invoke - Add Current Authorized Admin Requestor to Administrators Temporarily - Windows</Title>
+		<Description><![CDATA[<P>This Fixlet adds the currently logged on user, who is an Authorized Admin Requestor, to the administrators group temporarily.</P>
 <P>This fixlet by itself does not remove their administartive rights when the expiration time passes. Removing their access requires&nbsp;the, "Invoke - Remove Expired Users from Temporary Administrators - Windows" fixlet to be run as a policy action.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists logged on user</Relevance>
+		<Relevance>exists key (sid of logged on user as string) of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Authorized Requestors" of x32 registry</Relevance>
+		<Relevance><![CDATA[/*not exists members whose (sid of it = sid of logged on user) of local group "administrators" <-- Replaced by line below */ true]]></Relevance>
 		<Relevance><![CDATA[not exists elements of intersection /*Check user and groups they are apart of and compare against the members of the local administrators group */ of (set of (((sids of groups of logged on users of active directory) as string) /*<-- User Group Memberships */ /*User SID -->*/; (sid of logged on user) as string); /*All users/groups in Administrators */(set of (sids of members of local group "administrators" as string))) ]]></Relevance>
 		<Category>Temporary Administrative Rights</Category>
 		<Source>Internal</Source>
@@ -21,9 +23,10 @@
 			<Description>
 				<PreLink>Click </PreLink>
 				<Link>here</Link>
-				<PostLink> to grant the current user administrative rights for 1 hour.</PostLink>
+				<PostLink><![CDATA[ to grant the current user authorized admin requestor&nbsp;administrative rights for 1 hour.]]></PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "{sid of logged on user}" /add
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">
+wait net localgroup "administrators" "{sid of current user}" /add
 
 parameter "Timestamp"="{now as string}"
 
@@ -31,18 +34,17 @@ regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Current\
 regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Current\{sid of logged on user}]" "Expiration"="{now + (1 * hour)}" 
 
 regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired\{parameter "Timestamp"}\{sid of logged on user}]" "Start"="{now as string}" 
-regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired\{parameter "Timestamp"}\{sid of logged on user}]" "Expiration"="{now + (1 * hour)}" 
-
-</ActionScript>
+regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired\{parameter "Timestamp"}\{sid of logged on user}]" "Expiration"="{now + (1 * hour)}" </ActionScript>
 			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
 		</DefaultAction>
 		<Action ID="Action2">
 			<Description>
 				<PreLink>Click </PreLink>
 				<Link>here</Link>
-				<PostLink> to grant the current user administrative rights for 8 hours. </PostLink>
+				<PostLink><![CDATA[ to grant the current user authorized admin requestor&nbsp;administrative rights for&nbsp;8 hours.]]></PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "{sid of logged on user}" /add
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">
+wait net localgroup "administrators" "{sid of current user}" /add
 
 parameter "Timestamp"="{now as string}"
 
@@ -50,17 +52,16 @@ regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Current\
 regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Current\{sid of logged on user}]" "Expiration"="{now + (8 * hour)}" 
 
 regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired\{parameter "Timestamp"}\{sid of logged on user}]" "Start"="{now as string}" 
-regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired\{parameter "Timestamp"}\{sid of logged on user}]" "Expiration"="{now + (8 * hour)}" 
-
-</ActionScript>
+regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired\{parameter "Timestamp"}\{sid of logged on user}]" "Expiration"="{now + (8 * hour)}" </ActionScript>
 		</Action>
 		<Action ID="Action3">
 			<Description>
 				<PreLink>Click </PreLink>
 				<Link>here</Link>
-				<PostLink> to grant the current user administrative rights for 1 day. </PostLink>
+				<PostLink><![CDATA[ to grant the current user authorized admin requestor&nbsp;administrative rights for 1 day.]]></PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "{sid of logged on user}" /add
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">
+wait net localgroup "administrators" "{sid of current user}" /add
 
 parameter "Timestamp"="{now as string}"
 
@@ -68,17 +69,16 @@ regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Current\
 regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Current\{sid of logged on user}]" "Expiration"="{now + (1 * day)}" 
 
 regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired\{parameter "Timestamp"}\{sid of logged on user}]" "Start"="{now as string}" 
-regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired\{parameter "Timestamp"}\{sid of logged on user}]" "Expiration"="{now + (1 * day)}" 
-
-</ActionScript>
+regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired\{parameter "Timestamp"}\{sid of logged on user}]" "Expiration"="{now + (1 * day)}" </ActionScript>
 		</Action>
 		<Action ID="Action4">
 			<Description>
 				<PreLink>Click </PreLink>
 				<Link>here</Link>
-				<PostLink><![CDATA[ to grant the current user administrative rights for&nbsp;5 days. ]]></PostLink>
+				<PostLink><![CDATA[ to grant the current user authorized admin requestor&nbsp;administrative rights for&nbsp;5 days.]]></PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "{sid of logged on user}" /add
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">
+wait net localgroup "administrators" "{sid of current user}" /add
 
 parameter "Timestamp"="{now as string}"
 
@@ -86,9 +86,7 @@ regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Current\
 regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Current\{sid of logged on user}]" "Expiration"="{now + (5 * day)}" 
 
 regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired\{parameter "Timestamp"}\{sid of logged on user}]" "Start"="{now as string}" 
-regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired\{parameter "Timestamp"}\{sid of logged on user}]" "Expiration"="{now + (5 * day)}" 
-
-</ActionScript>
+regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired\{parameter "Timestamp"}\{sid of logged on user}]" "Expiration"="{now + (5 * day)}" </ActionScript>
 		</Action>
 	</Fixlet>
 </BES>

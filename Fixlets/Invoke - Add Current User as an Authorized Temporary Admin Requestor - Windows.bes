@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - Add Current User as an Authorized Temporary Admin Requestor - Windows</Title>
+		<Description><![CDATA[<P>This Fixlet marks the currently logged on user as being an authorized temporary administrative rights requestor. This can be paired with the other Authorized Admin Requestor content to manage who is allowed to request administrative rights on an endpoint.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists logged on user</Relevance>
+		<Relevance>not exists key (sid of logged on user as string) of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Authorized Requestors" of x32 registry</Relevance>
+		<Category>Temporary Administrative Rights</Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-25</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to add the user as an Authorized Temporary Admin Requestor.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Authorized Requestors\{sid of logged on user}]" "Added"="{now as string}" </ActionScript>
+			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
+		</DefaultAction>
+		<Action ID="Action2">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to add the user as an Authorized Temporary Admin Requestor and a local Administrator.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait net localgroup "administrators" "{sid of logged on user}" /add
+
+regset "[HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Authorized Requestors\{sid of logged on user}]" "Added"="{now as string}" </ActionScript>
+		</Action>
+	</Fixlet>
+</BES>

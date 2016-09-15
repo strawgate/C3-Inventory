@@ -2,11 +2,11 @@
 
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
-		<Title>Invoke - Remove Expired Users from Temporary Administrators - Windows</Title>
+		<Title>Invoke - Remove Expired Users from Authorized Requestors - Windows</Title>
 		<Description><![CDATA[<P>This Fixlet removes any expired temporary administrators as provisioned by the temporary administrator fixlet in the C3-Inventory site.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<Relevance><![CDATA[exists values "Expiration" whose (it as time < now) of keys of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Temporary Administrative Rights\Administrators\Current" of x32 registry]]></Relevance>
+		<Relevance><![CDATA[exists values "Expiration" whose (it as time < now) of keys of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Temporary ADministrative Rights\Authorized Requestors\Current" of x32 registry]]></Relevance>
 		<Category>Temporary Administrative Rights</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -22,11 +22,11 @@
 				<PostLink> to deploy this action.</PostLink>
 			</Description>
 			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[
-parameter "SIDS"="{concatenations ";" of names of keys whose (value "Expiration" of it as string as time < now) of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Temporary Administrative Rights\Administrators\Current" of x32 registry}"
+parameter "SIDS"="{concatenations ";" of names of keys whose (value "Expiration" of it as string as time < now) of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Temporary Administrative Rights\Authorized Requestors\Current" of x32 registry}"
 parameter "TimeStamp"="{now}"
 parameter "Start"="{now}"
 parameter "Expiration"="{now + (10000000 * week)}"
-parameter "Switches"="-Revoke -Admin"
+parameter "Switches"="-Revoke -Requestor"
 
 parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
 

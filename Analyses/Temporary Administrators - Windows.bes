@@ -6,12 +6,13 @@
 		<Description><![CDATA[<P>This Analysis provides information from the Temporary Admins fixlets in the C3-Inventory Site.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<Relevance>exists key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights" of x32 registry</Relevance>
+		<Relevance>exists key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Temporary Administrative Rights" of x32 registry</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-08-30</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Administrators - Temporary - Windows" ID="1" EvaluationPeriod="PT1H"><![CDATA[(name of parent key of it & "\" & name of it, value "Start" of it, value "Expiration" of it) of keys of keys of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Current" of x32 registry]]></Property>
-		<Property Name="Administrators - Expired - Windows" ID="2" EvaluationPeriod="P1D"><![CDATA[(name of parent key of it & "\" & name of it, value "Start" of it, value "Expiration" of it) of keys of keys of keys of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Administrative Rights\Expired" of x32 registry]]></Property>
-		<Property Name="Administrators - Authorized Requestors - Windows" ID="3" EvaluationPeriod="P1D"><![CDATA[(name of parent key of it & "\" & name of it, value "Added" of it) of keys of keys of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Authorized Requestors" of x32 registry]]></Property>
+		<Property Name="Administrators - Current Temporary Administrators - Windows" ID="1" EvaluationPeriod="PT1H">(value "Username" of it, value "Start" of it, value "Expiration" of it) of keys of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Temporary Administrative Rights\Administrators\Current" of x32 registry</Property>
+		<Property Name="Administrators - Expired Temporary Administrators - Windows" ID="2" EvaluationPeriod="P1D">(value "Username" of it, value "Start" of it, value "Expiration" of it, value "Revoked" of it) of keys of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Temporary Administrative Rights\Administrators\Expired" of x32 registry</Property>
+		<Property Name="Administrators - Current Authorized Requestors - Windows" ID="3" EvaluationPeriod="PT1H">(value "Username" of it, value "Start" of it, value "Expiration" of it) of keys of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Temporary Administrative Rights\Authorized Requestors\Current" of x32 registry</Property>
+		<Property Name="Administrators - Expired Authorized Requestors - Windows" ID="4" EvaluationPeriod="P1D">(value "Username" of it, value "Start" of it) of keys of key "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Temporary Administrative Rights\Authorized Requestors\Expired" of x32 registry</Property>
 	</Analysis>
 </BES>

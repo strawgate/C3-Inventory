@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - Add Current User to Temporary Administrators - Windows</Title>
+		<Description><![CDATA[<P>This Fixlet grants a user administrative rights and creates a store of users with their expirations dates/times.</P>
+<P>This fixlet by itself does not remove their administartive rights when the expiration time passes. Removing their access requires&nbsp;the, "Invoke - Remove Expired Users from Temporary Administrators - Windows" fixlet to be run as a policy action.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists logged on user</Relevance>
+		<Relevance>/* exclude Built-In Administrator */ component string of sid of logged on user does not start with "S-1-5-21-" or component string of sid of logged on user does not end with "-500"</Relevance>
+		<Relevance>not exists elements of intersection of ( /*IS THE LOGGED IN USER AN ADMINISTRATOR? */ 
+ set of ( /* User's SID and Group Memberships */
+  ((sids of groups of logged on user of active directory) as string); /*User Group Memberships */
+  (sid of logged on user) as string /*Users SID*/
+ );(
+ set of (/*Users and Groups in Administrators */
+  sids of members of local group "administrators" as string)
+ ) 
+)</Relevance>
+		<Category>Temporary Administrative Rights</Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-25</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to grant the current user administrative rights for 1 hour.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[
+parameter "SIDS"="{component strings of sid of logged on user}"
+parameter "TimeStamp"="{now}"
+parameter "Start"="{now}"
+parameter "Expiration"="{now + 1*hour}"
+parameter "Switches"="-Grant -Admin"
+
+parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
+
+delete __createfile
+delete rightshandler.ps1
+
+createfile until _end_
+param (
+    $SIDS,
+    $TimeStamp,
+    $Start,
+    $Expiration,
+    [switch]$Grant,
+    [switch]$Revoke,
+    [switch]$Admin,
+    [switch]$Requestor
+)
+
+function write-log {{
+    param (
+        $Message,
+        [ValidateSet("Verbose",â??Grantâ?,"Revoke")] 
+        $Type = "Verbose"
+    )
+
+    if ($Type -like "Verbose") {{ $ID = 1337; $EntryType = "Information" }
+    if ($Type -like "Grant") {{ $ID = 1338; $EntryType = "Information" }
+    if ($Type -like "Revoke") {{ $ID = 1339; $EntryType = "Information" }
+
+    New-EventLog -LogName "C3 Temporary Administrative Rights" -Source "Rights Handler" -ErrorAction SilentlyContinue
+    # Limit-EventLog -LogName "C3 Temporary Administrative Rights" -Retention 28 -ErrorAction SilentlyContinue
+    
+    write-verbose $Message
+    write-eventlog -logname "C3 Temporary Administrative Rights" -source "Rights Handler" -eventID $ID -EntryType $EntryType -message "$Message"
+}
+
+
+function new-registrystructure {{
+    param (
+        $Path
+    )
+    if (!(test-path $Path)) {{ new-item $Path -force -ErrorAction SilentlyContinue | out-null}
+
+    return "$Path"
+}
+
+if ($env:PROCESSOR_ARCHITECTURE -eq "amd64") {{
+    $SoftwareROOT = "HKLM:\Software\Wow6432Node\C3 Inventory"
+} else {{
+    $SoftwareROOT = "HKLM:\Software\C3 Inventory"
+}
+
+$Store = @{{
+    "Temporary Administrative Rights Root" = "$SoftwareROOT\Temporary Administrative Rights";
+
+    "Authorized Requestors Root" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors";
+    "Current Authorized Requestors" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors\Current";
+    "Expired Authorized Requestors" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors\Expired";
+
+    "Administrators Root" = "$SoftwareROOT\Temporary Administrative Rights\Administrators";
+    "Current Administrators" = "$SoftwareROOT\Temporary Administrative Rights\Administrators\Current";
+    "Expired Administrators" = "$SoftwareROOT\Temporary Administrative Rights\Administrators\Expired";
+}
+
+#Build Registry Store
+foreach ($Item in $Store.GetEnumerator()) {{ new-registrystructure -Path $Item.Value | out-null }
+
+function get-UserFromSID {{
+    param (
+        $SID
+    )
+    $objSID = New-Object System.Security.Principal.SecurityIdentifier($SID)
+    $objName = $objSID.Translate( [System.Security.Principal.NTAccount])
+
+    return $objName.Value
+}
+
+foreach ($SID in $SIDS.split(";")){{
+
+    $UserWithDomain = get-UserFromSID $SID
+
+    if ($Grant -and $Requestor) {{
+        write-log "Granting Authorized Requestor to $UserWithDomain with SID: $SID" -Type Grant
+
+        $NewAuthorizedRequestor = new-registrystructure -Path "$($Store.'Current Authorized Requestors')\$SID"
+
+        New-ItemProperty $NewAuthorizedRequestor -Name "Username"   -Value $UserWithDomain -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAuthorizedRequestor -Name "Start"      -Value $Start          -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAuthorizedRequestor -Name "Expiration" -Value $Expiration     -ErrorAction SilentlyContinue | out-null
+    }
+
+    if ($Revoke -and $Requestor) {{
+        write-log "Revoking Authorized Requestor from $UserWithDomain with SID: $SID" -Type Revoke
+
+        # Create \Expired Authorized Requestors\SID\TimeStamp
+        $CurrentAuthorizedRequestor = "$($Store.'Current Authorized Requestors')\$SID"
+        $ExpiredAuthorizedRequestor = new-registrystructure -Path "$($Store.'Expired Authorized Requestors')\$SID"
+        
+        #Copy All Attributes from \Current Authorized Requestors\SID to \Expired Authorized Requestors\SID\Timestamp
+        Move-Item -Path $CurrentAuthorizedRequestor -Destination "$ExpiredAuthorizedRequestor\$Timestamp" -ErrorAction SilentlyContinue | out-null
+
+        #Add a Revocation time in \Expired Authorized Requestors\SID\Timestamp
+        New-ItemProperty "$ExpiredAuthorizedRequestor\$Timestamp" -Name "Revoked" -value "$TimeStamp" -ErrorAction SilentlyContinue | out-null
+    }
+
+    if ($Admin -and $Grant) {{
+        write-log "Granting Administrative Rights to $UserWithDomain with SID: $SID" -Type Grant
+
+        #Add User to Current Temp Admins
+        $NewAdministrator = new-registrystructure -Path "$($Store.'Current Administrators')\$SID"
+
+        #Log User's Temporary Administrator Access
+        New-ItemProperty $NewAdministrator -Name "Username"   -Value $UserWithDomain -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAdministrator -Name "Start"      -Value $Start          -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAdministrator -Name "Expiration" -Value $Expiration     -ErrorAction SilentlyContinue | out-null
+        
+        #Grant User Administrative Access
+        & net localgroup "administrators" "$UserWithDomain" /add
+    }
+
+    if ($Admin -and $Revoke) {{
+        write-log "Revoking Administrative Rights from $UserWithDomain with SID: $SID" -type Revoke
+
+        #Revoke User's Administrative Access
+        & net localgroup "administrators" "$UserWithDomain" /delete
+        
+        $CurrentAdministrator = "$($Store.'Current Administrators')\$SID"
+        $ExpiredAdministrator = new-registrystructure -Path "$($Store.'Expired Administrators')\$SID"
+
+        #Copy from Current and add timestamp+revoke time
+        Move-Item -Path $CurrentAdministrator -Destination "$ExpiredAdministrator\$Timestamp" -ErrorAction SilentlyContinue | out-null
+
+        New-ItemProperty "$ExpiredAdministrator\$Timestamp" -Name "Revoked" -value "$TimeStamp" -ErrorAction SilentlyContinue
+    }
+    
+}
+_end_
+
+move __createfile rightshandler.ps1
+
+waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File "rightshandler.ps1" -SIDS "{parameter "SIDS"}" -TimeStamp "{parameter "TimeStamp"}" -Start "{parameter "Start"}" -Expiration "{parameter "Expiration"}" {parameter "Switches"}
+]]></ActionScript>
+			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
+		</DefaultAction>
+		<Action ID="Action2">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to grant the current user administrative rights for 8 hours. </PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[
+parameter "SIDS"="{component strings of sid of logged on user}"
+parameter "TimeStamp"="{now}"
+parameter "Start"="{now}"
+parameter "Expiration"="{now + 8*hour}"
+parameter "Switches"="-Grant -Admin"
+
+parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
+
+delete __createfile
+delete rightshandler.ps1
+
+createfile until _end_
+param (
+    $SIDS,
+    $TimeStamp,
+    $Start,
+    $Expiration,
+    [switch]$Grant,
+    [switch]$Revoke,
+    [switch]$Admin,
+    [switch]$Requestor
+)
+
+function write-log {{
+    param (
+        $Message,
+        [ValidateSet("Verbose",â??Grantâ?,"Revoke")] 
+        $Type = "Verbose"
+    )
+
+    if ($Type -like "Verbose") {{ $ID = 1337; $EntryType = "Information" }
+    if ($Type -like "Grant") {{ $ID = 1338; $EntryType = "Information" }
+    if ($Type -like "Revoke") {{ $ID = 1339; $EntryType = "Information" }
+
+    New-EventLog -LogName "C3 Temporary Administrative Rights" -Source "Rights Handler" -ErrorAction SilentlyContinue
+    # Limit-EventLog -LogName "C3 Temporary Administrative Rights" -Retention 28 -ErrorAction SilentlyContinue
+    
+    write-verbose $Message
+    write-eventlog -logname "C3 Temporary Administrative Rights" -source "Rights Handler" -eventID $ID -EntryType $EntryType -message "$Message"
+}
+
+
+function new-registrystructure {{
+    param (
+        $Path
+    )
+    if (!(test-path $Path)) {{ new-item $Path -force -ErrorAction SilentlyContinue | out-null}
+
+    return "$Path"
+}
+
+if ($env:PROCESSOR_ARCHITECTURE -eq "amd64") {{
+    $SoftwareROOT = "HKLM:\Software\Wow6432Node\C3 Inventory"
+} else {{
+    $SoftwareROOT = "HKLM:\Software\C3 Inventory"
+}
+
+$Store = @{{
+    "Temporary Administrative Rights Root" = "$SoftwareROOT\Temporary Administrative Rights";
+
+    "Authorized Requestors Root" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors";
+    "Current Authorized Requestors" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors\Current";
+    "Expired Authorized Requestors" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors\Expired";
+
+    "Administrators Root" = "$SoftwareROOT\Temporary Administrative Rights\Administrators";
+    "Current Administrators" = "$SoftwareROOT\Temporary Administrative Rights\Administrators\Current";
+    "Expired Administrators" = "$SoftwareROOT\Temporary Administrative Rights\Administrators\Expired";
+}
+
+#Build Registry Store
+foreach ($Item in $Store.GetEnumerator()) {{ new-registrystructure -Path $Item.Value | out-null }
+
+function get-UserFromSID {{
+    param (
+        $SID
+    )
+    $objSID = New-Object System.Security.Principal.SecurityIdentifier($SID)
+    $objName = $objSID.Translate( [System.Security.Principal.NTAccount])
+
+    return $objName.Value
+}
+
+foreach ($SID in $SIDS.split(";")){{
+
+    $UserWithDomain = get-UserFromSID $SID
+
+    if ($Grant -and $Requestor) {{
+        write-log "Granting Authorized Requestor to $UserWithDomain with SID: $SID" -Type Grant
+
+        $NewAuthorizedRequestor = new-registrystructure -Path "$($Store.'Current Authorized Requestors')\$SID"
+
+        New-ItemProperty $NewAuthorizedRequestor -Name "Username"   -Value $UserWithDomain -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAuthorizedRequestor -Name "Start"      -Value $Start          -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAuthorizedRequestor -Name "Expiration" -Value $Expiration     -ErrorAction SilentlyContinue | out-null
+    }
+
+    if ($Revoke -and $Requestor) {{
+        write-log "Revoking Authorized Requestor from $UserWithDomain with SID: $SID" -Type Revoke
+
+        # Create \Expired Authorized Requestors\SID\TimeStamp
+        $CurrentAuthorizedRequestor = "$($Store.'Current Authorized Requestors')\$SID"
+        $ExpiredAuthorizedRequestor = new-registrystructure -Path "$($Store.'Expired Authorized Requestors')\$SID"
+        
+        #Copy All Attributes from \Current Authorized Requestors\SID to \Expired Authorized Requestors\SID\Timestamp
+        Move-Item -Path $CurrentAuthorizedRequestor -Destination "$ExpiredAuthorizedRequestor\$Timestamp" -ErrorAction SilentlyContinue | out-null
+
+        #Add a Revocation time in \Expired Authorized Requestors\SID\Timestamp
+        New-ItemProperty "$ExpiredAuthorizedRequestor\$Timestamp" -Name "Revoked" -value "$TimeStamp" -ErrorAction SilentlyContinue | out-null
+    }
+
+    if ($Admin -and $Grant) {{
+        write-log "Granting Administrative Rights to $UserWithDomain with SID: $SID" -Type Grant
+
+        #Add User to Current Temp Admins
+        $NewAdministrator = new-registrystructure -Path "$($Store.'Current Administrators')\$SID"
+
+        #Log User's Temporary Administrator Access
+        New-ItemProperty $NewAdministrator -Name "Username"   -Value $UserWithDomain -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAdministrator -Name "Start"      -Value $Start          -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAdministrator -Name "Expiration" -Value $Expiration     -ErrorAction SilentlyContinue | out-null
+        
+        #Grant User Administrative Access
+        & net localgroup "administrators" "$UserWithDomain" /add
+    }
+
+    if ($Admin -and $Revoke) {{
+        write-log "Revoking Administrative Rights from $UserWithDomain with SID: $SID" -type Revoke
+
+        #Revoke User's Administrative Access
+        & net localgroup "administrators" "$UserWithDomain" /delete
+        
+        $CurrentAdministrator = "$($Store.'Current Administrators')\$SID"
+        $ExpiredAdministrator = new-registrystructure -Path "$($Store.'Expired Administrators')\$SID"
+
+        #Copy from Current and add timestamp+revoke time
+        Move-Item -Path $CurrentAdministrator -Destination "$ExpiredAdministrator\$Timestamp" -ErrorAction SilentlyContinue | out-null
+
+        New-ItemProperty "$ExpiredAdministrator\$Timestamp" -Name "Revoked" -value "$TimeStamp" -ErrorAction SilentlyContinue
+    }
+    
+}
+_end_
+
+move __createfile rightshandler.ps1
+
+waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File "rightshandler.ps1" -SIDS "{parameter "SIDS"}" -TimeStamp "{parameter "TimeStamp"}" -Start "{parameter "Start"}" -Expiration "{parameter "Expiration"}" {parameter "Switches"}
+]]></ActionScript>
+		</Action>
+		<Action ID="Action3">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to grant the current user administrative rights for 1 day. </PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[
+parameter "SIDS"="{component strings of sid of logged on user}"
+parameter "TimeStamp"="{now}"
+parameter "Start"="{now}"
+parameter "Expiration"="{now + 1*day}"
+parameter "Switches"="-Grant -Admin"
+
+parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
+
+delete __createfile
+delete rightshandler.ps1
+
+createfile until _end_
+param (
+    $SIDS,
+    $TimeStamp,
+    $Start,
+    $Expiration,
+    [switch]$Grant,
+    [switch]$Revoke,
+    [switch]$Admin,
+    [switch]$Requestor
+)
+
+function write-log {{
+    param (
+        $Message,
+        [ValidateSet("Verbose",â??Grantâ?,"Revoke")] 
+        $Type = "Verbose"
+    )
+
+    if ($Type -like "Verbose") {{ $ID = 1337; $EntryType = "Information" }
+    if ($Type -like "Grant") {{ $ID = 1338; $EntryType = "Information" }
+    if ($Type -like "Revoke") {{ $ID = 1339; $EntryType = "Information" }
+
+    New-EventLog -LogName "C3 Temporary Administrative Rights" -Source "Rights Handler" -ErrorAction SilentlyContinue
+    # Limit-EventLog -LogName "C3 Temporary Administrative Rights" -Retention 28 -ErrorAction SilentlyContinue
+    
+    write-verbose $Message
+    write-eventlog -logname "C3 Temporary Administrative Rights" -source "Rights Handler" -eventID $ID -EntryType $EntryType -message "$Message"
+}
+
+
+function new-registrystructure {{
+    param (
+        $Path
+    )
+    if (!(test-path $Path)) {{ new-item $Path -force -ErrorAction SilentlyContinue | out-null}
+
+    return "$Path"
+}
+
+if ($env:PROCESSOR_ARCHITECTURE -eq "amd64") {{
+    $SoftwareROOT = "HKLM:\Software\Wow6432Node\C3 Inventory"
+} else {{
+    $SoftwareROOT = "HKLM:\Software\C3 Inventory"
+}
+
+$Store = @{{
+    "Temporary Administrative Rights Root" = "$SoftwareROOT\Temporary Administrative Rights";
+
+    "Authorized Requestors Root" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors";
+    "Current Authorized Requestors" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors\Current";
+    "Expired Authorized Requestors" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors\Expired";
+
+    "Administrators Root" = "$SoftwareROOT\Temporary Administrative Rights\Administrators";
+    "Current Administrators" = "$SoftwareROOT\Temporary Administrative Rights\Administrators\Current";
+    "Expired Administrators" = "$SoftwareROOT\Temporary Administrative Rights\Administrators\Expired";
+}
+
+#Build Registry Store
+foreach ($Item in $Store.GetEnumerator()) {{ new-registrystructure -Path $Item.Value | out-null }
+
+function get-UserFromSID {{
+    param (
+        $SID
+    )
+    $objSID = New-Object System.Security.Principal.SecurityIdentifier($SID)
+    $objName = $objSID.Translate( [System.Security.Principal.NTAccount])
+
+    return $objName.Value
+}
+
+foreach ($SID in $SIDS.split(";")){{
+
+    $UserWithDomain = get-UserFromSID $SID
+
+    if ($Grant -and $Requestor) {{
+        write-log "Granting Authorized Requestor to $UserWithDomain with SID: $SID" -Type Grant
+
+        $NewAuthorizedRequestor = new-registrystructure -Path "$($Store.'Current Authorized Requestors')\$SID"
+
+        New-ItemProperty $NewAuthorizedRequestor -Name "Username"   -Value $UserWithDomain -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAuthorizedRequestor -Name "Start"      -Value $Start          -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAuthorizedRequestor -Name "Expiration" -Value $Expiration     -ErrorAction SilentlyContinue | out-null
+    }
+
+    if ($Revoke -and $Requestor) {{
+        write-log "Revoking Authorized Requestor from $UserWithDomain with SID: $SID" -Type Revoke
+
+        # Create \Expired Authorized Requestors\SID\TimeStamp
+        $CurrentAuthorizedRequestor = "$($Store.'Current Authorized Requestors')\$SID"
+        $ExpiredAuthorizedRequestor = new-registrystructure -Path "$($Store.'Expired Authorized Requestors')\$SID"
+        
+        #Copy All Attributes from \Current Authorized Requestors\SID to \Expired Authorized Requestors\SID\Timestamp
+        Move-Item -Path $CurrentAuthorizedRequestor -Destination "$ExpiredAuthorizedRequestor\$Timestamp" -ErrorAction SilentlyContinue | out-null
+
+        #Add a Revocation time in \Expired Authorized Requestors\SID\Timestamp
+        New-ItemProperty "$ExpiredAuthorizedRequestor\$Timestamp" -Name "Revoked" -value "$TimeStamp" -ErrorAction SilentlyContinue | out-null
+    }
+
+    if ($Admin -and $Grant) {{
+        write-log "Granting Administrative Rights to $UserWithDomain with SID: $SID" -Type Grant
+
+        #Add User to Current Temp Admins
+        $NewAdministrator = new-registrystructure -Path "$($Store.'Current Administrators')\$SID"
+
+        #Log User's Temporary Administrator Access
+        New-ItemProperty $NewAdministrator -Name "Username"   -Value $UserWithDomain -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAdministrator -Name "Start"      -Value $Start          -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAdministrator -Name "Expiration" -Value $Expiration     -ErrorAction SilentlyContinue | out-null
+        
+        #Grant User Administrative Access
+        & net localgroup "administrators" "$UserWithDomain" /add
+    }
+
+    if ($Admin -and $Revoke) {{
+        write-log "Revoking Administrative Rights from $UserWithDomain with SID: $SID" -type Revoke
+
+        #Revoke User's Administrative Access
+        & net localgroup "administrators" "$UserWithDomain" /delete
+        
+        $CurrentAdministrator = "$($Store.'Current Administrators')\$SID"
+        $ExpiredAdministrator = new-registrystructure -Path "$($Store.'Expired Administrators')\$SID"
+
+        #Copy from Current and add timestamp+revoke time
+        Move-Item -Path $CurrentAdministrator -Destination "$ExpiredAdministrator\$Timestamp" -ErrorAction SilentlyContinue | out-null
+
+        New-ItemProperty "$ExpiredAdministrator\$Timestamp" -Name "Revoked" -value "$TimeStamp" -ErrorAction SilentlyContinue
+    }
+    
+}
+_end_
+
+move __createfile rightshandler.ps1
+
+waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File "rightshandler.ps1" -SIDS "{parameter "SIDS"}" -TimeStamp "{parameter "TimeStamp"}" -Start "{parameter "Start"}" -Expiration "{parameter "Expiration"}" {parameter "Switches"}
+]]></ActionScript>
+		</Action>
+		<Action ID="Action4">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink><![CDATA[ to grant the current user administrative rights for&nbsp;5 days. ]]></PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[
+parameter "SIDS"="{component strings of sid of logged on user}"
+parameter "TimeStamp"="{now}"
+parameter "Start"="{now}"
+parameter "Expiration"="{now + 5*day}"
+parameter "Switches"="-Grant -Admin"
+
+parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
+
+delete __createfile
+delete rightshandler.ps1
+
+createfile until _end_
+param (
+    $SIDS,
+    $TimeStamp,
+    $Start,
+    $Expiration,
+    [switch]$Grant,
+    [switch]$Revoke,
+    [switch]$Admin,
+    [switch]$Requestor
+)
+
+function write-log {{
+    param (
+        $Message,
+        [ValidateSet("Verbose",â??Grantâ?,"Revoke")] 
+        $Type = "Verbose"
+    )
+
+    if ($Type -like "Verbose") {{ $ID = 1337; $EntryType = "Information" }
+    if ($Type -like "Grant") {{ $ID = 1338; $EntryType = "Information" }
+    if ($Type -like "Revoke") {{ $ID = 1339; $EntryType = "Information" }
+
+    New-EventLog -LogName "C3 Temporary Administrative Rights" -Source "Rights Handler" -ErrorAction SilentlyContinue
+    # Limit-EventLog -LogName "C3 Temporary Administrative Rights" -Retention 28 -ErrorAction SilentlyContinue
+    
+    write-verbose $Message
+    write-eventlog -logname "C3 Temporary Administrative Rights" -source "Rights Handler" -eventID $ID -EntryType $EntryType -message "$Message"
+}
+
+
+function new-registrystructure {{
+    param (
+        $Path
+    )
+    if (!(test-path $Path)) {{ new-item $Path -force -ErrorAction SilentlyContinue | out-null}
+
+    return "$Path"
+}
+
+if ($env:PROCESSOR_ARCHITECTURE -eq "amd64") {{
+    $SoftwareROOT = "HKLM:\Software\Wow6432Node\C3 Inventory"
+} else {{
+    $SoftwareROOT = "HKLM:\Software\C3 Inventory"
+}
+
+$Store = @{{
+    "Temporary Administrative Rights Root" = "$SoftwareROOT\Temporary Administrative Rights";
+
+    "Authorized Requestors Root" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors";
+    "Current Authorized Requestors" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors\Current";
+    "Expired Authorized Requestors" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors\Expired";
+
+    "Administrators Root" = "$SoftwareROOT\Temporary Administrative Rights\Administrators";
+    "Current Administrators" = "$SoftwareROOT\Temporary Administrative Rights\Administrators\Current";
+    "Expired Administrators" = "$SoftwareROOT\Temporary Administrative Rights\Administrators\Expired";
+}
+
+#Build Registry Store
+foreach ($Item in $Store.GetEnumerator()) {{ new-registrystructure -Path $Item.Value | out-null }
+
+function get-UserFromSID {{
+    param (
+        $SID
+    )
+    $objSID = New-Object System.Security.Principal.SecurityIdentifier($SID)
+    $objName = $objSID.Translate( [System.Security.Principal.NTAccount])
+
+    return $objName.Value
+}
+
+foreach ($SID in $SIDS.split(";")){{
+
+    $UserWithDomain = get-UserFromSID $SID
+
+    if ($Grant -and $Requestor) {{
+        write-log "Granting Authorized Requestor to $UserWithDomain with SID: $SID" -Type Grant
+
+        $NewAuthorizedRequestor = new-registrystructure -Path "$($Store.'Current Authorized Requestors')\$SID"
+
+        New-ItemProperty $NewAuthorizedRequestor -Name "Username"   -Value $UserWithDomain -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAuthorizedRequestor -Name "Start"      -Value $Start          -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAuthorizedRequestor -Name "Expiration" -Value $Expiration     -ErrorAction SilentlyContinue | out-null
+    }
+
+    if ($Revoke -and $Requestor) {{
+        write-log "Revoking Authorized Requestor from $UserWithDomain with SID: $SID" -Type Revoke
+
+        # Create \Expired Authorized Requestors\SID\TimeStamp
+        $CurrentAuthorizedRequestor = "$($Store.'Current Authorized Requestors')\$SID"
+        $ExpiredAuthorizedRequestor = new-registrystructure -Path "$($Store.'Expired Authorized Requestors')\$SID"
+        
+        #Copy All Attributes from \Current Authorized Requestors\SID to \Expired Authorized Requestors\SID\Timestamp
+        Move-Item -Path $CurrentAuthorizedRequestor -Destination "$ExpiredAuthorizedRequestor\$Timestamp" -ErrorAction SilentlyContinue | out-null
+
+        #Add a Revocation time in \Expired Authorized Requestors\SID\Timestamp
+        New-ItemProperty "$ExpiredAuthorizedRequestor\$Timestamp" -Name "Revoked" -value "$TimeStamp" -ErrorAction SilentlyContinue | out-null
+    }
+
+    if ($Admin -and $Grant) {{
+        write-log "Granting Administrative Rights to $UserWithDomain with SID: $SID" -Type Grant
+
+        #Add User to Current Temp Admins
+        $NewAdministrator = new-registrystructure -Path "$($Store.'Current Administrators')\$SID"
+
+        #Log User's Temporary Administrator Access
+        New-ItemProperty $NewAdministrator -Name "Username"   -Value $UserWithDomain -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAdministrator -Name "Start"      -Value $Start          -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAdministrator -Name "Expiration" -Value $Expiration     -ErrorAction SilentlyContinue | out-null
+        
+        #Grant User Administrative Access
+        & net localgroup "administrators" "$UserWithDomain" /add
+    }
+
+    if ($Admin -and $Revoke) {{
+        write-log "Revoking Administrative Rights from $UserWithDomain with SID: $SID" -type Revoke
+
+        #Revoke User's Administrative Access
+        & net localgroup "administrators" "$UserWithDomain" /delete
+        
+        $CurrentAdministrator = "$($Store.'Current Administrators')\$SID"
+        $ExpiredAdministrator = new-registrystructure -Path "$($Store.'Expired Administrators')\$SID"
+
+        #Copy from Current and add timestamp+revoke time
+        Move-Item -Path $CurrentAdministrator -Destination "$ExpiredAdministrator\$Timestamp" -ErrorAction SilentlyContinue | out-null
+
+        New-ItemProperty "$ExpiredAdministrator\$Timestamp" -Name "Revoked" -value "$TimeStamp" -ErrorAction SilentlyContinue
+    }
+    
+}
+_end_
+
+move __createfile rightshandler.ps1
+
+waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File "rightshandler.ps1" -SIDS "{parameter "SIDS"}" -TimeStamp "{parameter "TimeStamp"}" -Start "{parameter "Start"}" -Expiration "{parameter "Expiration"}" {parameter "Switches"}
+]]></ActionScript>
+		</Action>
+		<Action ID="Action5">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink><![CDATA[ to grant the current user administrative rights for&nbsp;permanently.]]></PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[
+parameter "SIDS"="{component strings of sid of logged on user}"
+parameter "TimeStamp"="{now}"
+parameter "Start"="{now}"
+parameter "Expiration"="{now + (10000000 * week)}"
+parameter "Switches"="-Grant -Admin"
+
+parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
+
+delete __createfile
+delete rightshandler.ps1
+
+createfile until _end_
+param (
+    $SIDS,
+    $TimeStamp,
+    $Start,
+    $Expiration,
+    [switch]$Grant,
+    [switch]$Revoke,
+    [switch]$Admin,
+    [switch]$Requestor
+)
+
+function write-log {{
+    param (
+        $Message,
+        [ValidateSet("Verbose",â??Grantâ?,"Revoke")] 
+        $Type = "Verbose"
+    )
+
+    if ($Type -like "Verbose") {{ $ID = 1337; $EntryType = "Information" }
+    if ($Type -like "Grant") {{ $ID = 1338; $EntryType = "Information" }
+    if ($Type -like "Revoke") {{ $ID = 1339; $EntryType = "Information" }
+
+    New-EventLog -LogName "C3 Temporary Administrative Rights" -Source "Rights Handler" -ErrorAction SilentlyContinue
+    # Limit-EventLog -LogName "C3 Temporary Administrative Rights" -Retention 28 -ErrorAction SilentlyContinue
+    
+    write-verbose $Message
+    write-eventlog -logname "C3 Temporary Administrative Rights" -source "Rights Handler" -eventID $ID -EntryType $EntryType -message "$Message"
+}
+
+
+function new-registrystructure {{
+    param (
+        $Path
+    )
+    if (!(test-path $Path)) {{ new-item $Path -force -ErrorAction SilentlyContinue | out-null}
+
+    return "$Path"
+}
+
+if ($env:PROCESSOR_ARCHITECTURE -eq "amd64") {{
+    $SoftwareROOT = "HKLM:\Software\Wow6432Node\C3 Inventory"
+} else {{
+    $SoftwareROOT = "HKLM:\Software\C3 Inventory"
+}
+
+$Store = @{{
+    "Temporary Administrative Rights Root" = "$SoftwareROOT\Temporary Administrative Rights";
+
+    "Authorized Requestors Root" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors";
+    "Current Authorized Requestors" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors\Current";
+    "Expired Authorized Requestors" = "$SoftwareROOT\Temporary Administrative Rights\Authorized Requestors\Expired";
+
+    "Administrators Root" = "$SoftwareROOT\Temporary Administrative Rights\Administrators";
+    "Current Administrators" = "$SoftwareROOT\Temporary Administrative Rights\Administrators\Current";
+    "Expired Administrators" = "$SoftwareROOT\Temporary Administrative Rights\Administrators\Expired";
+}
+
+#Build Registry Store
+foreach ($Item in $Store.GetEnumerator()) {{ new-registrystructure -Path $Item.Value | out-null }
+
+function get-UserFromSID {{
+    param (
+        $SID
+    )
+    $objSID = New-Object System.Security.Principal.SecurityIdentifier($SID)
+    $objName = $objSID.Translate( [System.Security.Principal.NTAccount])
+
+    return $objName.Value
+}
+
+foreach ($SID in $SIDS.split(";")){{
+
+    $UserWithDomain = get-UserFromSID $SID
+
+    if ($Grant -and $Requestor) {{
+        write-log "Granting Authorized Requestor to $UserWithDomain with SID: $SID" -Type Grant
+
+        $NewAuthorizedRequestor = new-registrystructure -Path "$($Store.'Current Authorized Requestors')\$SID"
+
+        New-ItemProperty $NewAuthorizedRequestor -Name "Username"   -Value $UserWithDomain -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAuthorizedRequestor -Name "Start"      -Value $Start          -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAuthorizedRequestor -Name "Expiration" -Value $Expiration     -ErrorAction SilentlyContinue | out-null
+    }
+
+    if ($Revoke -and $Requestor) {{
+        write-log "Revoking Authorized Requestor from $UserWithDomain with SID: $SID" -Type Revoke
+
+        # Create \Expired Authorized Requestors\SID\TimeStamp
+        $CurrentAuthorizedRequestor = "$($Store.'Current Authorized Requestors')\$SID"
+        $ExpiredAuthorizedRequestor = new-registrystructure -Path "$($Store.'Expired Authorized Requestors')\$SID"
+        
+        #Copy All Attributes from \Current Authorized Requestors\SID to \Expired Authorized Requestors\SID\Timestamp
+        Move-Item -Path $CurrentAuthorizedRequestor -Destination "$ExpiredAuthorizedRequestor\$Timestamp" -ErrorAction SilentlyContinue | out-null
+
+        #Add a Revocation time in \Expired Authorized Requestors\SID\Timestamp
+        New-ItemProperty "$ExpiredAuthorizedRequestor\$Timestamp" -Name "Revoked" -value "$TimeStamp" -ErrorAction SilentlyContinue | out-null
+    }
+
+    if ($Admin -and $Grant) {{
+        write-log "Granting Administrative Rights to $UserWithDomain with SID: $SID" -Type Grant
+
+        #Add User to Current Temp Admins
+        $NewAdministrator = new-registrystructure -Path "$($Store.'Current Administrators')\$SID"
+
+        #Log User's Temporary Administrator Access
+        New-ItemProperty $NewAdministrator -Name "Username"   -Value $UserWithDomain -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAdministrator -Name "Start"      -Value $Start          -ErrorAction SilentlyContinue | out-null
+        New-ItemProperty $NewAdministrator -Name "Expiration" -Value $Expiration     -ErrorAction SilentlyContinue | out-null
+        
+        #Grant User Administrative Access
+        & net localgroup "administrators" "$UserWithDomain" /add
+    }
+
+    if ($Admin -and $Revoke) {{
+        write-log "Revoking Administrative Rights from $UserWithDomain with SID: $SID" -type Revoke
+
+        #Revoke User's Administrative Access
+        & net localgroup "administrators" "$UserWithDomain" /delete
+        
+        $CurrentAdministrator = "$($Store.'Current Administrators')\$SID"
+        $ExpiredAdministrator = new-registrystructure -Path "$($Store.'Expired Administrators')\$SID"
+
+        #Copy from Current and add timestamp+revoke time
+        Move-Item -Path $CurrentAdministrator -Destination "$ExpiredAdministrator\$Timestamp" -ErrorAction SilentlyContinue | out-null
+
+        New-ItemProperty "$ExpiredAdministrator\$Timestamp" -Name "Revoked" -value "$TimeStamp" -ErrorAction SilentlyContinue
+    }
+    
+}
+_end_
+
+move __createfile rightshandler.ps1
+
+waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File "rightshandler.ps1" -SIDS "{parameter "SIDS"}" -TimeStamp "{parameter "TimeStamp"}" -Start "{parameter "Start"}" -Expiration "{parameter "Expiration"}" {parameter "Switches"}
+]]></ActionScript>
+		</Action>
+	</Fixlet>
+</BES>

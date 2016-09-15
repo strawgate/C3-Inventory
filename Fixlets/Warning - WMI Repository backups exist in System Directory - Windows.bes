@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Warning - WMI Repository backups exist in System Directory - Windows</Title>
+		<Description><![CDATA[<P>When WMI corruption occurs Windows makes a back-up of the WMI repository and stores it on Disk. This Fixlet deletes the oldest available WMI Repository if multiple exist.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists folder whose (name of it starts with "repository.") of (folder "wbem" of (if (x64 of operating system) then (system x64 folder) else (system x32 folder)))</Relevance>
+		<Category>Disk Cleanup</Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-18</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">action uses wow64 redirection false
+dos rmdir /s /q  "{folder whose (name of it contains "repository." AND creation time of it = minimum of creation times of folders whose(name of it contains "repository.") of (folder "wbem" of (if (x64 of operating system) then (system x64 folder) else (system x32 folder)))) of (folder "wbem" of (if (x64 of operating system) then (system x64 folder) else (system x32 folder)))}" </ActionScript>
+			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
+		</DefaultAction>
+	</Fixlet>
+</BES>

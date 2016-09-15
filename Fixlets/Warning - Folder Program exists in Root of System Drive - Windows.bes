@@ -8,11 +8,11 @@
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists folder "Program" of drive of system folder</Relevance>
-		<Category></Category>
+		<Category>Disk Cleanup</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
 		<SourceReleaseDate>2016-08-25</SourceReleaseDate>
-		<SourceSeverity></SourceSeverity>
+		<SourceSeverity>Critical</SourceSeverity>
 		<CVENames></CVENames>
 		<SANSID></SANSID>
 		<Domain>BESC</Domain>

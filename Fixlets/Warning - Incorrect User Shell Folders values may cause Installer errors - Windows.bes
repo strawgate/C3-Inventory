@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Warning - Incorrect User Shell Folders values may cause Installer errors - Windows</Title>
+		<Description><![CDATA[<P>This fixlet detects and remediates the issue outlined in this Microsoft KB Article: <A href="https://support.microsoft.com/en-us/kb/886549">https://support.microsoft.com/en-us/kb/886549</A></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance><![CDATA[windows of operating system and version of operating system > "6.0"]]></Relevance>
+		<Relevance>(value "{374DE290-123F-4565-9164-39C4925E467B}" of it as string != "%25USERPROFILE%25\Downloads%00" or value "AppData" of it as string != "%25USERPROFILE%25\AppData\Roaming%00" or value "Desktop" of it as string != "%25USERPROFILE%25\Desktop%00" or value "Favorites" of it as string != "%25USERPROFILE%25\Favorites%00" or value "History" of it as string != "%25USERPROFILE%25\AppData\Local\Microsoft\Windows\History%00" or value "Local AppData" of it as string != "%25USERPROFILE%25\AppData\Local%00" or value "My Music" of it as string != "%25USERPROFILE%25\Music%00" or value "My Pictures" of it as string != "%25USERPROFILE%25\Pictures%00" or value "My Video" of it as string != "%25USERPROFILE%25\Videos%00" or value "NetHood" of it as string != "%25USERPROFILE%25\AppData\Roaming\Microsoft\Windows\Network Shortcuts%00" or value "Personal" of it as string != "%25USERPROFILE%25\Documents%00" or value "PrintHood" of it as string != "%25USERPROFILE%25\AppData\Roaming\Microsoft\Windows\Printer Shortcuts%00" or value "Programs" of it as string != "%25USERPROFILE%25\AppData\Roaming\Microsoft\Windows\Start Menu\Programs%00" or value "Recent" of it as string != "%25USERPROFILE%25\AppData\Roaming\Microsoft\Windows\Recent%00" or value "SendTo" of it as string != "%25USERPROFILE%25\AppData\Roaming\Microsoft\Windows\SendTo%00" or value "Start Menu" of it as string != "%25USERPROFILE%25\AppData\Roaming\Microsoft\Windows\Start Menu%00" or value "Startup" of it as string != "%25USERPROFILE%25\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup%00" or value "Templates" of it as string != "%25USERPROFILE%25\AppData\Roaming\Microsoft\Windows\Templates%00") of key "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" of native registry </Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-09-21</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
+
+delete __createfile
+delete import.reg
+
+createfile until _end_
+Windows Registry Editor Version 5.00
+
+[HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders]
+"AppData"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\
+  4c,00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,52,\
+  00,6f,00,61,00,6d,00,69,00,6e,00,67,00,00,00
+"Desktop"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\
+  4c,00,45,00,25,00,5c,00,44,00,65,00,73,00,6b,00,74,00,6f,00,70,00,00,00
+"Favorites"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\
+  4c,00,45,00,25,00,5c,00,46,00,61,00,76,00,6f,00,72,00,69,00,74,00,65,00,73,\
+  00,00,00
+"History"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\
+  4c,00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,4c,\
+  00,6f,00,63,00,61,00,6c,00,5c,00,4d,00,69,00,63,00,72,00,6f,00,73,00,6f,00,\
+  66,00,74,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,5c,00,48,00,69,\
+  00,73,00,74,00,6f,00,72,00,79,00,00,00
+"Local AppData"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,\
+  49,00,4c,00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,\
+  00,4c,00,6f,00,63,00,61,00,6c,00,00,00
+"My Music"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\
+  4c,00,45,00,25,00,5c,00,4d,00,75,00,73,00,69,00,63,00,00,00
+"My Pictures"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,\
+  00,4c,00,45,00,25,00,5c,00,50,00,69,00,63,00,74,00,75,00,72,00,65,00,73,00,\
+  00,00
+"My Video"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\
+  4c,00,45,00,25,00,5c,00,56,00,69,00,64,00,65,00,6f,00,73,00,00,00
+"NetHood"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\
+  4c,00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,52,\
+  00,6f,00,61,00,6d,00,69,00,6e,00,67,00,5c,00,4d,00,69,00,63,00,72,00,6f,00,\
+  73,00,6f,00,66,00,74,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,5c,\
+  00,4e,00,65,00,74,00,77,00,6f,00,72,00,6b,00,20,00,53,00,68,00,6f,00,72,00,\
+  74,00,63,00,75,00,74,00,73,00,00,00
+"Personal"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\
+  4c,00,45,00,25,00,5c,00,44,00,6f,00,63,00,75,00,6d,00,65,00,6e,00,74,00,73,\
+  00,00,00
+"PrintHood"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\
+  4c,00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,52,\
+  00,6f,00,61,00,6d,00,69,00,6e,00,67,00,5c,00,4d,00,69,00,63,00,72,00,6f,00,\
+  73,00,6f,00,66,00,74,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,5c,\
+  00,50,00,72,00,69,00,6e,00,74,00,65,00,72,00,20,00,53,00,68,00,6f,00,72,00,\
+  74,00,63,00,75,00,74,00,73,00,00,00
+"Programs"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\
+  4c,00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,52,\
+  00,6f,00,61,00,6d,00,69,00,6e,00,67,00,5c,00,4d,00,69,00,63,00,72,00,6f,00,\
+  73,00,6f,00,66,00,74,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,5c,\
+  00,53,00,74,00,61,00,72,00,74,00,20,00,4d,00,65,00,6e,00,75,00,5c,00,50,00,\
+  72,00,6f,00,67,00,72,00,61,00,6d,00,73,00,00,00
+"Recent"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,4c,\
+  00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,52,00,\
+  6f,00,61,00,6d,00,69,00,6e,00,67,00,5c,00,4d,00,69,00,63,00,72,00,6f,00,73,\
+  00,6f,00,66,00,74,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,5c,00,\
+  52,00,65,00,63,00,65,00,6e,00,74,00,00,00
+"SendTo"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,4c,\
+  00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,52,00,\
+  6f,00,61,00,6d,00,69,00,6e,00,67,00,5c,00,4d,00,69,00,63,00,72,00,6f,00,73,\
+  00,6f,00,66,00,74,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,5c,00,\
+  53,00,65,00,6e,00,64,00,54,00,6f,00,00,00
+"Start Menu"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,\
+  00,4c,00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,\
+  52,00,6f,00,61,00,6d,00,69,00,6e,00,67,00,5c,00,4d,00,69,00,63,00,72,00,6f,\
+  00,73,00,6f,00,66,00,74,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,\
+  5c,00,53,00,74,00,61,00,72,00,74,00,20,00,4d,00,65,00,6e,00,75,00,00,00
+"Startup"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\
+  4c,00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,52,\
+  00,6f,00,61,00,6d,00,69,00,6e,00,67,00,5c,00,4d,00,69,00,63,00,72,00,6f,00,\
+  73,00,6f,00,66,00,74,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,5c,\
+  00,53,00,74,00,61,00,72,00,74,00,20,00,4d,00,65,00,6e,00,75,00,5c,00,50,00,\
+  72,00,6f,00,67,00,72,00,61,00,6d,00,73,00,5c,00,53,00,74,00,61,00,72,00,74,\
+  00,75,00,70,00,00,00
+"Templates"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,\
+  4c,00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,52,\
+  00,6f,00,61,00,6d,00,69,00,6e,00,67,00,5c,00,4d,00,69,00,63,00,72,00,6f,00,\
+  73,00,6f,00,66,00,74,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,5c,\
+  00,54,00,65,00,6d,00,70,00,6c,00,61,00,74,00,65,00,73,00,00,00
+"{{374DE290-123F-4565-9164-39C4925E467B}"=hex(2):25,00,55,00,53,00,45,00,52,00,\
+  50,00,52,00,4f,00,46,00,49,00,4c,00,45,00,25,00,5c,00,44,00,6f,00,77,00,6e,\
+  00,6c,00,6f,00,61,00,64,00,73,00,00,00
+
+
+_end_
+
+move __createfile import.reg
+
+waithidden reg import import.reg</ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

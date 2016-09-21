@@ -9,7 +9,7 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Applications - Currently Running - Universal" ID="1" EvaluationPeriod="PT1H">running applications</Property>
-		<Property Name="Applications - Registered Applications - Universal" ID="2" EvaluationPeriod="PT1H">regapps</Property>
+		<Property Name="Applications - Currently Running - Universal" ID="1" EvaluationPeriod="PT1H">if (exists running applications | false) then (unique values of (running applications as string)) else (nothing)</Property>
+		<Property Name="Applications - Registered Applications - Universal" ID="2" EvaluationPeriod="PT1H">unique values of (regapps as string)</Property>
 	</Analysis>
 </BES>

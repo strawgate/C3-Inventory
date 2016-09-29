@@ -3,8 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
 		<Title>Invoke - Gather Dell Warranty - Windows</Title>
-		<Description><![CDATA[<P>This fixlet writes a VBS script that collects Dell Warranty information via a SOAP request to the Dell website.</P>
-<P>It writes the results to HKLM\Software\DellWarrantyInfo&nbsp;</P>
+		<Description><![CDATA[<P>This fixlet queries Dell's Service Website for current warranty information.</P>
+<P>It writes the results to the Dell Folder of the System Drive</P>
 <P><FONT color=#ff0000><STRONG>NOTE: </STRONG><FONT color=#000000>This fixlet has no default action because it requires every endpoint to make an external web request. This request does not traverse the BigFix infrastructure and does require internet access.</FONT></FONT></P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
@@ -23,99 +23,20 @@
 				<Link>here</Link>
 				<PostLink> to deploy this action.</PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[// Enter your action script here
-// Run setup process
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
+
 delete __createfile
-delete run.vbs
+delete run.ps1
 
-// Use .bat to set working directory to packages root, for setup command.
 createfile until _end_
-
-'=====================================================================
-'    Dell Warranty Grabber
-'    Author:     Matthew Boyd (iboyd.net)
-'    Date:        2/14/2012
-'
-'    This is  an example of how to query the Dell asset information
-'    web service for warranty information and parse the XML result.
-'    values are then written to the registry of the local
-'    computer. FYI: Sometimes, the web service doesn't return any
-'    entitlements (warranties), but then returns them after
-'    subsequent requests.
-'
-'    Usage:    cscript.exe DellWarrantyGrabber.vbs
-'
-'    Note: This must be run under an account with admin rights.
-'    This script is provided AS IS with no support or warranties.
-'    Use at your own risk!
-'=====================================================================
-
-Option Explicit
-Dim SoapRequest
-Dim url, regkey, svctag
-Dim warrantyRows, warrantyCols
-Dim objShell, objXML, objWMI, objHTTP, NodeList
-Dim i, result
- 
-SoapRequest = "<?xml version=""1.0"" encoding=""utf-8""?> <soap:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/""> <soap:Body> <GetAssetInformation xmlns=""http://support.dell.com/JigsawWebServices/""> <guid>11111111-1111-1111-1111-111111111111</guid> <applicationName>Warranty Information Lookup</applicationName> <serviceTags>!SERVICETAG!</serviceTags> </GetAssetInformation> </soap:Body></soap:Envelope>"
- 
-url = "http://xserv.dell.com/jigsawwebservices/AssetService.asmx"
-regkey = "HKEY_LOCAL_MACHINE\Software\DellWarrantyInfo"
-set objShell = WScript.CreateObject("WScript.Shell")
-set objWMI = GetObject("winmgmts:{"%7B"}impersonationLevel=impersonate{"%7D"}!\\.\root\cimv2")
- 
-If InStr(UCase(objWMI.ExecQuery("Select Manufacturer From Win32_ComputerSystem").ItemIndex(0).Manufacturer), "DELL") = 0 then Err.Raise 2, "This is not a Dell dude!", "No Service Tag"
- 
-svctag = Trim(objWMI.ExecQuery  ("Select SerialNumber from Win32_BIOS").ItemIndex(0).SerialNumber)
- 
-wscript.echo "Service Tag: " & svctag
-SoapRequest = Replace(SoapRequest, "!SERVICETAG!", svctag)
-result = objShell.Run("reg.exe delete '" & regkey & "' /f", true)
-If not result = 0 then Err.Raise result, "Unable to delete registry key!", "Code " & result
- 
-result = objShell.Run("reg.exe create '" & regkey & "' /ve", true)
-If not result = 0 then Err.Raise result, "Unable to delete registry key!", "Code " & result
- 
-Set objHTTP = CreateObject("Msxml2.XMLHTTP")
-objHTTP.open "POST", URL, false
-objHTTP.setRequestHeader "Content-Type", "text/xml"
-objHTTP.setRequestHeader "SOAPAction", "http://support.dell.com/JigsawWebServices/GetAssetInformation"
-objHTTP.send SoapRequest
- 
-result = objHTTP.responseText
- 
-Set objXML = CreateObject ("Msxml2.DOMDocument")
-objXML.LoadXml result
- 
-If not objXML.SelectSinglenode ("//faultstring") is nothing then
-    Err.Raise 1,  "Error:" & objXML.SelectSingleNode("//faultcode").text, Trim(objXML.SelectSingleNode("//faultstring").text)
-End If
-wscript.echo objXML.xml
-Set NodeList = objXML.SelectNodes("//Asset/Entitlements/EntitlementData")
- wscript.echo NodeList.length & " results returned: "
- 
-For i = 0 to NodeList.length - 1
-set warrantyCols = NodeList.item(i)
-wscript.echo Mid(warrantyCols.SelectSingleNode("ServiceLevelDescription").text,4)
- 
-objShell.regWrite regkey & "\" & i & "\", ""
-objShell.regWrite regkey & "\" & i & "\Description", warrantyCols.SelectSingleNode("ServiceLevelDescription").text
-objShell.regWrite regkey & "\" & i & "\Provider", warrantyCols.SelectSingleNode("Provider").text
-objShell.regWrite regkey & "\" & i & "\Entitlement Type", warrantyCols.SelectSingleNode("EntitlementType").text
-objShell.regWrite regkey & "\" & i & "\Start Date", Left(warrantyCols.SelectSingleNode("StartDate").text, 10)
-objShell.regWrite regkey & "\" & i & "\End Date", Left(warrantyCols.SelectSingleNode("EndDate").text, 10)
-objShell.regWrite regkey & "\" & i & "\Days Left", warrantyCols.SelectSingleNode("DaysLeft").text
- 
-Next
-
+new-item -itemtype directory "{name of drive of system folder}\Programdata\Dell" -ErrorAction SilentlyContinue
+Invoke-WebRequest -Uri "https://api.dell.com/support/v2/assetinfo/warranty/tags.xml?svctags={(it as string as trimmed string) whose (length of it = 7) of value "serial_number" of structures "system_information" of smbios}&apikey=849e027f476027a394edd656eaef4842" -OutFile "{name of drive of system folder}\Programdata\Dell\BigFixDellWarranty.xml"
 _end_
 
-move __createfile run.vbs
-// You will not be able to stop or take action on an applicable BigFix Client until your installer completes.
-// So ensure no user input is required.
-// If your package absolutely must interact with the user, replace 'override wait' with 'override run' and 'wait' with 'run'.
+move __createfile run.ps1
 
-waithidden cscript run.vbs]]></ActionScript>
+waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File run.ps1
+]]></ActionScript>
 			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
 		</Action>
 	</Fixlet>

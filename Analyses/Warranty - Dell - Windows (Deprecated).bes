@@ -4,6 +4,7 @@
 	<Analysis>
 		<Title>Warranty - Dell - Windows (Deprecated)</Title>
 		<Description><![CDATA[This analysis pairs with the "Invoke - Gather Dell Warranty - Windows" fixlet in order to provide warranty information about Dell devices. 
+<P>This analysis has been deprecated and will be removed before the end of 2016 as a result. It is retained here to allow organizations to switch to the non-deprecated, "Dell Warranty - Windows" Analysis that has replaced this analysis.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>Windows of Operating System</Relevance>
 		<Relevance>exists key "HKLM\Software\DellWarrantyInfo" of registry</Relevance>

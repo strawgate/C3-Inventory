@@ -3,8 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
 		<Title>Invoke - Gather Dell Warranty - Windows</Title>
-		<Description><![CDATA[<P>This fixlet queries Dell's Service Website for current warranty information.</P>
-<P>It writes the results to the Dell Folder of the System Drive</P>
+		<Description><![CDATA[<P>This fixlet queries Dell's Service Website for current warranty information&nbsp;and writes the results to the Dell Folder of the ProgramData directory of the System Drive.</P>
+<P><FONT color=#ff0000><STRONG>NOTE: </STRONG><FONT color=#000000>This fixlet has no relevance to aid&nbsp;in re-application. It&nbsp;will reapply as often as you tell it to. You should&nbsp;add this to a baseline or action it alone and specify a reapplication frequency of anywhere from days to weeks.&nbsp;</FONT></FONT></P>
 <P><FONT color=#ff0000><STRONG>NOTE: </STRONG><FONT color=#000000>This fixlet has no default action because it requires every endpoint to make an external web request. This request does not traverse the BigFix infrastructure and does require internet access.</FONT></FONT></P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>

@@ -4,6 +4,7 @@
 	<Fixlet>
 		<Title>Config - Dell Command | Configure Wake on Lan - Disable - Windows</Title>
 		<Description><![CDATA[<P>This disables Wake on Lan in the bios of dell machines using Dell Command | Configure.</P>
+<P><FONT color=#ff0000>NOTE: </FONT><FONT color=#000000>If you use Action 2&nbsp;and provide a BIOS Password, the password will be visible in plain text on endpoints and relays.</FONT></P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>(exists ((keys of keys "HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall" of ( x32 registry; (if exists x64 registry then x64 registry else nothing) )) whose (value "DisplayName" of it as string contains "Dell Command | Configure")))</Relevance>
@@ -20,7 +21,7 @@
 			<Description>
 				<PreLink>Click </PreLink>
 				<Link>here</Link>
-				<PostLink> to deploy this action.</PostLink>
+				<PostLink> to disable Wake On LAN on machines without a BIOS Password.</PostLink>
 			</Description>
 			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
 
@@ -45,7 +46,38 @@ delete "{pathname of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\De
 wait "{pathname of file "CCTK.exe" of folder (if (x64 of operating system) then ("X86_64") else ("X86")) of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}" -o "{pathname of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}\report.ini"
 
 action requires restart</ActionScript>
-			<SuccessCriteria Option="OriginalRelevance"></SuccessCriteria>
 		</DefaultAction>
+		<Action ID="Action2">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to disable Wake on LAN on machines with a BIOS Password.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
+
+action parameter query "BIOSPwd" with description "Please enter the BIOS Password for the targeted machines"
+
+delete __createfile
+delete run.bat
+
+createfile until _end_
+
+cd "{pathname of folder (if (x64 of operating system) then ("X86_64") else ("X86")) of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}"
+
+cctk.exe --wakeonlan=disable --valsetuppwd={parameter "BIOSPwd" of action}
+
+_end_
+
+move __createfile run.bat
+
+wait run.bat
+
+// Create a new report
+delete "{pathname of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}\report.ini"
+
+wait "{pathname of file "CCTK.exe" of folder (if (x64 of operating system) then ("X86_64") else ("X86")) of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}" -o "{pathname of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}\report.ini"
+
+action requires restart</ActionScript>
+		</Action>
 	</Fixlet>
 </BES>

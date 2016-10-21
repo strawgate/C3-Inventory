@@ -12,7 +12,7 @@
 		<Domain>BESC</Domain>
 		<Property Name="SNMP - State - Windows" ID="1" EvaluationPeriod="PT1H">state of service "SNMP" | error "Not Installed"</Property>
 		<Property Name="SNMP - Read-Only Communities - Windows" ID="2" EvaluationPeriod="PT12H">names of values whose (it = 4) of keys "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\SNMP\Parameters\ValidCommunities" of native registry</Property>
-		<Property Name="SNMP - Permitted Managers - Windows" ID="3" EvaluationPeriod="PT12H">names of values of keys "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\SNMP\Parameters\PermittedManagers" of native registry</Property>
+		<Property Name="SNMP - Permitted Managers - Windows" ID="3" EvaluationPeriod="PT12H">values of keys "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\SNMP\Parameters\PermittedManagers" of native registry</Property>
 		<Property Name="SNMP - Read-Write Communities - Windows" ID="4" EvaluationPeriod="PT12H">names of values whose (it = 8) of keys "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\SNMP\Parameters\ValidCommunities" of native registry</Property>
 	</Analysis>
 </BES>

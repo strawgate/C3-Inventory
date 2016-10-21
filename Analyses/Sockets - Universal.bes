@@ -6,22 +6,22 @@
 		<Description><![CDATA[<P>Provides information on listening and established sockets.</P>
 <P>For listening sockets the following information is provided:</P>
 <OL>
-<LI>Process Name</LI>
-<LI>Connection Protocol (UDP/TCP)</LI>
+<LI>Process Name 
+<LI>Connection Protocol (UDP/TCP) 
 <LI>Listening Port</LI></OL>
 <P>For Established Sockets, the following information is provided:</P>
 <OL>
-<LI>Process Name</LI>
-<LI>Connection Protocol (Always TCP)</LI>
-<LI>Local Port</LI>
-<LI>Remote Connection Address</LI>
+<LI>Process Name 
+<LI>Connection Protocol (Always TCP) 
+<LI>Local Port 
+<LI>Remote Connection Address 
 <LI>Remote Port</LI></OL>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>true</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-06-23</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Sockets - Listening - Universal" ID="1" EvaluationPeriod="PT1H">(name of process of it | (if (windows of operating system) then "SYSTEM" else "N\A"), (if (udp of it) then ("UDP") else ("TCP")), local port of it) of sockets whose (udp of it or listening of tcp state of it) of network</Property>
-		<Property Name="Sockets - Established - Universal" ID="2" EvaluationPeriod="PT1H">(name of process of it | (if (windows of operating system) then "SYSTEM" else "N\A"), "TCP", local port of it, remote address of it as string | "none", remote port of it) of sockets whose ((established of tcp state of it and remote address of it != "127.0.0.1")) of network</Property>
+		<Property Name="Sockets - Listening - Universal" ID="1" EvaluationPeriod="PT1H">unique values of (concatenations of (it as string)) of (name of process of it | (if (windows of operating system) then "SYSTEM" else "N\A"), (if (udp of it) then ("UDP") else ("TCP")), local port of it) of sockets whose (udp of it or listening of tcp state of it) of network</Property>
+		<Property Name="Sockets - Established - Universal" ID="2" EvaluationPeriod="PT1H">unique values of (concatenations of (it as string)) of (name of process of it | (if (windows of operating system) then "SYSTEM" else "N\A"), "TCP", local port of it, remote address of it as string | "none", remote port of it) of sockets whose ((established of tcp state of it and remote address of it != "127.0.0.1")) of network</Property>
 	</Analysis>
 </BES>

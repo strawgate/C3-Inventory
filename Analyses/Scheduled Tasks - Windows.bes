@@ -3,18 +3,19 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Scheduled Tasks - Windows</Title>
-		<Description><![CDATA[&lt;enter a description of the analysis here&gt; ]]></Description>
+		<Description><![CDATA[<P>This analysis provides information about the currently configured scheduled tasks on the system.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-06-23</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Tasks - Paths - Windows" ID="1" EvaluationPeriod="P1D">(path of it) of scheduled tasks</Property>
-		<Property Name="Tasks - Last Run Time - Windows" ID="2" EvaluationPeriod="P1D">(path of it, last run time of it) of scheduled tasks</Property>
-		<Property Name="Tasks - Next Run Time - Windows" ID="3" EvaluationPeriod="P1D">(path of it, next run time of it as string | "none") of scheduled tasks</Property>
-		<Property Name="Tasks - Last Result - Windows" ID="4" EvaluationPeriod="P1D">(path of it, last task result of it | 0) of scheduled tasks</Property>
-		<Property Name="Tasks - State - Windows" ID="5" EvaluationPeriod="P1D">(name of it, (if (enabled of it) then ("Enabled") else "Disabled")) of scheduled tasks</Property>
-		<Property Name="Tasks - Run when Idle - Windows" ID="6" EvaluationPeriod="P1D">(name of it, idle duration of idle settings of settings of definition of it as string) of scheduled tasks whose (exists idle duration of idle settings of settings of definition of it as string)</Property>
-		<Property Name="Tasks - Run As - Windows" ID="7" EvaluationPeriod="P1D">(name of it, account name of owner of security descriptor of it) of scheduled tasks</Property>
-		<Property Name="Tasks - Embedded Passwords - Windows" ID="8" EvaluationPeriod="P1D">(name of it, display name of principal of definition of it) of scheduled tasks whose (password logon of principal of definition of it)</Property>
+		<Property Name="Tasks - Paths - Windows" ID="1" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (path of it) of scheduled tasks</Property>
+		<Property Name="Tasks - Last Run Time - Windows" ID="2" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (path of it, last run time of it) of scheduled tasks</Property>
+		<Property Name="Tasks - Next Run Time - Windows" ID="3" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (path of it, next run time of it as string | "none") of scheduled tasks</Property>
+		<Property Name="Tasks - Last Result - Windows" ID="4" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (path of it, last task result of it | 0) of scheduled tasks</Property>
+		<Property Name="Tasks - State - Windows" ID="5" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (name of it, (if (enabled of it) then ("Enabled") else "Disabled")) of scheduled tasks</Property>
+		<Property Name="Tasks - Run when Idle - Windows" ID="6" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (name of it, idle duration of idle settings of settings of definition of it as string) of scheduled tasks whose (exists idle duration of idle settings of settings of definition of it as string)</Property>
+		<Property Name="Tasks - Run As - Windows" ID="7" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (name of it, account name of owner of security descriptor of it) of scheduled tasks</Property>
+		<Property Name="Tasks - Embedded Passwords - Windows" ID="8" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (name of it, display name of principal of definition of it) of scheduled tasks whose (password logon of principal of definition of it)</Property>
 	</Analysis>
 </BES>

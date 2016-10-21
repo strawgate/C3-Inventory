@@ -27,6 +27,6 @@
 		<Property Name="Groups - Replicator - Windows" ID="15" EvaluationPeriod="P1D"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of (members of (local group "Replicator" | error "none"))]]></Property>
 		<Property Name="Groups - Systems Managed Accounts Group - Windows" ID="16" EvaluationPeriod="P1D"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of (members of (local group "Systems Managed Accounts Group" | error "none"))]]></Property>
 		<Property Name="Groups - Offer Remote Assistance Helpers - Windows" ID="17" EvaluationPeriod="P1D"><![CDATA[(("." & following text of first (computer name) of (it as string)) | (it as string)) of (members of (local group "Offer Remote Assistance Helpers" | error "none"))]]></Property>
-		<Property Name="Groups - Windows" ID="18" EvaluationPeriod="P1D">names of local groups</Property>
+		<Property Name="Groups - Windows" ID="18" EvaluationPeriod="P1D">unique values of names of local groups</Property>
 	</Analysis>
 </BES>

@@ -9,6 +9,6 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Processes - Running - Universal" ID="1" EvaluationPeriod="PT1H">(name of it | "Name Missing", (if (exists property "image file" of type "process") then (pathname of image file of it | "N\A") else ("N\A"))) of processes</Property>
+		<Property Name="Processes - Running - Universal" ID="1" EvaluationPeriod="PT1H">unique values of (concatenations of (it as string)) of (name of it | "Name Missing", (if (exists property "image file" of type "process") then (pathname of image file of it | "N\A") else ("N\A"))) of processes</Property>
 	</Analysis>
 </BES>

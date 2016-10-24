@@ -10,10 +10,11 @@
 		<SourceReleaseDate>2016-06-23</SourceReleaseDate>
 		<Domain>BESC</Domain>
 		<Property Name="Shares - Paths - Windows" ID="1" EvaluationPeriod="P1D">(name of it, path of it) of network shares</Property>
-		<Property Name="Shares - Accounts with Read Permission - Windows" ID="2" EvaluationPeriod="P1D">(name of it, account names of trustees of entries whose (read permission of it) of dacls of security descriptors of it) of network shares</Property>
-		<Property Name="Shares - Accounts with Change Permission - Windows" ID="3" EvaluationPeriod="P1D">(name of it, account names of trustees of entries whose (write permission of it) of dacls of security descriptors of it) of network shares</Property>
-		<Property Name="Shares - Accounts with Full Control Permission - Windows" ID="4" EvaluationPeriod="P1D">(name of it, account names of trustees of entries whose (write owner permission of it) of dacls of security descriptors of it) of network shares</Property>
+		<Property Name="Shares - Accounts with Read Permission - Windows" ID="2" EvaluationPeriod="P1D">(name of it, (account name of it | it) of trustees of entries whose (read permission of it) of dacls of security descriptors of it) of network shares</Property>
+		<Property Name="Shares - Accounts with Change Permission - Windows" ID="3" EvaluationPeriod="P1D">(name of it, (account name of it | it) of trustees of entries whose (write permission of it) of dacls of security descriptors of it) of network shares</Property>
+		<Property Name="Shares - Accounts with Full Control Permission - Windows" ID="4" EvaluationPeriod="P1D">(name of it, (account name of it | it) of trustees of entries whose (write owner permission of it) of dacls of security descriptors of it) of network shares</Property>
 		<Property Name="Shares - Active Connections - Windows" ID="5" EvaluationPeriod="P1D">(name of it, use count of it) of network shares</Property>
 		<Property Name="Shares - Maximum Connections - Windows" ID="6" EvaluationPeriod="P1D">(name of it, use limit of it as string | "N\A") of network shares</Property>
+		<Property Name="Shares - Comments - Windows" ID="7" EvaluationPeriod="P1D">(name of it, comment of it) of network shares</Property>
 	</Analysis>
 </BES>

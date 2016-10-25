@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Microsoft SQL - Windows</Title>
+		<Description><![CDATA[<P>Provides information about the SQL Server and Databases on the system. </P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-10-24</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="SQL - Instances - Windows" ID="1" EvaluationPeriod="P1D">unique values of string values of properties "PropertyStrValue" of select objects "PropertyStrValue from SqlServiceAdvancedProperty where PropertyName='INSTANCEID'" of wmis ("ROOT\Microsoft\SqlServer\ComputerManagement10";"ROOT\Microsoft\SqlServer\ComputerManagement11";"ROOT\Microsoft\SqlServer\ComputerManagement12")</Property>
+		<Property Name="SQL - Default Port - Windows" ID="2" EvaluationPeriod="P1D">unique values of integer values of properties "PropertyNumVal" of select objects "* from ClientNetworkProtocolProperty where PropertyName='Default Port'" of wmis ("ROOT\Microsoft\SqlServer\ComputerManagement10";"ROOT\Microsoft\SqlServer\ComputerManagement11";"ROOT\Microsoft\SqlServer\ComputerManagement12")</Property>
+		<Property Name="SQL - Default Named Pipe - Windows" ID="3" EvaluationPeriod="P1D">unique values of string values of properties "PropertyStrVal" of select objects "* from ClientNetworkProtocolProperty where PropertyName='Default Pipe'" of wmis ("ROOT\Microsoft\SqlServer\ComputerManagement10";"ROOT\Microsoft\SqlServer\ComputerManagement11";"ROOT\Microsoft\SqlServer\ComputerManagement12")</Property>
+		<Property Name="SQL - Clustered Instances - Windows" ID="4" EvaluationPeriod="P1D">(string value of properties "InstanceName" of it)  of select objects "* from FilestreamSettings where IsClustered=true" of wmis ("ROOT\Microsoft\SqlServer\ComputerManagement10";"ROOT\Microsoft\SqlServer\ComputerManagement11";"ROOT\Microsoft\SqlServer\ComputerManagement12")</Property>
+		<Property Name="SQL - Databases - Windows" ID="6" EvaluationPeriod="P2D"><![CDATA[(string value of property "name" of it) of select objects (("* from Win32_PerfFormattedData_" & it & "_SQLServerDatabases where NAME != '_Total' and NAME != 'mssqlsystemresource'") of (following text of first "." of it | it) of unique values of string values of properties "PropertyStrValue" of select objects "PropertyStrValue from SqlServiceAdvancedProperty where PropertyName='INSTANCEID'" of wmis ("ROOT\Microsoft\SqlServer\ComputerManagement10";"ROOT\Microsoft\SqlServer\ComputerManagement11";"ROOT\Microsoft\SqlServer\ComputerManagement12")) of wmi]]></Property>
+	</Analysis>
+</BES>

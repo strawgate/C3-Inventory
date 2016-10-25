@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Active Directory - Win\Mac</Title>
+		<Description><![CDATA[<P>Provides information related to Active Directory on the system.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system or mac of operating system</Relevance>
+		<Relevance>exists local computer of active directory</Relevance>
+		<Relevance>exists sample time of local computer of active directory</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-10-24</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="Active Directory - Groups - Windows" ID="1" EvaluationPeriod="PT1H">names of groups of local computer of active directory</Property>
+		<Property Name="Active Directory - Last Check - Windows" ID="2" EvaluationPeriod="PT1H">sample time of local computer of active directory</Property>
+		<Property Name="Active Directory - NetBIOS - Windows" ID="3" EvaluationPeriod="P1D">netbios domainname of local computer of active directory</Property>
+		<Property Name="Active Directory - Organizational Unit - Windows" ID="4" EvaluationPeriod="PT1H">following text of first "," of distinguished name of local computer of active directory </Property>
+	</Analysis>
+</BES>

@@ -9,12 +9,15 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-06-23</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Shares - Paths - Windows" ID="1" EvaluationPeriod="P1D">(name of it, path of it) of network shares</Property>
-		<Property Name="Shares - Accounts with Read Permission - Windows" ID="2" EvaluationPeriod="P1D">(name of it, (account name of it | component string of it) of trustees of entries whose (read permission of it) of dacls of security descriptors of it) of network shares</Property>
-		<Property Name="Shares - Accounts with Change Permission - Windows" ID="3" EvaluationPeriod="P1D">(name of it, (account name of it | component string of it) of trustees of entries whose (write permission of it) of dacls of security descriptors of it) of network shares</Property>
-		<Property Name="Shares - Accounts with Full Control Permission - Windows" ID="4" EvaluationPeriod="P1D">(name of it, (account name of it | component string of it) of trustees of entries whose (write owner permission of it) of dacls of security descriptors of it) of network shares</Property>
+		<Property Name="Shares - File - Windows" ID="1" EvaluationPeriod="P1D">(name of it, path of it) of network shares whose (name of it != "print$" and type of it != 2147483648 and type of it != 1 and type of it != 2147483651)</Property>
+		<Property Name="Shares - Read Permissions - Windows" ID="2" EvaluationPeriod="P1D">(name of it, (account name of it | component string of it) of trustees of entries whose (read permission of it) of dacls of security descriptors of it) of network shares whose (name of it != "print$" and type of it != 2147483648 and type of it != 1 and type of it != 2147483651)</Property>
+		<Property Name="Shares - Change Permissions - Windows" ID="3" EvaluationPeriod="P1D">(name of it, (account name of it | component string of it) of trustees of entries whose (write permission of it) of dacls of security descriptors of it) of network shares whose (name of it != "print$" and type of it != 2147483648 and type of it != 1 and type of it != 2147483651)</Property>
+		<Property Name="Shares - Full Control Permissions - Windows" ID="4" EvaluationPeriod="P1D">(name of it, (account name of it | component string of it) of trustees of entries whose (write owner permission of it) of dacls of security descriptors of it) of network shares whose (name of it != "print$" and type of it != 2147483648 and type of it != 1 and type of it != 2147483651)</Property>
 		<Property Name="Shares - Active Connections - Windows" ID="5" EvaluationPeriod="P1D">(name of it, use count of it) of network shares</Property>
 		<Property Name="Shares - Maximum Connections - Windows" ID="6" EvaluationPeriod="P1D">(name of it, use limit of it as string | "N\A") of network shares</Property>
 		<Property Name="Shares - Comments - Windows" ID="7" EvaluationPeriod="P1D">(name of it, comment of it) of network shares</Property>
+		<Property Name="Shares - Printer - Windows" ID="8" EvaluationPeriod="P1D">(name of it) of network shares whose (type of it = 1 /*Printer*/)</Property>
+		<Property Name="Shares - Administrative - Windows" ID="9" EvaluationPeriod="P1D">(name of it) of network shares whose (type of it = 2147483648 /*Admin*/ or name of it = "print$")</Property>
+		<Property Name="Shares - Interprocess Communication - Windows" ID="11" EvaluationPeriod="P1D">(name of it) of network shares whose (type of it = 2147483651 /*IPC*/)</Property>
 	</Analysis>
 </BES>

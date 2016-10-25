@@ -6,6 +6,7 @@
 		<Description><![CDATA[<P>Provides information about the SQL Server and Databases on the system. </P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists wmis ("ROOT\Microsoft\SqlServer\ComputerManagement10";"ROOT\Microsoft\SqlServer\ComputerManagement11";"ROOT\Microsoft\SqlServer\ComputerManagement12")</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-10-24</SourceReleaseDate>
 		<Domain>BESC</Domain>

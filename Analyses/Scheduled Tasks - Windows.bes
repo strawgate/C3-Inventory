@@ -16,6 +16,6 @@
 		<Property Name="Tasks - State - Windows" ID="5" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (name of it, (if (enabled of it) then ("Enabled") else "Disabled")) of scheduled tasks</Property>
 		<Property Name="Tasks - Run when Idle - Windows" ID="6" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (name of it, idle duration of idle settings of settings of definition of it as string) of scheduled tasks whose (exists idle duration of idle settings of settings of definition of it as string)</Property>
 		<Property Name="Tasks - Run As - Windows" ID="7" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (name of it, account name of owner of security descriptor of it) of scheduled tasks</Property>
-		<Property Name="Tasks - Embedded Passwords - Windows" ID="8" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (name of it, display name of principal of definition of it) of scheduled tasks whose (password logon of principal of definition of it)</Property>
+		<Property Name="Tasks - Embedded Passwords - Windows" ID="8" EvaluationPeriod="P1D">unique values of (concatenations of (it as string)) of (name of it, user id of principal of definition of it) of scheduled tasks whose (password logon of principal of definition of it)</Property>
 	</Analysis>
 </BES>

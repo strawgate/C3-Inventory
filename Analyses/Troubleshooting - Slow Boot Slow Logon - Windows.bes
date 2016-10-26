@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Troubleshooting - Slow Boot Slow Logon - Windows</Title>
+		<Description><![CDATA[<P>Provides information useful for troubleshooting slow boots and slow logons.</P>
+<P>The WMI Analysis may also prove useful: WMI - Windows</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="Troubleshooting - Slow Logins - Windows" ID="4" EvaluationPeriod="P1D">(time generated of it, description of it) of records ((integers in(item 0 of it + item 1 of it - 1,maximum of (item 0 of it + item 1 of it - 500;item 1 of it))) of (record count of it, oldest record number of it)) whose ((event id of it = 6006 or event id of it = 2147489654) and description of it contains "Logon") of event log "Application"  </Property>
+		<Property Name="Troubleshooting - Last Performance Diagnostic - Windows" ID="5" EvaluationPeriod="P1D">(concatenations "" of substrings separated by "%09" of (it as trimmed string)) of substrings separated by "%0d%0a" of description of record (oldest record number of it + record count of it - 1) of event log "Microsoft-Windows-Diagnostics-Performance/Operational"</Property>
+	</Analysis>
+</BES>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - Reload Stale NXLog CE Configuration - Windows</Title>
+		<Description><![CDATA[<P>This Fixlet reloads the configuration files for NXLog Community Edition by restarting the service.</P>
+<P>This Fixlet is relevant if any of the configurations in the /conf folder have been modified since service start.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists processes "NXLog.exe"</Relevance>
+		<Relevance><![CDATA[maximum of (modification times of descendants of it; modification times of descendant folders of it) of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string) > creation time of processes "NXLog.exe"]]></Relevance>
+		<Category>NXLog CE</Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-11-08</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">waithidden net stop nxlog
+waithidden net start nxlog</ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

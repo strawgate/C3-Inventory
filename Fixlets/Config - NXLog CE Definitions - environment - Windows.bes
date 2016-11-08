@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Config - NXLog CE Definitions - environment - Windows</Title>
+		<Description><![CDATA[<P>This Fixlet configures NXLog Community Edition with a set of definitions that mimic Windows environment variables.</P>
+<P>Specifically, it defines the following variables:</P>
+<UL>
+<LI>ALLUSERSPROFILE 
+<LI>COMPUTERNAME 
+<LI>PROGRAMFILES 
+<LI>PROGRAMFILES(X86) 
+<LI>SystemDrive 
+<LI>SystemRoot 
+<LI>WINDIR</LI></UL>
+<P>This will not work unless you have enabled modular management using <STRONG>Fixlet:</STRONG> Config - NXLog CE - Enable Modular Management - Windows</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries</Relevance>
+		<Relevance>not exists files "environment.conf" of folders "Definitions" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
+		<Category>NXLog CE</Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-11-07</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
+
+parameter "nxlog"="{pathnames of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)}"
+parameter "nxlog_conf"="{pathnames of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)}"
+
+folder create "{parameter "nxlog_conf"}\Definitions"
+
+createfile until _end_
+define ALLUSERSPROFILE {expand environment string of "%25ALLUSERSPROFILE%25"}
+define COMPUTERNAME {computer name}
+define PROGRAMFILES {if (x64 of operating system) then (pathname of program files x64 folder) else (pathname of program files x32 folder)}
+define PROGRAMFILES(X86) {pathname of program files x32 folder}
+define SystemDrive {name of drive of system folder}
+define SystemRoot {pathname of windows folder}
+define WINDIR {pathname of windows folder}
+_end_
+
+delete "{parameter "nxlog_conf"}\Definitions\environment.conf"
+
+copy __createfile "{parameter "nxlog_conf"}\Definitions\environment.conf"</ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

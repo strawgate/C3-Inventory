@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>NXLog - Windows</Title>
+		<Description><![CDATA[Provides information on the&nbsp;installed NXLog service on the System 
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists service "nxlog"</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-11-08</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="NXLog - Version - Windows" ID="1" EvaluationPeriod="P1D">value "DisplayVersion" of keys whose (value "DisplayName" of it as string is "NXLog-CE") of keys "HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall" of (x32 registries; x64 registries)</Property>
+		<Property Name="NXLog - State - Windows" ID="2" EvaluationPeriod="P1D">state of service "nxlog"</Property>
+		<Property Name="NXLog - Installation Directory - Windows" ID="3" EvaluationPeriod="P1D">values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries</Property>
+		<Property Name="NXLog - Configuration Includes - Windows" ID="4" EvaluationPeriod="P1D">lines starting with "include" of files "nxlog.conf" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Property>
+		<Property Name="NXLog - Installed Configurations - Windows" ID="5" EvaluationPeriod="P1D">(name of parent folder of it, it) of descendants of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Property>
+	</Analysis>
+</BES>

@@ -11,7 +11,7 @@
 		<SourceReleaseDate>2016-03-30</SourceReleaseDate>
 		<Domain>BESC</Domain>
 		<Property Name="Network - DHCP Server - Windows" ID="1" EvaluationPeriod="P1D">(friendly name of it, dhcp server of it as string | "Static IP") of adapters whose (address of it != "0.0.0.0") of network as string</Property>
-		<Property Name="Network - DNS Servers - Windows" ID="2" EvaluationPeriod="P1D">addresses of dns servers of network</Property>
+		<Property Name="Network - DNS Servers - Windows" ID="2" EvaluationPeriod="P1D">unique values of (ipv6 dns servers of it as string; addresses of dns servers of it as string) of adapters of network</Property>
 		<Property Name="Network - Domain - Windows" ID="3" EvaluationPeriod="P1D">string values of selects "Domain from Win32_ComputerSystem" of wmi</Property>
 		<Property Name="Network - MAC Addresses - Windows" ID="5" EvaluationPeriod="P1D">mac addresses of adapters of network</Property>
 		<Property Name="Network - Subnet Masks - Windows" ID="6" EvaluationPeriod="P1D">subnet masks of ip interfaces whose (loopback of it = false) of network</Property>

@@ -30,16 +30,21 @@ folder create "{parameter "nxlog_conf"}\Input"
 
 createfile until _end_
 <Extension dicom-multi>
-Module	xm_multiline
-HeaderLine	/^At \d\d:\d\d:\d\d -\d\d\d\d - /
+	Module	xm_multiline
+	HeaderLine	/^At \d\d:\d\d:\d\d -\d\d\d\d - /
 </Extension>
 
 <Input bigfix_client>
-Module	im_file
-File	"{concatenations "\\" of substrings separated by "\" of pathname of data folder of client}\\Logs\\" + strftime(now(),"%Y%m%d") + ".log"
-SavePos	FALSE
-ReadFromLast FALSE
-InputType	dicom-multi
+	Module	im_file
+	File	"{concatenations "\\" of substrings separated by "\" of pathname of data folder of client}\\__Global\\Logs\\" + strftime(now(),"%Y%m%d") + ".log"
+	SavePos	TRUE
+	ReadFromLast	FALSE
+	InputType	dicom-multi
+	PollInterval	3
+	Exec if $raw_event == '' drop();
+	Exec if $raw_event =~ /^At (\d\d):(\d\d):(\d\d) -(\d\d\d\d) -(.*)/s {{ \
+		$EventTime = parsedate(strftime(now(),"%Y-%m-%d") + " " + $1 + ":" + $2 + ":" + $3); $timestamp = $EventTime; $raw_event = $5; \
+	}
 </Input>
 
 <Route bigfix_client>

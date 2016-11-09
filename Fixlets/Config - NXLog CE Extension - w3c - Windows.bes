@@ -2,14 +2,13 @@
 
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
-		<Title>Config - NXLog CE Input - BigFix Relay - Windows</Title>
-		<Description><![CDATA[<P>This Fixlet configures NXLog Community Edition to monitor the BigFix Relay Log&nbsp;file.&nbsp;</P>
+		<Title>Config - NXLog CE Extension - w3c - Windows</Title>
+		<Description><![CDATA[<P>This Fixlet configures NXLog Community Edition to enable the w3c extension.</P>
 <P>This will not work unless you have enabled modular management using <STRONG>Fixlet:</STRONG> Config - NXLog CE - Enable Modular Management - Windows</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<Relevance>exists relay service</Relevance>
 		<Relevance>exists values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries</Relevance>
-		<Relevance>not exists files "BigFix_Relay.conf" of folders "Input" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
+		<Relevance>not exists files "w3c.conf" of folders "Extension" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
 		<Category>NXLog CE</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -24,31 +23,28 @@
 				<Link>here</Link>
 				<PostLink> to deploy this action.</PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[parameter "nxlog"="{pathnames of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)}"
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[// Enter your action script here
+
+parameter "nxlog"="{pathnames of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)}"
 parameter "nxlog_conf"="{pathnames of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)}"
 
-folder create "{parameter "nxlog_conf"}\Input"
+folder create "{parameter "nxlog_conf"}\Extension"
 
 createfile until _end_
-<Input bigfix_relay>
-	Module	im_file
-	File	"{concatenation "\\" of substrings separated by "\" of pathname of file "logfile.txt" of parent folder of file of relay service}"
-	SavePos	TRUE
-	Exec if $raw_event == '' drop();
-	Exec if $raw_event =~ /^([a-zA-Z]{{3}, \d\d [a-zA-Z]{{3} \d\d\d\d \d\d:\d\d:\d\d) -\d\d\d\d - (.*)/ {{ \
-		$EventTime = parsedate($1); $timestamp = $EventTime; $raw_event = $2; \
-	}
-</Input>
-
-<Route bigfix_relay>
-    Path        bigfix_relay => out
-</Route>
-
+<Extension w3c>
+    Module xm_csv
+    Fields $date, $time, $s-ip, $cs-method, $cs-uri-stem, $cs-uri-query, $s-port, $cs-username, $c-ip, $csUser-Agent, $cs-Referer, $sc-status, $sc-substatus, $sc-win32-status, $time-taken
+    FieldTypes string, string, string, string, string, string, integer, string, string, string, string, integer, integer, integer, integer
+    Delimiter ' '
+    QuoteChar '"'
+    EscapeControl FALSE
+    UndefValue -
+</Extension>
 _end_
 
-delete "{parameter "nxlog_conf"}\Input\BigFix_Relay.conf"
+delete "{parameter "nxlog_conf"}\Extension\w3c.conf"
 
-copy __createfile "{parameter "nxlog_conf"}\Input\BigFix_Relay.conf"]]></ActionScript>
+copy __createfile "{parameter "nxlog_conf"}\Extension\w3c.conf"]]></ActionScript>
 		</DefaultAction>
 	</Fixlet>
 </BES>

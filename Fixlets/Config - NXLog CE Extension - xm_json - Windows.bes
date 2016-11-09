@@ -2,13 +2,13 @@
 
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
-		<Title>Config - NXLog CE Extensions - xm_syslog - Windows</Title>
+		<Title>Config - NXLog CE Extension - xm_json - Windows</Title>
 		<Description><![CDATA[<P>This Fixlet configures NXLog Community Edition to enable the xm_json extension.</P>
 <P>This will not work unless you have enabled modular management using <STRONG>Fixlet:</STRONG> Config - NXLog CE - Enable Modular Management - Windows</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries</Relevance>
-		<Relevance>not exists files "xm_syslog.conf" of folders "Extension" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
+		<Relevance>not exists files "xm_json.conf" of folders "Extension" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
 		<Category>NXLog CE</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -31,14 +31,14 @@ parameter "nxlog_conf"="{pathnames of folders "conf" of folders (values "install
 folder create "{parameter "nxlog_conf"}\Extension"
 
 createfile until _end_
-<Extension xm_syslog>
-    Module      xm_syslog
+<Extension xm_json>
+    Module      xm_json
 </Extension>
 _end_
 
-delete "{parameter "nxlog_conf"}\Extension\xm_syslog.conf"
+delete "{parameter "nxlog_conf"}\Extension\xm_json.conf"
 
-copy __createfile "{parameter "nxlog_conf"}\Extension\xm_syslog.conf"]]></ActionScript>
+copy __createfile "{parameter "nxlog_conf"}\Extension\xm_json.conf"]]></ActionScript>
 		</DefaultAction>
 	</Fixlet>
 </BES>

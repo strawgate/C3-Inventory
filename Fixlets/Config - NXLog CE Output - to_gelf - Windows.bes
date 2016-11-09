@@ -2,22 +2,13 @@
 
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
-		<Title>Config - NXLog CE Definitions - environment - Windows</Title>
-		<Description><![CDATA[<P>This Fixlet configures NXLog Community Edition with a set of definitions that mimic Windows environment variables.</P>
-<P>Specifically, it defines the following variables:</P>
-<UL>
-<LI>ALLUSERSPROFILE 
-<LI>COMPUTERNAME 
-<LI>PROGRAMFILES 
-<LI>PROGRAMFILES(X86) 
-<LI>SystemDrive 
-<LI>SystemRoot 
-<LI>WINDIR</LI></UL>
+		<Title>Config - NXLog CE Output - to_gelf - Windows</Title>
+		<Description><![CDATA[<P>This Fixlet configures NXLog Community Edition to set the default output type to gelf.</P>
 <P>This will not work unless you have enabled modular management using <STRONG>Fixlet:</STRONG> Config - NXLog CE - Enable Modular Management - Windows</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries</Relevance>
-		<Relevance>not exists files "environment.conf" of folders "Definitions" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
+		<Relevance>not exists files "to_gelf.conf" of folders "Output" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
 		<Category>NXLog CE</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -32,26 +23,35 @@
 				<Link>here</Link>
 				<PostLink> to deploy this action.</PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[// Enter your action script here
+action parameter query "server" with description "Please enter the fqdn of the gelf server"
+action parameter query "port" with description "Please enter the gelf port number" with default "514"
+action parameter query "protocol" with description "Please enter the gelf protocol (tcp/udp)" with default "tcp"
+
+// Must be UDP or TCP
+continue if {(it = "udp" or it = "tcp") of (parameter "protocol" of action as lowercase)}
+
+// Must be an integer
+continue if {exists (it as integer) of (parameter "port" of action as lowercase)}
 
 parameter "nxlog"="{pathnames of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)}"
 parameter "nxlog_conf"="{pathnames of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)}"
 
-folder create "{parameter "nxlog_conf"}\Definitions"
+folder create "{parameter "nxlog_conf"}\Output"
 
 createfile until _end_
-define ALLUSERSPROFILE {expand environment string of "%25ALLUSERSPROFILE%25"}
-define COMPUTERNAME {computer name}
-define PROGRAMFILES {if (x64 of operating system) then (pathname of program files x64 folder) else (pathname of program files x32 folder)}
-define PROGRAMFILES(X86) {pathname of program files x32 folder}
-define SystemDrive {name of drive of system folder}
-define SystemRoot {pathname of windows folder}
-define WINDIR {pathname of windows folder}
+<Output out>
+    Module      om_{parameter "protocol" of action as lowercase}
+    Host        {parameter "server" of action}
+    Port        {parameter "port" of action}
+    OutputType  GELF
+	Exec $short_message = $raw_event;
+</Output>
 _end_
 
-delete "{parameter "nxlog_conf"}\Definitions\environment.conf"
+delete "{parameter "nxlog_conf"}\Output\to_gelf.conf"
 
-copy __createfile "{parameter "nxlog_conf"}\Definitions\environment.conf"</ActionScript>
+copy __createfile "{parameter "nxlog_conf"}\Output\to_gelf.conf"]]></ActionScript>
 		</DefaultAction>
 	</Fixlet>
 </BES>

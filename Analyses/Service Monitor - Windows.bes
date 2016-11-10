@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Service Monitor - Windows</Title>
+		<Description><![CDATA[This Analysis will report on the statistics stored by the&nbsp;<STRONG>Analysis:</STRONG>&nbsp;"Invoke - Service Monitor - Windows". Specifically it will report information related to monitored services started by the BigFix Agent. 
+<P>To define a service as, "Monitored" for use by this fixlet:</P>
+<OL>
+<LI>Create a client setting: besservicemonitor-&lt;name&gt; 
+<LI>Populate the setting with a semicolon separated list of services to monitor: "<FONT size=2>BESProxyAgent;BESRelay;BESGather;BESPluginService;BESRootServer;BESWebReportsServer"</FONT></LI></OL>
+<P><FONT size=2>This action will then check those services to make sure they are running.</FONT></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists settings whose (name of it starts with "besservicemonitor-") of client</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-10-25</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="Service Monitor - Configuration - Windows" ID="1" EvaluationPeriod="PT1H">unique values of ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-") of client)</Property>
+		<Property Name="Service Monitor - Recovery Counts - Windows" ID="2" EvaluationPeriod="PT1H">(name of it, value "count" of it) of keys of key "Service Monitoring" of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory" of (x32 registries;x64 registries)</Property>
+		<Property Name="Service Monitor - Last Recovery Times - Windows" ID="3" EvaluationPeriod="PT1H">(name of it, value "Last" of it) of keys of key "Service Monitoring" of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory" of (x32 registries;x64 registries)</Property>
+		<Property Name="Service Monitor - Services Failing to Start - Windows" ID="4" EvaluationPeriod="PT1H">unique values of ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-") of client) whose (exists (service it) whose (state of it != "Running" and start type of it != "disabled"))</Property>
+	</Analysis>
+</BES>

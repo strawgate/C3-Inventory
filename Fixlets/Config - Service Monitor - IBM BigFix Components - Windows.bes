@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Config - Service Monitor - IBM BigFix Components - Windows</Title>
+		<Description><![CDATA[<P>Configures the BES Service Monitor (<STRONG>Fixlet: </STRONG>Invoke - Service Monitor - Windows) to monitor services.</P>
+<P>Specifically, this fixlet configures it to monitor the following Windows Services:</P>
+<OL>
+<LI>BigFix Proxy Agent 
+<LI>BigFix Relay 
+<LI>BigFix Gather Service 
+<LI>BigFix Plugin Service 
+<LI>BigFix Root Server 
+<LI>BigFix Web Reports Server</LI></OL>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists services (substrings separated by ";" of "BESProxyAgent;BESRelay;BESGather;BESPluginService;BESRootServer;BESWebReportsServer")</Relevance>
+		<Relevance>not exists values whose (it = "BESProxyAgent;BESRelay;BESGather;BESPluginService;BESRootServer;BESWebReportsServer") of settings "besservicemonitor-ibm-bigfix" of client</Relevance>
+		<Category>Service Monitor</Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-10-25</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">setting "besservicemonitor-ibm-bigfix"="BESProxyAgent;BESRelay;BESGather;BESPluginService;BESRootServer;BESWebReportsServer" on "{now}" for client</ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

@@ -10,6 +10,7 @@
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists services "AppIDSvc"</Relevance>
+		<Relevance>exists keys of key "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\SrpV2" of native registry </Relevance>
 		<Relevance>not exists values whose (it = "AppIDSvc") of settings "besservicemonitor-microsoft-applocker" of client</Relevance>
 		<Category>Service Monitor</Category>
 		<Source>Internal</Source>

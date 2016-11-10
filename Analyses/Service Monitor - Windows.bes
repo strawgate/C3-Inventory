@@ -16,8 +16,8 @@
 		<SourceReleaseDate>2016-10-25</SourceReleaseDate>
 		<Domain>BESC</Domain>
 		<Property Name="Service Monitor - Configuration - Windows" ID="1" EvaluationPeriod="PT1H">unique values of ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-") of client)</Property>
-		<Property Name="Service Monitor - Recovery Counts - Windows" ID="2" EvaluationPeriod="PT1H">(name of it, value "count" of it) of keys of key "Service Monitoring" of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory" of (x32 registries;x64 registries)</Property>
-		<Property Name="Service Monitor - Last Recovery Times - Windows" ID="3" EvaluationPeriod="PT1H">(name of it, value "Last" of it) of keys of key "Service Monitoring" of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory" of (x32 registries;x64 registries)</Property>
-		<Property Name="Service Monitor - Services Failing to Start - Windows" ID="4" EvaluationPeriod="PT1H">unique values of ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-") of client) whose (exists (service it) whose (state of it != "Running" and start type of it != "disabled"))</Property>
+		<Property Name="Service Monitor - Recovery Counts - Windows" ID="2" EvaluationPeriod="PT1H">(name of it, value "count" of it) of keys of keys "Service Monitoring" of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory" of (x32 registries;x64 registries)</Property>
+		<Property Name="Service Monitor - Last Recovery Times - Windows" ID="3" EvaluationPeriod="PT1H">(name of it, value "Last" of it) of keys of keys "Service Monitoring" of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory" of (x32 registries;x64 registries)</Property>
+		<Property Name="Service Monitor - Services Failing to Start - Windows" ID="4" EvaluationPeriod="PT0S">unique values of ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-") of client) whose (exists (service it) whose (state of it != "Running" and start type of it != "disabled"))</Property>
 	</Analysis>
 </BES>

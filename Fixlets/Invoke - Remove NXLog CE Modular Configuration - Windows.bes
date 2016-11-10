@@ -7,7 +7,7 @@
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries</Relevance>
-		<Relevance>exists folders ("Definition";"Extension";"Input";"Output") of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
+		<Relevance>exists folders ("Definition";"Extension";"Input";"Output") of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
 		<Category></Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -28,11 +28,11 @@ parameter "nxlog_conf"="{pathnames of folders "conf" of folders (values "install
 
 waithidden net stop nxlog
 
-folder delete "{parameter "nxlog"}\Definition"
-folder delete "{parameter "nxlog"}\Definitions"
-folder delete "{parameter "nxlog"}\Extension"
-folder delete "{parameter "nxlog"}\Input"
-folder delete "{parameter "nxlog"}\Output"</ActionScript>
+folder delete "{parameter "nxlog_conf"}\Definition"
+folder delete "{parameter "nxlog_conf"}\Definitions"
+folder delete "{parameter "nxlog_conf"}\Extension"
+folder delete "{parameter "nxlog_conf"}\Input"
+folder delete "{parameter "nxlog_conf"}\Output"</ActionScript>
 		</DefaultAction>
 	</Fixlet>
 </BES>

@@ -9,8 +9,11 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2015-03-05</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Volume - System Drive - &lt;2% Free" ID="1" EvaluationPeriod="P1D"><![CDATA[(free space of drive of system folder as floating point / total space of drive of system folder as floating point) < ".02" as floating point]]></Property>
-		<Property Name="Volume - System Drive - &lt;5% Free" ID="2" EvaluationPeriod="P1D"><![CDATA[(free space of drive of system folder as floating point / total space of drive of system folder as floating point) < ".05" as floating point]]></Property>
-		<Property Name="Volume - System Drive - % Free" ID="3" EvaluationPeriod="P1D">relative significance place 2 of (free space of drive of system folder as floating point / total space of drive of system folder as floating point) * 100</Property>
+		<Property Name="Volumes - System Drive has &lt;2% Free - Universal" ID="1" EvaluationPeriod="P1D"><![CDATA[(free space of drive of system folder as floating point / total space of drive of system folder as floating point) < ".02" as floating point]]></Property>
+		<Property Name="Volumes - System Drive has &lt;5% Free - Universal" ID="2" EvaluationPeriod="P1D"><![CDATA[(free space of drive of system folder as floating point / total space of drive of system folder as floating point) < ".05" as floating point]]></Property>
+		<Property Name="Volumes - System Drive % Free - Universal" ID="3" EvaluationPeriod="P1D">relative significance place 2 of (free space of drive of system folder as floating point / total space of drive of system folder as floating point) * 100</Property>
+		<Property Name="Volumes - Total Space in GB - Windows" ID="5" EvaluationPeriod="PT1H"><![CDATA[if (windows of operating system) then (concatenations of (it as string) of (name of it, (total space of it / 1024 / 1024 / 1024) as string & " GB") of drives whose (numeric type of it = 3)) else (nothing)]]></Property>
+		<Property Name="Volumes - Free Space in GB - Windows" ID="6" EvaluationPeriod="PT1H"><![CDATA[if (windows of operating system) then (concatenations of (it as string) of (name of it, (free space of it / 1024 / 1024 / 1024) as string & " GB") of drives whose (numeric type of it = 3)) else (nothing)]]></Property>
+		<Property Name="Volumes - Free Space % - Windows" ID="7" EvaluationPeriod="PT1H"><![CDATA[if (windows of operating system) then (concatenations of (it as string) of (name of it, (significance place 1 of (free space of it as floating point / total space of it as floating point * 100 )) as string & "%25") of drives whose (numeric type of it = 3)) else (nothing)]]></Property>
 	</Analysis>
 </BES>

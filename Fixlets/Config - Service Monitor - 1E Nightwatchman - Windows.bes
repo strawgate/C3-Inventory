@@ -2,7 +2,7 @@
 
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
-		<Title>Config - Service Monitor - 1E Nightwatchman - Windows</Title>
+		<Title>Config - Service Monitor - 1E NightWatchman - Windows</Title>
 		<Description><![CDATA[<P>Configures the BES Service Monitor (<STRONG>Fixlet: </STRONG>Invoke - Service Monitor - Windows) to monitor services.</P>
 <P>Specifically, this fixlet configures it to monitor the following Windows Services:</P>
 <OL>

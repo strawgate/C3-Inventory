@@ -12,7 +12,7 @@
 <LI>Lync Server Audio/Video Authentication (RTCMRAUTH) 
 <LI>Lync Server Audio/Video Conferencing (RTCAVMCU) 
 <LI>Lync Server Audio/Video Edge (RTCMEDIARELAY) 
-<LI>Lync Server Backup Service (LYNCBACKUP)
+<LI>Lync Server Backup Service (LYNCBACKUP) 
 <LI>Lync Server Bandwidth Policy Service (Authentication) (RTCPDPAUTH) 
 <LI>Lync Server Bandwidth Policy Service (Core) (RTCPDPCORE) 
 <LI>Lync Server Call Park (RTCCPS) 

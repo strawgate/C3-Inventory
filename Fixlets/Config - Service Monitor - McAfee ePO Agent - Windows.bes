@@ -4,13 +4,15 @@
 	<Fixlet>
 		<Title>Config - Service Monitor - McAfee ePO Agent - Windows</Title>
 		<Description><![CDATA[<P>Configures the BES Service Monitor (<STRONG>Fixlet: </STRONG>Invoke - Service Monitor - Windows) to monitor services.</P>
-<P>Specifically, this fixlet configures it to monitor the following Windows Services:</P>
+<P>Specifically, this fixlet configures it to monitor the following McAfee Services:</P>
 <OL>
-<LI>McAfee Agent Service</LI></OL>
+<LI>McAfee Agent Service
+<LI>McAfee Agent Common Services
+<LI>McAfee Framework Service</LI></OL>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<Relevance>exists services "masvc"</Relevance>
-		<Relevance>not exists values whose (it = "masvc") of settings "besservicemonitor-McAfee-ePO-Agent" of client</Relevance>
+		<Relevance>exists services (substrings separated by ";" of "masvc;McAfeeFramework;macmnsvc")</Relevance>
+		<Relevance>not exists values whose (it = "masvc;McAfeeFramework;macmnsvc") of settings "besservicemonitor-McAfee-ePO-Agent" of client</Relevance>
 		<Category>Service Monitor</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -25,7 +27,7 @@
 				<Link>here</Link>
 				<PostLink> to deploy this action.</PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">setting "besservicemonitor-McAfee-ePO-Agent"="masvc" on "{now}" for client</ActionScript>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">setting "besservicemonitor-McAfee-ePO-Agent"="masvc;McAfeeFramework;macmnsvc" on "{now}" for client</ActionScript>
 		</DefaultAction>
 	</Fixlet>
 </BES>

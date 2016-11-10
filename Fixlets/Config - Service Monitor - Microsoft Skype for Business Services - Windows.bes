@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Config - Service Monitor - Microsoft Skype for Business Services - Windows</Title>
+		<Description><![CDATA[<P>Configures the BES Service Monitor (<STRONG>Fixlet: </STRONG>Invoke - Service Monitor - Windows) to monitor services.</P>
+<P>Specifically, this fixlet configures it to monitor the following Microsoft Skype for Business Services:</P>
+<OL>
+<LI>Lync Server Access Edge (RtcSrv) 
+<LI>Lync Server Application Sharing (RTCASMCU) 
+<LI>Lync Server Audio Test Service (RTCATS) 
+<LI>Lync Server Audio/Video Authentication (RTCMRAUTH) 
+<LI>Lync Server Audio/Video Conferencing (RTCAVMCU) 
+<LI>Lync Server Audio/Video Edge (RTCMEDIARELAY) 
+<LI>Lync Server Backup Service (LYNCBACKUP)
+<LI>Lync Server Bandwidth Policy Service (Authentication) (RTCPDPAUTH) 
+<LI>Lync Server Bandwidth Policy Service (Core) (RTCPDPCORE) 
+<LI>Lync Server Call Park (RTCCPS) 
+<LI>Lync Server Centralized Logging Service Agent (RTCCLSAGT) 
+<LI>Lync Server Conferencing Announcement (RTCCAS) 
+<LI>Lync Server Conferencing Attendant (RTCCAA) 
+<LI>Lync Server File Transfer Agent (FTA) 
+<LI>Lync Server Front-End (RtcSrv) 
+<LI>Lync Server IM Conferencing (RTCIMMCU) 
+<LI>Lync Server Master Replicator Agent (MASTER) 
+<LI>Lync Server Mediation (RTCMEDSRV) 
+<LI>Lync Server Persistent Chat (RTCCHAT) 
+<LI>Lync Server Replica Replicator Agent (REPLICA) 
+<LI>Lync Server Response Group (RTCRGS) 
+<LI>Lync Server Web Conferencing (RTCDATAMCU) 
+<LI>Lync Server Web Conferencing Edge (RTCDATAPROXY) 
+<LI>Lync Server XMPP Translating Gateway (RTCXMPPTGW) 
+<LI>Lync Server XMPP Translating Gateway Proxy (RTCXMPPTGWPX) </LI></OL>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists services (substrings separated by ";" of "RtcSrv;RTCASMCU;RTCATS;RTCMRAUTH;RTCAVMCU;RTCMEDIARELAY;RTCPDPAUTH;RTCPDPCORE;RTCCPS;RTCCLSAGT;RTCCAS;RTCCAA;FTA;RtcSrv;RTCIMMCU;MASTER;RTCMEDSRV;RTCCHAT;REPLICA;RTCRGS;RTCDATAMCU;RTCDATAPROXY;RTCXMPPTGW;RTCXMPPTGWPX;LYNCBACKUP")</Relevance>
+		<Relevance>not exists values whose (it = "RtcSrv;RTCASMCU;RTCATS;RTCMRAUTH;RTCAVMCU;RTCMEDIARELAY;RTCPDPAUTH;RTCPDPCORE;RTCCPS;RTCCLSAGT;RTCCAS;RTCCAA;FTA;RtcSrv;RTCIMMCU;MASTER;RTCMEDSRV;RTCCHAT;REPLICA;RTCRGS;RTCDATAMCU;RTCDATAPROXY;RTCXMPPTGW;RTCXMPPTGWPX;LYNCBACKUP") of settings "besservicemonitor-microsoft-lync" of client</Relevance>
+		<Category>Service Monitor</Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-10-25</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">setting "besservicemonitor-microsoft-lync"="RtcSrv;RTCASMCU;RTCATS;RTCMRAUTH;RTCAVMCU;RTCMEDIARELAY;RTCPDPAUTH;RTCPDPCORE;RTCCPS;RTCCLSAGT;RTCCAS;RTCCAA;FTA;RtcSrv;RTCIMMCU;MASTER;RTCMEDSRV;RTCCHAT;REPLICA;RTCRGS;RTCDATAMCU;RTCDATAPROXY;RTCXMPPTGW;RTCXMPPTGWPX;LYNCBACKUP" on "{now}" for client</ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

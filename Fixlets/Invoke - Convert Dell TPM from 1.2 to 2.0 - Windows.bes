@@ -2,7 +2,7 @@
 
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
-		<Title>Config - Dell TPM - 2.0 downgrade to 1.2 - Windows</Title>
+		<Title>Invoke - Convert Dell TPM from 1.2 to 2.0 - Windows</Title>
 		<Description><![CDATA[<P>Downgrade the TPM from version 2.0 to version 1.2 on Supported Dell Hardware.</P>
 <P>TPM Version 2.0 is incompatible with BIOS systems and must be downgraded to version 1.2 if you would like to use the TPM on a non-UEFI system. This fixlet downgrades the TPM to version 1.2 on non-UEFI systems.</P>
 <P>The fixlet will fail if ownership of the TPM has been taken on the system. For more information about this utility see: <A href="http://en.community.dell.com/techcenter/enterprise-client/w/wiki/11850.how-to-change-tpm-modes-1-2-2-0">http://en.community.dell.com/techcenter/enterprise-client/w/wiki/11850.how-to-change-tpm-modes-1-2-2-0</A></P>
@@ -14,8 +14,8 @@
                   it as string as uppercase contains "DELL"
               )
               of structures "bios_information" of smbios</Relevance>
-		<Relevance>string value of selects "ManufacturerVersion from Win32_Tpm" of wmis "root\CIMv2\Security\MicrosoftTpm" = "1.3" /* Machines has TPM 2.0 */</Relevance>
-		<Relevance>not exists Selects "* from Win32_DiskPartition Where Type = 'GPT: System'" of wmi /* Machine is not UEFI */</Relevance>
+		<Relevance>string value of selects "ManufacturerVersion from Win32_Tpm" of wmis "root\CIMv2\Security\MicrosoftTpm" = "5.81" /* Machines has non TPM 2.0 */</Relevance>
+		<Relevance>exists Selects "* from Win32_DiskPartition Where Type = 'GPT: System'" of wmi /* Machine is UEFI */</Relevance>
 		<Category>Disk Encryption</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -31,10 +31,9 @@
 				<PostLink> to deploy this action.</PostLink>
 			</Description>
 			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
+prefetch DellTPM2.0.exe sha1:8D789530CE4BCB13C71A30D3A607FA7E7C64126D size:630184 http://downloads.dell.com/FOLDER03380194M/1/DellTpm2.0_Fw1.3.0.1.exe sha256:8910B0DCE8C13EA2CED3F8BD5DAA68C71ABF379990C4AD6ACB206930DE2AF0E4
 
-prefetch DellTPM1.2.exe sha1:236B9B93A2B74142D3020F3DB1E921713E298900 size:574872 http://downloads.dell.com/FOLDER03380191M/1/DellTpm1.2_Fw5.81.0.0.exe sha256:523ABC57585724C1923172269DAC3872BFBFA6275E18A6A61E4B64DEF4EFBFE8
-
-wait __Download\DellTPM1.2.exe /s /l=tpmdowngradelog.txt
+wait __Download\DellTPM2.0.exe /s /l="{pathname of windows folder}\temp\tpmupgradelog.txt"
 
 //If the action fails here then you have to clear the TPM in the BIOS before continuing.
 continue if {exit code of action = 2}

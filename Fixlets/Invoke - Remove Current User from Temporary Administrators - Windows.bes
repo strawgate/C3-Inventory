@@ -7,7 +7,7 @@
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists logged on user</Relevance>
-		<Relevance>exists key (component string of sid of logged on user as string) of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Temporary Administrative Rights\Authorized Administrators\Current" of x32 registry</Relevance>
+		<Relevance>exists key (component string of sid of logged on user as string) of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Temporary Administrative Rights\Administrators\Current" of x32 registry</Relevance>
 		<Category>Temporary Administrative Rights</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>

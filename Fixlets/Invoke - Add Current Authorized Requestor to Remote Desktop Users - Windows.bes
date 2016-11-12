@@ -13,10 +13,16 @@
  set of ( /* User's SID and Group Memberships */
   ((sids of groups of logged on user of active directory) as string); /*User Group Memberships */
   (sid of logged on user) as string /*Users SID*/
- );(
- set of (/*Users and Groups in Administrators */
-  sids of members of local group "administrators" as string)
- ) 
+ );
+ (
+  (
+  set of ( /*Users and Groups in Administrators */
+   sids of members of local group "administrators" as string)
+  ) + (
+  set of ( /*Users and Groups in Remote Desktop Users */
+   sids of members of local group "remote desktop users" as string)
+  )
+ )
 )</Relevance>
 		<Category>Temporary Administrative Rights</Category>
 		<Source>Internal</Source>

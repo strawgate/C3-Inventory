@@ -3,7 +3,7 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>SCCM - Windows</Title>
-		<Description><![CDATA[This analysis provides information related to the currently installed System Center Configuration Manager Agent for Windows devices.
+		<Description><![CDATA[This analysis provides information related to the currently installed System Center Configuration Manager Agent for Windows devices. 
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>Windows of operating system</Relevance>
 		<Relevance>exists service "CcmExec"</Relevance>
@@ -19,7 +19,7 @@
 		<Property Name="SCCM - Proxy Management Point - Windows" ID="7" EvaluationPeriod="PT12H">string value of select "Name from SMS_LocalMP" of wmi "root\ccm"</Property>
 		<Property Name="SCCM - Package Advertisements - Windows" ID="8" EvaluationPeriod="PT12H">(string value of property "PKG_NAME" of it, string value of property "PolicyID" of it) of select objects "* from CCM_SoftwareDistribution" of wmi "root\ccm\Policy\Machine\RequestedConfig"</Property>
 		<Property Name="SCCM - Max Cache Size - Windows" ID="9" EvaluationPeriod="PT12H">integer value of selects "Size from CacheConfig" of WMI "ROOT\ccm\SoftMgmtAgent"</Property>
-		<Property Name="SCCM - Missing Updates - Windows" ID="10" EvaluationPeriod="PT12H">string values of selects "Title from CCM_UpdateStatus WHERE Status='Missing'" of WMI "ROOT\ccm\SoftwareUpdates\UpdatesStore"</Property>
+		<Property Name="SCCM - Missing Updates - Windows" ID="10" EvaluationPeriod="PT12H">unique values of string values of selects "Title from CCM_UpdateStatus WHERE Status='Missing'" of WMI "ROOT\ccm\SoftwareUpdates\UpdatesStore"</Property>
 		<Property Name="SCCM - State - Windows" ID="11" EvaluationPeriod="PT1H">state of service "CcmExec"</Property>
 	</Analysis>
 </BES>

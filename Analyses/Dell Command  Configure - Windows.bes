@@ -28,5 +28,8 @@
 		<Property Name="Dell - Manufacture Date - Windows" ID="14" EvaluationPeriod="P1D">following texts of firsts "=" of lines containing ";mfgdate" of files "report.ini" of folders (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
 		<Property Name="Dell - AC Power Restore Action - Windows" ID="15" EvaluationPeriod="P1D">keys "acpower" of sections "cctk" of files "report.ini" of folders (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
 		<Property Name="Dell - Block S3 Sleep State - Windows" ID="16" EvaluationPeriod="P1D">keys "blocks3" of sections "cctk" of files "report.ini" of folders (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - TPM PPI ACPI - Windows" ID="17" EvaluationPeriod="P1D">keys "tpmppiacpi" of sections "cctk" of files "report.ini" of folders (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - TPM PPI DPO - Windows" ID="18" EvaluationPeriod="P1D">keys "tpmppidpo" of sections "cctk" of files "report.ini" of folders (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - TPM PPI PO - Windows" ID="19" EvaluationPeriod="P1D">keys "tpmppipo" of sections "cctk" of files "report.ini" of folders (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
 	</Analysis>
 </BES>

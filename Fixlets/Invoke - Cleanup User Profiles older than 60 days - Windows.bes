@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - Cleanup User Profiles older than 60 days - Windows</Title>
+		<Description><![CDATA[<P>This Fixlet will use DelProf2 to cleanup user profiles older than 60 days from the system.</P>
+<P>DelProf2 is free for Non-Profit and Higher Education.&nbsp;For instructions on licensing it for private organizations please visit their homepage: <A href="https://helgeklein.com/free-tools/delprof2-user-profile-deletion-tool/">https://helgeklein.com/free-tools/delprof2-user-profile-deletion-tool/</A></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance><![CDATA[exists files "NTUSER.DAT" whose (modification time of it < now - 60*day) of folders whose (name of it does not start with "Default" and name of it != "Public" and name of it != "All Users") of folder "Users" of drive of system folder]]></Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-10-25</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">prefetch DelProf2.zip sha1:B4FFB416395941CBF682ADFE472DCAC7D4E7F533 size:235595 https://helgeklein.com/downloads/DelProf2/current/Delprof2 1.6.0.zip sha256:14EE8BAF68AC5B015613ECDF23D1CC49A7045F791E2F7A1952F32AAD5B4A606B
+
+prefetch unzip.exe sha1:e1652b058195db3f5f754b7ab430652ae04a50b8 size:167936 http://software.bigfix.com/download/redist/unzip-5.52.exe
+
+utility __Download\unzip.exe
+
+waithidden __Download\unzip.exe -o "__Download\DelProf2.zip" -d "{pathname of client folder of current site}\__Download"
+
+override wait
+hidden=true
+completion=job
+wait "__Download\Delprof2 1.6.0\delprof2.exe" /u /d:60 /i</ActionScript>
+			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
+		</DefaultAction>
+	</Fixlet>
+</BES>

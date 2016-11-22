@@ -33,7 +33,7 @@ createfile until _end_
     Module      im_msvistalog
     Query <QueryList> \
            <Query Id="0"> \
-            <Select Path="Microsoft Office Alerts">*</Select> \
+            <Select Path="OAlerts">*</Select> \
            </Query> \
           </QueryList>
 </Input>

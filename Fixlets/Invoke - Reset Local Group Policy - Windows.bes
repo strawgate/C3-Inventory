@@ -6,8 +6,8 @@
 		<Description><![CDATA[<P>This Fixlet resets local Group Policy.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<Relevance>exists (matches (regex "\[[^[]*]") of concatenations "" of substrings separated by "%00" of lines of files "Registry.pol" of folders "GroupPolicy\Machine" of native system folder)</Relevance>
-		<Category></Category>
+		<Relevance>exists SELECT objects "* FROM RSOP_RegistryPolicySetting WHERE GPOID='LocalGPO' and valueName != ''" /* valueName != '' removes blank keys, not sure if this breaks anything*/ of rsop computer wmi</Relevance>
+		<Category>Group Policy</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
 		<SourceReleaseDate>2016-09-23</SourceReleaseDate>

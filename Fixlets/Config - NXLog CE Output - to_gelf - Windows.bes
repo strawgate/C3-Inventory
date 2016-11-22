@@ -47,11 +47,20 @@ appendfile    Module      om_{parameter "protocol" of action as lowercase}
 appendfile    Host        {parameter "server" of action}
 appendfile    Port        {parameter "port" of action}
 
-if {parameter "protocol" of action = "ssl"}
+if {parameter "protocol" of action as lowercase = "ssl"}
 appendfile    CADir       %ROOT%\cert
+appendfile    OutputType  GELF_TCP
 endif
 
+if {parameter "protocol" of action as lowercase = "tcp"}
+appendfile    CADir       %ROOT%\cert
+appendfile    OutputType  GELF_TCP
+endif
+
+if {parameter "protocol" of action as lowercase = "udp"}
 appendfile    OutputType  GELF
+endif
+
 appendfile	  Exec $short_message = $raw_event;
 appendfile </Output>
 

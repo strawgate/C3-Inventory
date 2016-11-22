@@ -5,6 +5,7 @@
 		<Title>Config - NXLog CE Output - to_gelf - Windows</Title>
 		<Description><![CDATA[<P>This Fixlet configures NXLog Community Edition to set the default output type to gelf.</P>
 <P>This will not work unless you have enabled modular management using <STRONG>Fixlet:</STRONG> Config - NXLog CE - Enable Modular Management - Windows</P>
+<P>If you specify the SSL protocol you must place a certificate in the CERT directory of the NXLog Client.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries</Relevance>
@@ -26,10 +27,10 @@
 			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[// Enter your action script here
 action parameter query "server" with description "Please enter the fqdn of the gelf server"
 action parameter query "port" with description "Please enter the gelf port number" with default "514"
-action parameter query "protocol" with description "Please enter the gelf protocol (tcp/udp)" with default "tcp"
+action parameter query "protocol" with description "Please enter the gelf protocol (udp/tcp/ssl)" with default "tcp"
 
 // Must be UDP or TCP
-continue if {(it = "udp" or it = "tcp") of (parameter "protocol" of action as lowercase)}
+continue if {(it = "udp" or it = "tcp" or it = "ssl") of (parameter "protocol" of action as lowercase)}
 
 // Must be an integer
 continue if {exists (it as integer) of (parameter "port" of action as lowercase)}
@@ -39,19 +40,24 @@ parameter "nxlog_conf"="{pathnames of folders "conf" of folders (values "install
 
 folder create "{parameter "nxlog_conf"}\Output"
 
-createfile until _end_
-<Output out>
-    Module      om_{parameter "protocol" of action as lowercase}
-    Host        {parameter "server" of action}
-    Port        {parameter "port" of action}
-    OutputType  GELF
-	Exec $short_message = $raw_event;
-</Output>
-_end_
+delete __appendfile
+
+appendfile <Output out>
+appendfile    Module      om_{parameter "protocol" of action as lowercase}
+appendfile    Host        {parameter "server" of action}
+appendfile    Port        {parameter "port" of action}
+
+if {parameter "protocol" of action = "ssl"}
+appendfile    CADir       %ROOT%\cert
+endif
+
+appendfile    OutputType  GELF
+appendfile	  Exec $short_message = $raw_event;
+appendfile </Output>
 
 delete "{parameter "nxlog_conf"}\Output\to_gelf.conf"
 
-copy __createfile "{parameter "nxlog_conf"}\Output\to_gelf.conf"]]></ActionScript>
+copy __appendfile "{parameter "nxlog_conf"}\Output\to_gelf.conf"]]></ActionScript>
 		</DefaultAction>
 	</Fixlet>
 </BES>

@@ -8,7 +8,7 @@
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists service "NXLog"</Relevance>
 		<Relevance>state of service "NXLog" != "Running"</Relevance>
-		<Category></Category>
+		<Category>NXLog CE</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
 		<SourceReleaseDate>2016-11-08</SourceReleaseDate>

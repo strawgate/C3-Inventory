@@ -24,17 +24,18 @@
 			</Description>
 			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">action uses wow64 redirection {not x64 of operating system}
 
-delete __createfile
-delete run.bat
+override wait
+completion=job
+hidden=true
+wait cmd.exe /c "echo n | gpupdate /target:computer /force /wait:120"
 
-createfile until _end_
-echo n | gpupdate /target:computer /force /wait:120
-echo n | gpupdate /target:user /force /wait:120
-_end_
-
-move __createfile run.bat
-
-waithidden run.bat</ActionScript>
+if {exists current user}
+	override wait
+	completion=job
+	hidden=true
+	runas=currentuser
+	wait cmd.exe /c "echo n | gpupdate /target:user /force /wait:120"
+endif</ActionScript>
 			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
 		</DefaultAction>
 	</Fixlet>

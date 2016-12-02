@@ -25,7 +25,7 @@
 			<Description>
 				<PreLink>Click </PreLink>
 				<Link>here</Link>
-				<PostLink> to deploy this action.</PostLink>
+				<PostLink> to start any stopped services.</PostLink>
 			</Description>
 			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
 
@@ -66,5 +66,146 @@ move __createfile Start-Service.ps1
 waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File "Start-Service.ps1" -ServicesList "{parameter "Services"}" -Timestamp "{now}"
 </ActionScript>
 		</DefaultAction>
+		<Action ID="Action2">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to start any stopped services -- waiting until system uptime is greater than 5 minutes.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[continue if {uptime of operating system > 5 * Minute}
+
+parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
+
+parameter "Services"="{concatenations ";" whose (it != "") of unique values of ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-") of client) whose (exists (service it) whose (state of it != "Running" and start type of it != "disabled"))}"
+
+delete Start-Service.ps1
+delete __createfile
+
+createfile until _end_
+param (
+    $ServicesList,
+    $Timestamp
+)
+
+new-item -Path "HKLM:\Software\C3 Inventory" -ErrorAction SilentlyContinue
+
+foreach ($Service in $ServicesList.Split(';')) {{
+    start-service $Service
+
+    new-item -Path "HKLM:\Software\C3 Inventory\Service Monitoring" -ErrorAction SilentlyContinue
+    
+    new-item -Path "HKLM:\Software\C3 Inventory\Service Monitoring\$Service" -ErrorAction SilentlyContinue
+ 
+    $Count = (Get-ItemProperty -Path "HKLM:\Software\C3 Inventory\Service Monitoring\$Service" -Name "Count" -ErrorAction SilentlyContinue).Count
+
+    if (!$Count) {{$Count = 0}
+
+    set-ItemProperty -Path "HKLM:\Software\C3 Inventory\Service Monitoring\$Service" -Name "Count" -Value ($Count + 1) -ErrorAction SilentlyContinue
+
+    Set-ItemProperty -Path "HKLM:\Software\C3 Inventory\Service Monitoring\$Service" -Name "Last" -Value $Timestamp -ErrorAction SilentlyContinue
+    
+}
+
+_end_
+
+move __createfile Start-Service.ps1
+
+waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File "Start-Service.ps1" -ServicesList "{parameter "Services"}" -Timestamp "{now}"
+]]></ActionScript>
+		</Action>
+		<Action ID="Action3">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink><![CDATA[ to start any stopped services -- waiting until system uptime is greater than&nbsp;10 minutes.]]></PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[continue if {uptime of operating system > 10 * Minute}
+
+parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
+
+parameter "Services"="{concatenations ";" whose (it != "") of unique values of ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-") of client) whose (exists (service it) whose (state of it != "Running" and start type of it != "disabled"))}"
+
+delete Start-Service.ps1
+delete __createfile
+
+createfile until _end_
+param (
+    $ServicesList,
+    $Timestamp
+)
+
+new-item -Path "HKLM:\Software\C3 Inventory" -ErrorAction SilentlyContinue
+
+foreach ($Service in $ServicesList.Split(';')) {{
+    start-service $Service
+
+    new-item -Path "HKLM:\Software\C3 Inventory\Service Monitoring" -ErrorAction SilentlyContinue
+    
+    new-item -Path "HKLM:\Software\C3 Inventory\Service Monitoring\$Service" -ErrorAction SilentlyContinue
+ 
+    $Count = (Get-ItemProperty -Path "HKLM:\Software\C3 Inventory\Service Monitoring\$Service" -Name "Count" -ErrorAction SilentlyContinue).Count
+
+    if (!$Count) {{$Count = 0}
+
+    set-ItemProperty -Path "HKLM:\Software\C3 Inventory\Service Monitoring\$Service" -Name "Count" -Value ($Count + 1) -ErrorAction SilentlyContinue
+
+    Set-ItemProperty -Path "HKLM:\Software\C3 Inventory\Service Monitoring\$Service" -Name "Last" -Value $Timestamp -ErrorAction SilentlyContinue
+    
+}
+
+_end_
+
+move __createfile Start-Service.ps1
+
+waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File "Start-Service.ps1" -ServicesList "{parameter "Services"}" -Timestamp "{now}"
+]]></ActionScript>
+		</Action>
+		<Action ID="Action4">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to start any stopped services -- waiting until system uptime is greater than 15 minutes.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[continue if {uptime of operating system > 15 * Minute}
+
+parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
+
+parameter "Services"="{concatenations ";" whose (it != "") of unique values of ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-") of client) whose (exists (service it) whose (state of it != "Running" and start type of it != "disabled"))}"
+
+delete Start-Service.ps1
+delete __createfile
+
+createfile until _end_
+param (
+    $ServicesList,
+    $Timestamp
+)
+
+new-item -Path "HKLM:\Software\C3 Inventory" -ErrorAction SilentlyContinue
+
+foreach ($Service in $ServicesList.Split(';')) {{
+    start-service $Service
+
+    new-item -Path "HKLM:\Software\C3 Inventory\Service Monitoring" -ErrorAction SilentlyContinue
+    
+    new-item -Path "HKLM:\Software\C3 Inventory\Service Monitoring\$Service" -ErrorAction SilentlyContinue
+ 
+    $Count = (Get-ItemProperty -Path "HKLM:\Software\C3 Inventory\Service Monitoring\$Service" -Name "Count" -ErrorAction SilentlyContinue).Count
+
+    if (!$Count) {{$Count = 0}
+
+    set-ItemProperty -Path "HKLM:\Software\C3 Inventory\Service Monitoring\$Service" -Name "Count" -Value ($Count + 1) -ErrorAction SilentlyContinue
+
+    Set-ItemProperty -Path "HKLM:\Software\C3 Inventory\Service Monitoring\$Service" -Name "Last" -Value $Timestamp -ErrorAction SilentlyContinue
+    
+}
+
+_end_
+
+move __createfile Start-Service.ps1
+
+waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File "Start-Service.ps1" -ServicesList "{parameter "Services"}" -Timestamp "{now}"
+]]></ActionScript>
+		</Action>
 	</Fixlet>
 </BES>

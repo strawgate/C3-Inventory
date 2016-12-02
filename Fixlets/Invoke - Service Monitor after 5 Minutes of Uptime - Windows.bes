@@ -2,7 +2,7 @@
 
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
-		<Title>Invoke - Service Monitor - Windows</Title>
+		<Title>Invoke - Service Monitor after 5 Minutes of Uptime - Windows</Title>
 		<Description><![CDATA[<P>This Fixlet will start any stopped services defined as being, "Monitored" by the BES Agent.</P>
 <P>To define a service as, "Monitored" for use by this fixlet:</P>
 <OL>
@@ -11,6 +11,7 @@
 <P><FONT size=2>This action will then check those services to make sure they are running.</FONT></P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
+		<Relevance><![CDATA[uptime of operating system > 5 * Minute]]></Relevance>
 		<Relevance>exists settings whose (name of it starts with "besservicemonitor-") of client</Relevance>
 		<Relevance>exists ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-") of client) whose (exists (service it) whose (state of it != "Running" and start type of it != "disabled"))</Relevance>
 		<Category>Service Monitor</Category>

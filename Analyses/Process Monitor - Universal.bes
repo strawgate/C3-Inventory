@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Process Monitor - Universal</Title>
+		<Description><![CDATA[This Analysis will report on information related&nbsp;processes monitoroed by the BigFix Agent. 
+<P>To define a process as, "Monitored" for use by this fixlet:</P>
+<OL>
+<LI>Create a client setting: besprocessmonitor-&lt;name&gt; 
+<LI>Populate the setting with a semicolon separated list of services to monitor: "<FONT size=2>BESProxyAgent.exe;BESRelay.exe;BESGather.exe;BESPluginService.exe;BESRootServer.exe;BESWebReportsServer.exe"</FONT></LI></OL>
+<P><FONT size=2>This action will then check those services to make sure they are running.</FONT></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists settings whose (name of it starts with "besprocessmonitor-") of client</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2016-10-25</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="Process Monitor - Configuration - Universal" ID="1" EvaluationPeriod="PT1H">unique values of ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besprocessmonitor-") of client)</Property>
+		<Property Name="Process Monitor - Processes Failing to Start - Windows" ID="4" EvaluationPeriod="PT5M">elements of (set of (substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besprocessmonitor-") of client) - set of names of processes)</Property>
+		<Property Name="Process Monitor - Processes Failing to Start after 5 Minutes - Windows" ID="5" EvaluationPeriod="PT5M"><![CDATA[if (uptime of operating system > 5 * minute) then (elements of (set of (substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besprocessmonitor-") of client) - set of names of processes)) else (nothing)]]></Property>
+		<Property Name="Process Monitor - Processes Failing to Start after 10 Minutes - Windows" ID="6" EvaluationPeriod="PT5M"><![CDATA[ if (uptime of operating system > 10 * minute) then (elements of (set of (substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besprocessmonitor-") of client) - set of names of processes)) else (nothing)]]></Property>
+	</Analysis>
+</BES>

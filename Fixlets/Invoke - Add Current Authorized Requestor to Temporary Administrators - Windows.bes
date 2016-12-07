@@ -12,7 +12,7 @@
 		<Relevance>exists key (component string of sid of logged on user as string) of keys "HKEY_LOCAL_MACHINE\Software\C3 Inventory\Temporary Administrative Rights\Authorized Requestors\Current" of x32 registry</Relevance>
 		<Relevance>not exists elements of intersection of ( /*IS THE LOGGED IN USER AN ADMINISTRATOR? */ 
  set of ( /* User's SID and Group Memberships */
-  ((sids of groups of logged on user of active directory) as string); /*User Group Memberships */
+  ((if (exists sids of groups of logged on user of active directory) then (sids of groups of logged on user of active directory) else (nothing)) as string); /*User Group Memberships. If Statement helps protect against bogus AD Cache results.*/
   (sid of logged on user) as string /*Users SID*/
  );(
  set of (/*Users and Groups in Administrators */

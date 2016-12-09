@@ -172,14 +172,17 @@ You should apply this as a policy action set to re-apply at whatever frequency y
 
 #### Customizing Service Monitor
 
-There are two ways to customize service monitor:
+There are three ways to customize service monitor:
 
 1. Adjust the time threshold for Failure (besservicemonitor-setting-audit-delay)
 1. Adjust the time threshold for Remediation (besservicemonitor-setting-remediation-delay)
+1. Blacklist a service to prevent reporting and remediation (besservicemonitor-setting-blacklist)
 
-These two settings adjust how long after startup the Service Monitor should wait before reporting a service failure and before attempting remediation. If these settings are not set, the Service Monitor defaults to waiting for 5 minutes after system startup before reporting on service failure and before attempting remediation.
+The first two two settings adjust how long after startup the Service Monitor should wait before reporting a service failure and before attempting remediation. If these settings are not set, the Service Monitor defaults to waiting for 5 minutes after system startup before reporting on service failure and before attempting remediation.
 
-There are premade fixlets in the C3 Inventory site for setting these values to 5, 10, and 15 minutes.
+There are pre-made Fixlets in the C3 Inventory site for setting these values to 5, 10, and 15 minutes.
+
+The final setting is a semi-colon separated list of services to ignore. This causes the service monitor to ignore the blacklisted services and not report them as failing or attempt to remediate them. This is particularly useful if you're pushing service monitor configs as global policy actions but need to exclude a specific service on just a single machine.
 
 #### Monitoring Processes
 

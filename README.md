@@ -117,9 +117,7 @@ Service Monitoring requires the BigFix Agent to identify failing services which 
 
 #### Activation of Service Monitor Analysis
 
-The **Analysis: Service Monitor - Windows** should be activated to provide information the current configuration of the service monitor.
-
-This will provide a number of properties:
+The **Analysis: Service Monitor - Windows** should be activated to provide information the current configuration of the service monitor:
 
 1. Currently monitored Services
 1. Currently failing Services
@@ -127,6 +125,8 @@ This will provide a number of properties:
 1. Last Service Failure
 1. Uptime Delay for reporting
 1. Uptime Delay for remediation
+
+Note: This analysis is only relevant for machines with monitored services currently configured.
 
 #### Identify Services to Monitor
 
@@ -177,6 +177,8 @@ There are two ways to customize service monitor:
 1. Adjust the time threshold for Remediation (besservicemonitor-setting-remediation-delay)
 
 These two settings adjust how long after startup the Service Monitor should wait before reporting a service failure and before attempting remediation. If these settings are not set, the Service Monitor defaults to waiting for 5 minutes after system startup before reporting on service failure and before attempting remediation.
+
+There are premade fixlets in the C3 Inventory site for setting these values to 5, 10, and 15 minutes.
 
 ## Temporary Administrative Rights
 

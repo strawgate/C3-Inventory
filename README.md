@@ -103,7 +103,7 @@ Once you are sure that you are ready to update drivers you can use the Update Dr
 
 The Driver Updater is: **Fixlet: Invoke - Dell Command | Update Driver Update - Windows**
 
-## Service and Process Monitoring
+## Service Monitoring
 
 Service Monitoring with C3-Inventory allows organizations to monitor, report, and automatically remediate issues with monitored services. Implementing Service Monitoring can be done using the following steps:
 
@@ -112,6 +112,7 @@ Service Monitoring with C3-Inventory allows organizations to monitor, report, an
 3. Report on Failing Services
 4. Remediate Failing Services
 5. Customizing Service Monitor
+6. Monitoring Processes
 
 Service Monitoring requires the BigFix Agent to identify failing services which only occurs during its evaluation cycle. This means it may be a couple of minutes before a failing service is reported. In addition, if a service is disabled on the device, BES Service Monitor will not report the service as failing.
 
@@ -179,6 +180,12 @@ There are two ways to customize service monitor:
 These two settings adjust how long after startup the Service Monitor should wait before reporting a service failure and before attempting remediation. If these settings are not set, the Service Monitor defaults to waiting for 5 minutes after system startup before reporting on service failure and before attempting remediation.
 
 There are premade fixlets in the C3 Inventory site for setting these values to 5, 10, and 15 minutes.
+
+#### Monitoring Processes
+
+You can also monitor processes that do not correspond to a service by activating the Analysis: "Process Monitor - Windows" and configuring services to monitor using the prefix, "besprocessmonitor-" instead of "besservicemonitor" to make sure that individual processes are running on the system. Process Monitor does not have any capability for performing automatic remediation (just reporting) if a process has failed.
+
+To help simplify and automate this process we have provided a [helper script](https://github.com/strawgate/C3-Inventory/blob/master/Helpers/Monitor-Process.ps1), written in powershell, which prompts you for a friendly process group name and for the list of process and generates/imports a fixlet.
 
 ## Temporary Administrative Rights
 

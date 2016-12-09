@@ -142,6 +142,21 @@ For instance, for monitoring Microsoft EMET we would could use ActionScript crea
 setting "besservicemonitor-microsoft-emet"="EMET_Service" on "{now}" for client
 ```
 
+We can then use the following relevance to cause computers without this setting to become applicable:
+
+```
+not exists values whose (it = "EMET_Service") of settings "besservicemonitor-microsoft-emet" of client
+
+```
+
+And finally we can use the following relevance to make the fixlet only relevant on computers that have the service installed:
+
+```
+exists services (substrings separated by ";" of "ccmexec;ConfigMgr Wake-up Proxy")
+```
+
+To help simplify and automate this process we have provided a [helper script](https://github.com/strawgate/C3-Inventory/blob/master/Helpers/Monitor-Service.ps1), written in powershell, which prompts you for a friendly service group name and for the list of services and generates/imports a fixlet.
+
 #### Report on failing Services
 
 To report on failing services you can simply make a web report which checks for results for the property, "Service Monitor - Services Failing to Start - Windows" in the, "Service Monitor - Windows" analysis. Set this report to email whenever there is a change to the report.

@@ -169,6 +169,15 @@ When this Fixlet runs it will attempt to start the service.
 
 You should apply this as a policy action set to re-apply at whatever frequency you would like Service monitor to attempt to start the services (Typically 5-15 minutes).
 
+#### Customizing Service Monitor
+
+There are two ways to customize service monitor:
+
+1. Adjust the time threshold for Failure (besservicemonitor-setting-audit-delay)
+1. Adjust the time threshold for Remediation (besservicemonitor-setting-remediation-delay)
+
+These two settings adjust how long after startup the Service Monitor should wait before reporting a service failure and before attempting remediation. If these settings are not set, the Service Monitor defaults to waiting for 5 minutes after system startup before reporting on service failure and before attempting remediation.
+
 ## Temporary Administrative Rights
 
 The temporary administrator features of C3-Inventory allow the provisioning and automatic removal of administrative rights for end-users using actions or offers. The feature requires the following to be successful:

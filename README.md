@@ -99,11 +99,60 @@ Using this analysis you can review all the different types and severities of ava
 
 #### Use the Dell Command | Update Update Driver
 
-Once you are sure that you are ready to update drivers you can use the Update Driver fixlet to actually run Dell Command | Update. *NOTE:* This bypasses the BigFix relay infrastructure and the endpoints will download driver packages directlry from Dell.
+Once you are sure that you are ready to update drivers you can use the Update Driver fixlet to actually run Dell Command | Update. *NOTE:* This bypasses the BigFix relay infrastructure and the endpoints will download driver packages directly from Dell.
 
 The Driver Updater is: **Fixlet: Invoke - Dell Command | Update Driver Update - Windows**
 
 ## Service and Process Monitoring
+
+Service Monitoring with C3-Inventory allows organizations to monitor, report, and automatically remediate issues with monitored services. Implementing Service Monitoring can be done using the following steps:
+
+1. Activation of Service Monitor Analysis
+2. Identify Services to Monitor
+3. Report on Failing Services
+4. Remediate Failing Services
+5. Customizing Service Monitor
+
+Service Monitoring requires the BigFix Agent to identify failing services which only occurs during its evaluation cycle. This means it may be a couple of minutes before a failing service is reported. In addition, if a service is disabled on the device, BES Service Monitor will not report the service as failing.
+
+#### Activation of Service Monitor Analysis
+
+The **Analysis: Service Monitor - Windows** should be activated to provide information the current configuration of the service monitor.
+
+This will provide a number of properties:
+
+1. Currently monitored Services
+1. Currently failing Services
+1. Service Failures Count
+1. Last Service Failure
+1. Uptime Delay for reporting
+1. Uptime Delay for remediation
+
+#### Identify Services to Monitor
+
+In the C3 Inventory Site are a number of fixlets for monitoring standard services. These Fixlets have relevance to only be applicable on devices that have these services.
+
+To designate custom services to monitor you can simply create a client setting: "besservicemonitor-<vendor>-<application>".
+
+This name should be unique for every set of services you want to monitor. The value of this new client setting should be a semi-colon separated list of services to monitor.
+
+For instance, for monitoring Microsoft EMET we would could use ActionScript create a client setting like this:
+
+```
+setting "besservicemonitor-microsoft-emet"="EMET_Service" on "{now}" for client
+```
+
+#### Report on failing Services
+
+To report on failing services you can simply make a web report which checks for results for the property, "Service Monitor - Services Failing to Start - Windows" in the, "Service Monitor - Windows" analysis. Set this report to email whenever there is a change to the report.
+
+#### Remediate failing Services
+
+You also have the option of automatically remediating failed services. You can do this using the, Fixlet: "Invoke - Service Monitor Remediation - Windows". This Fixlet has the same relevance as the failing services property and will only be relevant on computers with failing services.
+
+When this Fixlet runs it will attempt to start the service.
+
+You should apply this as a policy action set to re-apply at whatever frequency you would like Service monitor to attempt to start the services (Typically 5-15 minutes).
 
 ## Temporary Administrative Rights
 

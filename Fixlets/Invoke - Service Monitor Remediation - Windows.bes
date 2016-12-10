@@ -11,9 +11,10 @@
 <P><FONT size=2>This action will then check those services to make sure they are running.</FONT></P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<Relevance><![CDATA[uptime of operating system > (value of settings "besservicemonitor-remediation-delay" of client as integer | 5) * minute]]></Relevance>
+		<Relevance><![CDATA[/*Compare System Uptime to User Configured Remediation Delay */
+uptime of operating system > (value of settings "besservicemonitor-settings-remediation-delay" of client as integer | 5) * minute]]></Relevance>
 		<Relevance>exists settings whose (name of it starts with "besservicemonitor-") of client</Relevance>
-		<Relevance>exists ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-") of client) whose (exists (service it) whose (state of it != "Running" and start type of it != "disabled"))</Relevance>
+		<Relevance>exists ((it as trimmed string) of elements of (set of (substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-" and name of it does not start with "besservicemonitor-settings-") of client) - set of (substrings separated by ";" of concatenations ";" whose (it != "") of values of settings "besservicemonitor-settings-blacklist" of client))) whose (exists (service it) whose (state of it != "Running" and start type of it != "disabled"))</Relevance>
 		<Category>Service Monitor</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -30,7 +31,7 @@
 			</Description>
 			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">parameter "PowerShellExe"="{ pathname of file ((it as string) of value "Path" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" of native registry) }"
 
-parameter "Services"="{concatenations ";" whose (it != "") of unique values of ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-") of client) whose (exists (service it) whose (state of it != "Running" and start type of it != "disabled"))}"
+parameter "Services"="{concatenations ";" whose (it != "") of unique values of ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besservicemonitor-" and name of it does not start with "besservicemonitor-settings-") of client) whose (exists (service it) whose (state of it != "Running" and start type of it != "disabled"))}"
 
 delete Start-Service.ps1
 delete __createfile

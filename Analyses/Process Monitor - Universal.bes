@@ -16,7 +16,7 @@
 		<SourceReleaseDate>2016-10-25</SourceReleaseDate>
 		<Domain>BESC</Domain>
 		<Property Name="Process Monitor - Configuration - Universal" ID="1" EvaluationPeriod="PT1H">unique values of ((it as trimmed string) of substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besprocessmonitor-") of client)</Property>
-		<Property Name="Process Monitor - Processes Failing to Start - Windows" ID="4" EvaluationPeriod="PT5M"><![CDATA[if (uptime of operating system > (value of settings "besprocessmonitor-audit-delay" of client as integer | 5) * minute) then (elements of (set of (substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besprocessmonitor-") of client as lowercase) - set of (names of processes as lowercase))) else (nothing)]]></Property>
+		<Property Name="Process Monitor - Processes Failing to Start - Windows" ID="4" EvaluationPeriod="PT5M"><![CDATA[if (uptime of operating system > (value of settings "besprocessmonitor-audit-delay" of client as integer | 5) * minute) then (elements of (set of (substrings separated by ";" of concatenations ";" whose (it != "") of values of settings whose (name of it starts with "besprocessmonitor-" and name of it does not start with "besprocessmonitor-settings-") of client as lowercase) - set of (names of processes as lowercase))) else (nothing)]]></Property>
 		<Property Name="Process Monitor - Audit Delay - Windows" ID="7" EvaluationPeriod="PT5M">value of settings "besprocessmonitor-audit-delay" of client as integer | 5</Property>
 	</Analysis>
 </BES>

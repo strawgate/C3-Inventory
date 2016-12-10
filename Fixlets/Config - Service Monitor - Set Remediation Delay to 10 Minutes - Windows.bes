@@ -6,7 +6,7 @@
 		<Description><![CDATA[<P>Configures the BES Service Monitor (<STRONG>Fixlet: </STRONG>Invoke - Service Monitor - Windows) to only remediate service failure after 10 minutes of system uptime.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<Relevance>not exists values whose (it = "10") of settings "besservicemonitor-remediation-delay" of client</Relevance>
+		<Relevance>not exists values whose (it = "10") of settings "besservicemonitor-settings-remediation-delay" of client</Relevance>
 		<Category>Service Monitor</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>

@@ -57,7 +57,7 @@ loadScript(CODE_SITE_NAME, scriptLoaded);
 				<PostLink> to deploy this action.</PostLink>
 			</Description>
 			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">
-setting "besservicemonitor-setting-blacklist"="{concatenations ";" of (substrings separated by ";" of Parameter "Services" of action;substrings separated by ";" of values of settings "besservicemonitor-setting-blacklist" of client)}" on "{now}" for client</ActionScript>
+setting "besservicemonitor-settings-blacklist"="{concatenations ";" of (substrings separated by ";" of Parameter "Services" of action;substrings separated by ";" of values of settings "besservicemonitor-setting-blacklist" of client)}" on "{now}" for client</ActionScript>
 			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
 		</Action>
 	</Fixlet>

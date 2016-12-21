@@ -8,7 +8,7 @@
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries</Relevance>
-		<Relevance>not exists files "BigFix_Client.conf" of folders "Input" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
+		<Relevance>not exists files "BigFix_Client.conf" whose (size of it = 657) of folders "Input" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
 		<Category>NXLog CE</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -36,7 +36,7 @@ createfile until _end_
 
 <Input bigfix_client>
 	Module	im_file
-	File	"{concatenations "\\" of substrings separated by "\" of pathname of data folder of client}\\__Global\\Logs\\" + strftime(now(),"%Y%m%d") + ".log"
+	File	"{concatenations "\\" of substrings separated by "\" of pathname of data folder of client}\\__Global\\Logs\\\\*.log"
 	SavePos	TRUE
 	ReadFromLast	FALSE
 	InputType	dicom-multi

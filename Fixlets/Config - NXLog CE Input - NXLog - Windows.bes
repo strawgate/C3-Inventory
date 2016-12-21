@@ -4,11 +4,12 @@
 	<Fixlet>
 		<Title>Config - NXLog CE Input - NXLog - Windows</Title>
 		<Description><![CDATA[<P>This Fixlet configures NXLog Community Edition to monitor the&nbsp;its own Log File.&nbsp;</P>
+<P>This Fixlet also configures NXLog to rotate its own log file after 1mb saving a maximum of 5 rotated logs.</P>
 <P>This will not work unless you have enabled modular management using <STRONG>Fixlet:</STRONG> Config - NXLog CE - Enable Modular Management - Windows</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries</Relevance>
-		<Relevance>not exists files "NXLog.conf" of folders "Input" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
+		<Relevance>not exists files "NXLog.conf" whose (size of it = 631) of folders "Input" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
 		<Category>NXLog CE</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -33,6 +34,22 @@ createfile until _end_
     Module im_internal
     Exec  $Message = to_json(); 
 </Input>
+
+<Extension fileop>
+    Module      xm_fileop
+
+    # Check the size of our log file every hour and rotate if it is larger than 1Mb
+    <Schedule>
+        Every   1 hour
+        Exec    if (file_size('%ROOT%\data\nxlog.log') >= 10M) file_cycle('%ROOT%\data\nxlog.log', 3);
+    </Schedule>
+
+    # Rotate our log file every week on sunday at midnight
+    <Schedule>
+        When    @weekly
+        Exec    file_cycle('%ROOT%\data\nxlog.log', 3);
+    </Schedule>
+</Extension>
 
 <Route internal>
     Path internal => out

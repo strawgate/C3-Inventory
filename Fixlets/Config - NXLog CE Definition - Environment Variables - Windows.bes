@@ -7,6 +7,7 @@
 <P>Specifically, it defines the following variables:</P>
 <UL>
 <LI>ALLUSERSPROFILE 
+<LI>BESDATA 
 <LI>COMPUTERNAME 
 <LI>PROGRAMFILES 
 <LI>PROGRAMFILES(X86) 
@@ -17,7 +18,7 @@
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries</Relevance>
-		<Relevance>not exists files "environment.conf" of folders "Definition" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)</Relevance>
+		<Relevance><![CDATA[(size of it != 8) of intersection of (set of ("define ALLUSERSPROFILE " & expand environment string of "%25ALLUSERSPROFILE%25";"define BESDATA " & concatenation "\\" of substrings separated by "\" of pathname of data folder of client;"define COMPUTERNAME " & computer name;"define PROGRAMFILES " & (if (x64 of operating system) then (pathname of program files x64 folder) else (pathname of program files x32 folder));"define PROGRAMFILES(X86) " & pathname of program files x32 folder;"define SystemDrive " & name of drive of system folder;"define SystemRoot " & pathname of windows folder;"define WINDIR " & pathname of windows folder;"define BESDATA " & concatenation "\\" of substrings separated by "\" of pathname of data folder of client);(set of lines of files "environment.conf" of folders "Definition" of folders "conf" of folders (values "installdir" of keys "HKEY_LOCAL_MACHINE\Software\nxlog" of x32 registries as string)))]]></Relevance>
 		<Category>NXLog CE</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -41,6 +42,7 @@ folder create "{parameter "nxlog_conf"}\Definition"
 
 createfile until _end_
 define ALLUSERSPROFILE {expand environment string of "%25ALLUSERSPROFILE%25"}
+define BESDATA {concatenations "\\" of substrings separated by "\" of pathname of data folder of client}
 define COMPUTERNAME {computer name}
 define PROGRAMFILES {if (x64 of operating system) then (pathname of program files x64 folder) else (pathname of program files x32 folder)}
 define PROGRAMFILES(X86) {pathname of program files x32 folder}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Microsoft IIS - Windows</Title>
+		<Description><![CDATA[&lt;enter a description of the analysis here&gt; ]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists service "W3SVC"</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2017-01-11</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="IIS - Sites - Windows" ID="1" EvaluationPeriod="PT12H">if (exists wmis "ROOT\WebAdministration") then (string values of Selects "Name FROM Site" of wmis "ROOT\WebAdministration") else (string values of properties "ServerComment" of Select objects "ServerComment FROM IIsWebServerSetting" of wmis "ROOT\MicrosoftIISv2")</Property>
+		<Property Name="IIS - Virtual Directories - Windows" ID="2" EvaluationPeriod="PT12H">if (exists wmis "ROOT\WebAdministration") then (string values of selects "PhysicalPath FROM VirtualDirectory" of wmis "ROOT\WebAdministration") else (string values of selects "Path FROM IIsWebVirtualDirSetting" of wmis "ROOT\MicrosoftIISv2")</Property>
+		<Property Name="IIS - Application Pools - Windows" ID="3" EvaluationPeriod="PT12H">if (exists wmis "ROOT\WebAdministration") then ((string value of property "Name" of it) of Select objects "Name FROM ApplicationPool" of wmis "ROOT\WebAdministration") else ((following text of first "W3SVC/APPPOOLS/" of string value of property "Name" of it) of Select objects "Name FROM IIsApplicationPool" of wmis "ROOT\MicrosoftIISv2")</Property>
+		<Property Name="IIS - Version - Windows" ID="4" EvaluationPeriod="PT12H"><![CDATA[unique values of (value "MajorVersion" of it as string & "." & value "MinorVersion" of it as string) of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\InetStp" of (x64 registries; x32 registries)]]></Property>
+		<Property Name="IIS - Components - Windows" ID="5" EvaluationPeriod="PT12H">unique values of names of values whose (it = 1) of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\InetStp\Components" of x32 registry</Property>
+		<Property Name="IIS - Virtual Directories mapped with Credentials - Windows" ID="7" EvaluationPeriod="PT12H">if (exists wmis "ROOT\WebAdministration") then ((string values of property "UserName" of it, string values of property "PhysicalPath" of it) of select objects "UserName,PhysicalPath FROM VirtualDirectory where UserName != ''" of wmis "ROOT\WebAdministration") else ((string values of property "UNCUserName" of it, string values of property "Path" of it) of select objects "UNCUserName,Path FROM IIsWebVirtualDirSetting where UNCUserName != ''" of wmis "ROOT\MicrosoftIISv2")</Property>
+	</Analysis>
+</BES>

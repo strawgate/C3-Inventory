@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Microsoft Deployment Toolkit - Windows</Title>
+		<Description><![CDATA[<P>Provides information regarding a Windows Operating System deployed using the Microsoft Deployment Toolkit.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>Windows of Operating System</Relevance>
+		<Relevance>exists values "Task Sequence ID" of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Deployment 4" of native registry</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2017-01-30</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="MDT - Deployment Task Sequence ID - Windows" ID="1" EvaluationPeriod="P7D">values "Task Sequence ID" of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Deployment 4" of native registry</Property>
+		<Property Name="MDT - Deployment Task Sequence Name - Windows" ID="2" EvaluationPeriod="P7D">values "Task Sequence Name" of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Deployment 4" of native registry</Property>
+		<Property Name="MDT - Deployment Task Sequence Version - Windows" ID="3" EvaluationPeriod="P7D">values "Task Sequence Version" of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Deployment 4" of native registry</Property>
+		<Property Name="MDT - Deployment Task Sequence Progress - Windows" ID="4" EvaluationPeriod="PT1H">values "ProgressPercent" of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Deployment 4" of native registry</Property>
+		<Property Name="MDT - Deployment Task Sequence Message - Windows" ID="5" EvaluationPeriod="PT1H">values "ProgressText" of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Deployment 4" of native registry</Property>
+		<Property Name="MDT - Deployment Method - Windows" ID="6" EvaluationPeriod="P7D">values "Deployment Method" of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Deployment 4" of native registry</Property>
+		<Property Name="MDT - Deployment Source - Windows" ID="7" EvaluationPeriod="P7D">values "Deployment Source" of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Deployment 4" of native registry</Property>
+		<Property Name="MDT - Deployment Time - Windows" ID="8" EvaluationPeriod="P7D"><![CDATA[(it as date) of (last 2 of it & " " & (substring (4,2) of it as integer as month as three letters) & " " & first 4 of it) of firsts 8 of (values "Deployment Timestamp" of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Deployment 4" of native registry as string)]]></Property>
+		<Property Name="MDT - Deployment Type - Windows" ID="9" EvaluationPeriod="P7D">values "Deployment Type" of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Deployment 4" of native registry</Property>
+	</Analysis>
+</BES>

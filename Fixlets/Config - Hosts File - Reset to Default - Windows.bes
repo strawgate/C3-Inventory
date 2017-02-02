@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Config - Hosts File - Reset to Default - Windows</Title>
+		<Description>This Fixlet resets the hosts file to its default configuration on Windows.</Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>exists (lines whose (it does not contain "#" and it does not equal "") of file "hosts" of folder "drivers\etc" of system x64 folder)</Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2017-01-31</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
+
+parameter "Hosts"="{pathname of folder "drivers\etc" of system x64 folder}\hosts"
+parameter "HostsBackup"="{pathname of folder "drivers\etc" of system x64 folder}\hosts.old"
+
+delete __createfile
+
+createfile until _end_
+# Copyright (c) 1993-2009 Microsoft Corp.
+#
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+#
+# This file contains the mappings of IP addresses to host names. Each
+# entry should be kept on an individual line. The IP address should
+# be placed in the first column followed by the corresponding host name.
+# The IP address and the host name should be separated by at least one
+# space.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines or following the machine name denoted by a '#' symbol.
+#
+# For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1       localhost
+#	::1             localhost
+_end_
+
+if {exists file (parameter "Hosts")}
+	delete "{parameter "HostsBackup"}"
+	move "{parameter "Hosts"}" "{parameter "HostsBackup"}"
+endif
+
+copy __createfile "{parameter "Hosts"}"</ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

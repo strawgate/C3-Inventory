@@ -5,7 +5,8 @@
 		<Title>Invoke - Join Active Directory Domain - Windows</Title>
 		<Description><![CDATA[<DIV id=fixletMessage2 class=FixletMessage>
 <DIV id=paramFixletDescription>
-<P>Securely Domain Join a Windows Computer!</P><script>
+<P>Securely Domain Join a Windows Computer!</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P><script>
 loaded = false;
 var CODE_SITE_NAME = 'BES Support' ; 
 function loadScript (siteName, callback) {
@@ -35,10 +36,9 @@ eval(matches[1]);
 FixletUtils.initFixletRender();
 } } } 	
 loadScript(CODE_SITE_NAME, scriptLoaded);
-</script> 
-<DIV class=FixletProperty></DIV></DIV></DIV>]]></Description>
+</script> </DIV></DIV>]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<Relevance>string value of select "Domain from Win32_ComputerSystem" of wmi = "WORKGROUP"</Relevance>
+		<Relevance>string value of select "Domain from Win32_ComputerSystem" of wmi as lowercase = "workgroup"</Relevance>
 		<Category></Category>
 		<Source></Source>
 		<SourceID></SourceID>
@@ -84,8 +84,9 @@ _end_
 
 move __createfile powershell.ps1
 
-waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File powershell.ps1 -Username "{parameter "ADUser" of action}" -Password "{parameter "ADPwd" of action}"</ActionScript>
-			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
+waithidden "{parameter "PowershellExe"}" -ExecutionPolicy Bypass -File powershell.ps1 -Username "{parameter "ADUser" of action}" -Password "{parameter "ADPwd" of action}"
+
+action requires restart</ActionScript>
 		</Action>
 	</Fixlet>
 </BES>

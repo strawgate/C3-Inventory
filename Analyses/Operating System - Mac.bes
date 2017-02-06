@@ -11,17 +11,12 @@
 <P>Since this information does not change often, these properties are only evaluated <STRONG>once per day</STRONG> to avoid excess CPU or other computer resource usage.</P>
 <P><FONT size=2>After activating this analysis, you will see the following properties: </P>
 <UL>
-<LI>Full OS Name 
-<LI>OS Release 
-<LI>OS Build 
-<LI>Uptime (days) 
-<LI>Local Time Zone 
-<LI>Number of Running Processes</LI></UL></FONT></TD></TR></TBODY></TABLE>
+<LI>OS Build </LI></UL></FONT></TD></TR></TBODY></TABLE>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>mac of operating system</Relevance>
 		<Relevance>not in proxy agent context</Relevance>
 		<Category></Category>
 		<Domain>BESC</Domain>
-		<Property Name="OS - Build (Mac OS)" ID="4" EvaluationPeriod="P1D">build number of operating system</Property>
+		<Property Name="OS - Build - Mac" ID="4" EvaluationPeriod="P1D">build number of operating system</Property>
 	</Analysis>
 </BES>

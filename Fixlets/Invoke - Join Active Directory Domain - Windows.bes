@@ -76,10 +76,10 @@ $password = $Password | ConvertTo-SecureString -asPlainText -Force
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
 
 #Try Domain Join with OU -- will fail if object already exists
-Add-Computer -DomainName $domain -Credential $credential -OUPath $OU -force -ErrorAction silentlycontinue
+Add-Computer -DomainName $domain -Credential $credential -OUPath $OU -ErrorAction silentlycontinue
 
 #Try Domain Join without OU
-Add-Computer -DomainName $domain -Credential $credential -force
+Add-Computer -DomainName $domain -Credential $credential
 _end_
 
 move __createfile powershell.ps1

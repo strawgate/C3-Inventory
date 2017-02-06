@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Login Window - Mac</Title>
+		<Description><![CDATA[&lt;enter a description of the analysis here&gt; ]]></Description>
+		<Relevance>mac of operating system</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2017-02-06</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="Login Window - Login Hook - Mac" ID="1" EvaluationPeriod="P1D">strings "LoginHook" of dictionaries of files "/private/var/root/Library/Preferences/com.apple.loginwindow.plist"</Property>
+		<Property Name="Login Window - Logout Hook - Mac" ID="2" EvaluationPeriod="P1D">strings "LogoutHook" of dictionaries of files "/private/var/root/Library/Preferences/com.apple.loginwindow.plist"</Property>
+	</Analysis>
+</BES>

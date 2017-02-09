@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Warning - CBS Log files are too large to compress - Windows</Title>
+		<Description><![CDATA[<P>This fixlet corrects an issue with the Windows Component-Based Servicing system.</P>
+<P>The issue originates from the cbs.log file becoming too large to compress into an archive cab causing the files to fill up the Windows Temp directory.</P>
+<P>This fixlet will remove CBS Log files and any cab files from the Windows Temp Directory.</P>
+<P>Kudos and Compliments to Jason Walker for his work on the&nbsp;original fixlet here: <A href="https://bigfix.me/fixlet/details/11930">https://bigfix.me/fixlet/details/11930</A></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>if exists property "in proxy agent context" then not in proxy agent context else true</Relevance>
+		<Relevance><![CDATA[version of operating system >= version "6"]]></Relevance>
+		<Relevance><![CDATA[exists files whose (name of it as lowercase starts with "cbspersist" and name of it as lowercase ends with ".log" and size of it / 1024 / 1024 > 1000) of folders "Logs\CBS" of windows folder]]></Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2017-02-09</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell"><![CDATA[action uses wow64 redirection false
+
+delete __appendfile
+
+appendfile net stop TrustedInstaller
+appendfile {concatenation "%0d%0a" of ("del /q %22" & it & "%22") of pathnames of files whose (name of it as lowercase starts with "cbspersist" and name of it as lowercase ends with ".log" and size of it / 1024 / 1024 > 1000) of folders "Logs\CBS" of windows folder}
+appendfile {concatenation "%0d%0a" of ("del /q %22" & it & "%22") of pathnames of files whose (name of it as lowercase starts with "cab_" ) of folders "TEMP" of windows folder}
+appendfile net start TrustedInstaller
+
+delete DeleteLog.cmd
+
+move __appendfile DeleteLog.cmd
+
+waithidden cmd /c DeleteLog.cmd > {pathname of windows folder}\TEMP\cbscleanup.txt 2>&1
+
+pause while {exists files whose (name of it as lowercase starts with "cbspersist" and name of it as lowercase ends with ".log" and size of it / 1024 / 1024 > 2100) of folders "Logs\CBS" of windows folder AND  (now - active start time of action) < (2 * minute)}
+]]></ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

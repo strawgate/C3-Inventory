@@ -14,7 +14,7 @@
                   it as string as uppercase contains "DELL"
               )
               of structures "bios_information" of smbios</Relevance>
-		<Relevance>string value of selects "ManufacturerVersion from Win32_Tpm" of wmis "root\CIMv2\Security\MicrosoftTpm" = "2.0" /* Machines has TPM 2.0 */</Relevance>
+		<Relevance>tuple string item 0 of string value of selects "SpecVersion from Win32_Tpm" of wmis "root\CIMv2\Security\MicrosoftTpm" = "2.0"</Relevance>
 		<Relevance>not exists Selects "* from Win32_DiskPartition Where Type = 'GPT: System'" of wmi /* Machine is not UEFI */</Relevance>
 		<Category>Disk Encryption</Category>
 		<Source>Internal</Source>

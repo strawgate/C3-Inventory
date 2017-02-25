@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Config - Autologon - Add User Account - Windows</Title>
+		<Description><![CDATA[<DIV id=fixletMessage2 class=FixletMessage>
+<DIV id=paramFixletDescription>
+<P>Configure Autologon!</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P><script>
+loaded = false;
+var CODE_SITE_NAME = 'BES Support' ; 
+function loadScript (siteName, callback) {
+loaded = false;
+var relevanceQuery ='( value of it) of (mime fields of (bes fixlets whose ( name of it = "Parameterized Fixlet Library" and  name of site of it = \"' + siteName + '\" ))) whose (name of it = "vrt_utils.js")'
+var code = EvaluateRelevance(relevanceQuery);
+var head = document.getElementsByTagName("head")[0]; 
+var script   = document.createElement("script");
+script.type  = "text/javascript";
+script.text = code;
+head.appendChild(script);
+callback();
+}
+function scriptLoaded(){
+if (!loaded){ 	
+if ( typeof FixletUtils !== 'undefined') {
+loaded = true;
+/*
+* Pleas Note: The following code will be moved to library with next publish of lib and user will have to only call method 	
+*/
+var relQuery = "(messages of it) of bes fixlets whose (name of it = \"Parameterized Fixlet Library\" and ((name of it ) of site of it = \"" + CODE_SITE_NAME +"\" ))";
+var messages = EvaluateRelevance(relQuery);
+var regex = /\s*<DIV id=globalizationMessageDiv  style="display:none;">([\x00-\x7F]+)\s*<\/Div>/i;
+var matches = regex.exec(messages);
+matches[1]=matches[1].replace(/<br>/gi,"");
+eval(matches[1]);
+FixletUtils.initFixletRender();
+} } } 	
+loadScript(CODE_SITE_NAME, scriptLoaded);
+</script> </DIV></DIV>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>not exists values "AutoAdminLogon" whose (value of it as string = "1") of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" of native registry</Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2017-02-21</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<MIMEField>
+			<Name>parametermetadatatag</Name>
+			<Value>{   "Section1": {     "Name": "UserAccount",     "Title": "Autologon User",     "UIType": "accordion",     "Values": [       {         "Name": "AutoDomain",         "Title": "Active Directory Domain",         "Description": "Active Directory Domain",         "UIType": "TextBox",         "Default": "NetBIOS"       },       {         "Name": "AutoUsername",         "Title": "Account Username",         "Description": "Account Username",         "UIType": "TextBox",         "Default": "Username"       },       {         "Name": "AutoPassword",         "Title": "Account Password",         "Description": "Account Password",         "UIType": "Textbox",         "Encrypt": "true",         "SubUIType": "Password"       }     ]   } }</Value>
+		</MIMEField>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">
+action uses wow64 redirection {not x64 of operating system}
+
+prefetch AutoLogon.zip sha1:EEA24BA8E82B7357972B4A5A55B9A424B56F62D3 size:72623 https://download.sysinternals.com/files/AutoLogon.zip sha256:4BA5B92411A9B4B8743BDC479EAD0E3F50ED2C8CB5517A49246EF57F3EBB09C7
+
+prefetch unzip.exe sha1:e1652b058195db3f5f754b7ab430652ae04a50b8 size:167936 http://software.bigfix.com/download/redist/unzip-5.52.exe
+
+waithidden __Download\unzip.exe -o "{pathname of file "AutoLogon.zip" of folder "__Download" of client folder of current site}" -d "{pathname of folder "__Download" of client folder of current site}"
+
+
+waithidden "__Download\AutoLogon.exe" -accepteula "{Parameter "AutoUsername" of action}" "{parameter "AutoDomain" of action}" "{parameter "AutoPassword" of action}"</ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

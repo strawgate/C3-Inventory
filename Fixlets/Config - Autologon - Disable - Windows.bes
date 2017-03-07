@@ -5,7 +5,7 @@
 		<Title>Config - Autologon - Disable - Windows</Title>
 		<Description><![CDATA[&lt;enter a description of the problem and the corrective action here&gt; ]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<Relevance>exists values "AutoAdminLogon" whose (value of it as string = "1") of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" of native registry</Relevance>
+		<Relevance>exists values "AutoAdminLogon" whose (it as string = "1") of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" of native registry</Relevance>
 		<Category></Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>

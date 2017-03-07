@@ -38,7 +38,7 @@ FixletUtils.initFixletRender();
 loadScript(CODE_SITE_NAME, scriptLoaded);
 </script> </DIV></DIV>]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<Relevance>not exists values "AutoAdminLogon" whose (value of it as string = "1") of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" of native registry</Relevance>
+		<Relevance>not exists values "AutoAdminLogon" whose (it as string = "1") of keys "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" of native registry</Relevance>
 		<Category></Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>

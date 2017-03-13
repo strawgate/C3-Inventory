@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Analysis>
+		<Title>Configuration Profiles - Mac</Title>
+		<Description><![CDATA[<P>This analysis provides information on the current state of the currently configured Mac Profiles.</P>
+<P>This analysis relies on <STRONG>Fixlet</STRONG>: <STRONG>Invoke - Configuration Profiles Probe - Mac </STRONG>in the C3-Inventory site.</P>
+<P>The data in this analysis only ever be as new as the last run of the probe.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>Mac of Operating System</Relevance>
+		<Relevance>exists files "/Library/Profiles/Effective.plist"</Relevance>
+		<Source>Internal</Source>
+		<SourceReleaseDate>2017-03-09</SourceReleaseDate>
+		<Domain>BESC</Domain>
+		<Property Name="Profiles - Applied - Mac" ID="1" EvaluationPeriod="PT6H">(string "ProfileDisplayName" of it, string "PayloadUUID" of it) of dictionaries of values of arrays "_computerlevel" of dictionaries of files "/Library/Profiles/Effective.plist"</Property>
+		<Property Name="Profiles - Digitally Signed - Mac" ID="2" EvaluationPeriod="PT6H">strings "ProfileDisplayName" of dictionaries whose (string "ProfileVerificationState" of it = "verified") of values of arrays "_computerlevel" of dictionaries of files "/Library/Profiles/Effective.plist"</Property>
+		<Property Name="Profiles - Unsigned - Mac" ID="3" EvaluationPeriod="PT6H">strings "ProfileDisplayName" of dictionaries whose (string "ProfileVerificationState" of it != "verified") of values of arrays "_computerlevel" of dictionaries of files "/Library/Profiles/Effective.plist"</Property>
+		<Property Name="Profiles - Applied Components - Mac" ID="4" EvaluationPeriod="PT6H">(string "ProfileDisplayName" of it, strings "PayloadType" of dictionaries of values of arrays "ProfileItems" of it) of dictionaries of values of arrays "_computerlevel" of dictionaries of files "/Library/Profiles/Effective.plist"</Property>
+		<Property Name="Profiles - Mapped Drives - Mac" ID="5" EvaluationPeriod="PT6H">(string "ProfileDisplayName" of it, strings "URL" of dictionaries of values of arrays "AutoLaunchedApplicationDictionary-managed" of dictionaries "PayloadContent" of dictionaries whose (string "PayloadType" of it = "com.apple.loginitems.managed") of values of arrays "ProfileItems" of it) of dictionaries of values of arrays "_computerlevel" of dictionaries of files "/Library/Profiles/Effective.plist"</Property>
+		<Property Name="Profiles - MDM Server - Mac" ID="6" EvaluationPeriod="PT6H">(string "ProfileDisplayName" of it, strings "ServerURL" of dictionaries "PayloadContent" of dictionaries whose (string "PayloadType" of it = "com.apple.mdm") of values of arrays "ProfileItems" of it) of dictionaries of values of arrays "_computerlevel" of dictionaries of files "/Library/Profiles/Effective.plist"</Property>
+		<Property Name="Profiles - Last Probe - Mac" ID="7" EvaluationPeriod="PT6H">modification time of  files "/Library/Profiles/Effective.plist"</Property>
+	</Analysis>
+</BES>

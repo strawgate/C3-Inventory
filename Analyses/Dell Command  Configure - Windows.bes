@@ -31,5 +31,7 @@
 		<Property Name="Dell - TPM PPI ACPI - Windows" ID="17" EvaluationPeriod="P1D">keys "tpmppiacpi" of sections "cctk" of files "report.ini" of folders (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
 		<Property Name="Dell - TPM PPI DPO - Windows" ID="18" EvaluationPeriod="P1D">keys "tpmppidpo" of sections "cctk" of files "report.ini" of folders (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
 		<Property Name="Dell - TPM PPI PO - Windows" ID="19" EvaluationPeriod="P1D">keys "tpmppipo" of sections "cctk" of files "report.ini" of folders (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - Legacy Boot Rom - Windows" ID="20" EvaluationPeriod="P1D">keys "legacyorom" of sections "cctk" of files "report.ini" of folders (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
+		<Property Name="Dell - Secure Boot - Windows" ID="21" EvaluationPeriod="P1D">keys "secureboot" of sections "cctk" of files "report.ini" of folders (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)</Property>
 	</Analysis>
 </BES>

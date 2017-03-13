@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Config - Dell Command | Configure Firmware - UEFI with SecureBoot - Windows</Title>
+		<Description><![CDATA[<P>This enables UEFI and disables&nbsp;Legacy Boot in the bios of dell machines using Dell Command | Configure.</P>
+<P>This will render the machine unbootable unless you also convert the machine to GPT at the same time.</P>
+<P><FONT color=#ff0000>NOTE: <FONT color=#000000>If you use Action 2&nbsp;and provide a BIOS Password, the password will be visible in plain text on endpoints and relays.</FONT></FONT></P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>(exists ((keys of keys "HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall" of ( x32 registry; (if exists x64 registry then x64 registry else nothing) )) whose (value "DisplayName" of it as string contains "Dell Command | Configure")))</Relevance>
+		<Relevance>(keys "bootorder" of sections "cctk" of files "report.ini" of folders (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)) does not contain "uefi"</Relevance>
+		<Category>BIOS Settings</Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-29</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to enable UEFI on machines without a BIOS Password</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
+
+parameter "CCTK"="{pathname of folder (if (x64 of operating system) then ("X86_64") else ("X86")) of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}\cctk.exe"
+
+waithidden "{parameter "CCTK"}" bootorder --activebootlist=uefi
+
+continue if {exit code of action == 0}
+
+waithidden "{parameter "CCTK"}" --legacyorom=disable
+
+waithidden "{parameter "CCTK"}" --secureboot=enable
+
+// Create a new report
+delete "{pathname of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}\report.ini"
+
+wait "{pathname of file "CCTK.exe" of folder (if (x64 of operating system) then ("X86_64") else ("X86")) of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}" -o "{pathname of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}\report.ini"
+
+action requires restart</ActionScript>
+		</DefaultAction>
+		<Action ID="Action2">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to enable UEFI on machines with a BIOS Password.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">action parameter query "BIOSPwd" with description "Please enter the BIOS Password for the targeted machines"
+
+parameter "CCTK"="{pathname of folder (if (x64 of operating system) then ("X86_64") else ("X86")) of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}\cctk.exe"
+
+waithidden "{parameter "CCTK"}" bootorder --activebootlist=uefi --valsetuppwd={parameter "BIOSPwd" of action}
+
+continue if {exit code of action == 0}
+
+waithidden "{parameter "CCTK"}" --legacyorom=disable --valsetuppwd={parameter "BIOSPwd" of action}
+
+waithidden "{parameter "CCTK"}" --secureboot=enable --valsetuppwd={parameter "BIOSPwd" of action}
+
+// Create a new report
+delete "{pathname of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}\report.ini"
+
+wait "{pathname of file "CCTK.exe" of folder (if (x64 of operating system) then ("X86_64") else ("X86")) of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}" -o "{pathname of folder (value "Path" of key "HKEY_LOCAL_MACHINE\Software\Dell\CommandConfigure" of x32 registry as string)}\report.ini"
+
+action requires restart</ActionScript>
+		</Action>
+	</Fixlet>
+</BES>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - MBR2GPT Validate MBR to GPT - Windows</Title>
+		<Description><![CDATA[<P>This Fixlet will use the Windows 10 MBR2GPT executable to convert the disk from MBR to GPT.</P>
+<P>Your system WILL NOT BOOT after running this fixlet unless you use a related Vendor-Specific command to switch the machine to boot using UEFI. </P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>exists file "MBR2GPT.exe" of system x64 folder</Relevance>
+		<Relevance>not exists Selects "* from Win32_DiskPartition Where Type = 'GPT: System'" of wmi</Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2017-03-11</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BES </Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
+
+parameter "mbr2gpt"="{pathname of file "MBR2GPT.exe" of system x64 folder}"
+
+// Validate Disk Configuration within Windows
+waithidden "{parameter "mbr2gpt"} /validate /allowFullOS
+
+//Conversion completed successfully.
+//continue if {exit code of action != 1}
+
+//Conversion was cancelled by the user
+continue if {exit code of action != 1}
+
+//Conversion failed due to an internal error
+continue if {exit code of action != 2}
+
+//Conversion failed due to an initialization error
+continue if {exit code of action != 3}
+
+//Conversion failed due to invalid command-line parameters
+continue if {exit code of action != 4}
+
+//Conversion failed due to error reading the geometry and layout of the selected disk.
+continue if {exit code of action != 5}
+
+//Conversion failed because one or more volumes on the disk is encrypted.
+continue if {exit code of action != 6}
+
+//Conversion failed because the geometry and layout of the selected disk do not meet requirements.
+continue if {exit code of action != 7}
+
+//Conversion failed due to error while creating the EFI system partition.
+continue if {exit code of action != 8}
+
+//	Conversion failed due to error installing boot files.
+continue if {exit code of action != 9}
+
+//Conversion failed due to error while applying GPT layout.
+continue if {exit code of action != 10}
+
+//	Conversion to GPT layout succeeded, but some boot configuration data entries could not be restored.
+//continue if {exit code of action != 100}
+
+exit 0</ActionScript>
+			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
+		</DefaultAction>
+	</Fixlet>
+</BES>

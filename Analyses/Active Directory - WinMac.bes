@@ -11,9 +11,10 @@
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-10-24</SourceReleaseDate>
 		<Domain>BESC</Domain>
-		<Property Name="Active Directory - Groups - Windows" ID="1" EvaluationPeriod="PT1H">names of groups of local computer of active directory</Property>
-		<Property Name="Active Directory - Last Check - Windows" ID="2" EvaluationPeriod="PT1H">sample time of local computer of active directory</Property>
-		<Property Name="Active Directory - NetBIOS - Windows" ID="3" EvaluationPeriod="P1D">netbios domainname of local computer of active directory</Property>
-		<Property Name="Active Directory - Organizational Unit - Windows" ID="4" EvaluationPeriod="PT1H">following text of first "," of distinguished name of local computer of active directory </Property>
+		<Property Name="Active Directory - Groups - Win\mac" ID="1" EvaluationPeriod="PT1H">names of groups of local computer of active directory</Property>
+		<Property Name="Active Directory - Last Check - Win\Mac" ID="2" EvaluationPeriod="PT1H">sample time of local computer of active directory</Property>
+		<Property Name="Active Directory - NetBIOS - Win\Mac" ID="3" EvaluationPeriod="P1D">netbios domainname of local computer of active directory</Property>
+		<Property Name="Active Directory - Organizational Unit - Win\Mac" ID="4" EvaluationPeriod="PT1H">following text of first "," of distinguished name of local computer of active directory </Property>
+		<Property Name="Active Directory - Errors - Win\Mac" ID="6" EvaluationPeriod="PT1H">distinguished name error messages of local computer of active directory; groups error messages of local computer of active directory</Property>
 	</Analysis>
 </BES>

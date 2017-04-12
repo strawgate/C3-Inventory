@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Config - Wireless Adapter - Disable - Mac</Title>
+		<Description><![CDATA[&lt;enter a description of the problem and the corrective action here&gt; ]]></Description>
+		<Relevance>mac of operating system</Relevance>
+		<Relevance><![CDATA[system version >= "10.10"]]></Relevance>
+		<Relevance>boolean "PowerEnabled" of dictionaries of values of entries of dictionaries of values of entries of dictionary "Interface" of dictionaries of values of entries of dictionaries of values of entries of dictionary "Sets" of dictionaries of file "/Library/Preferences/SystemConfiguration/preferences.plist" = True</Relevance>
+		<Category></Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2017-03-24</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">wait networksetup -setairportpower airport off</ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

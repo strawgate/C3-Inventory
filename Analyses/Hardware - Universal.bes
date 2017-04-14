@@ -13,7 +13,7 @@
 		<Property Name="Hardware - CPU Socket Count - Universal" ID="2" EvaluationPeriod="P1D">count of cpupackage</Property>
 		<Property Name="Hardware - CPU Core Count - Universal" ID="3" EvaluationPeriod="P1D">number of processors</Property>
 		<Property Name="Hardware - CPU Hyperthreading - Universal" ID="4" EvaluationPeriod="P1D">smt enabled of cpupackage</Property>
-		<Property Name="Hardware - Network Adapters - Universal" ID="5" EvaluationPeriod="P1D">descriptions of adapters of network</Property>
+		<Property Name="Hardware - Network Adapters - Universal" ID="5" EvaluationPeriod="P1D">(if(exists property "description" of type "network adapter") then (descriptions of it) else (names of it)) of adapters of network</Property>
 		<Property Name="Hardware - CPU Speed - Universal" ID="7" EvaluationPeriod="P1D"><![CDATA[(speed of main processor / mhz) as string & " MHz "]]></Property>
 		<Property Name="Hardware - CPU Family Name - Windows" ID="8" EvaluationPeriod="P1D">unique values of family names of processors</Property>
 		<Property Name="Hardware - Model - Win\Mac" ID="10" EvaluationPeriod="P1D">if (windows of operating system) then (string values of selects "Model from Win32_ComputerSystem" of wmi) else (if (Mac of Operating System) then (machine name) else ("N\A"))</Property>

@@ -39,11 +39,13 @@ $RegStorage = "HKLM:\Software\C3 Inventory\Certificate Store"
 function Write-CertToRegistry{{
     param (
         [System.Security.Cryptography.X509Certificates.X509Certificate2] $Certificate,
-        [string] $Path
+        [string] $Path,
+        [string] $Childpath
     )
 
-    $Storage = "$($Global:RegStorage)\$($Certificate.PSParentPath.Replace("Microsoft.PowerShell.Security\Certificate::",''))\$($Certificate.ThumbPrint)"
-   
+#    $Storage = "$($Global:RegStorage)\$($Certificate.PSParentPath.Replace("Microsoft.PowerShell.Security\Certificate::",''))\$($Certificate.ThumbPrint)"
+    $Storage = "$Path\$ChildPath\$($Certificate.ThumbPrint)"
+
     New-Item $Storage -force -ErrorAction SilentlyContinue | out-null
     
     new-ItemProperty -Path $Storage -Name "Subject" -Value $Certificate.Subject | out-null
@@ -75,7 +77,7 @@ foreach ($Store in Get-ChildItem -Path Cert:\LocalMachine) {{
     
     #Iterate over each certificate in each store
     foreach ($Certificate in Get-ChildItem -Path "Cert:\LocalMachine\$($Store.Name)") {{
-        Write-CertToRegistry -Certificate $Certificate -Path $RegStorage
+        Write-CertToRegistry -Certificate $Certificate -Path "$RegStorage\LocalMachine" -childpath $Store.Name
     }
 }
 

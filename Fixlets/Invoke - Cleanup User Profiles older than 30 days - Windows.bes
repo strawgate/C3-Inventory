@@ -8,7 +8,7 @@
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance><![CDATA[exists files "NTUSER.DAT" whose (modification time of it < now - 30*day) of folders whose (name of it does not start with "Default" and name of it != "Public" and name of it != "All Users") of folder "Users" of drive of system folder]]></Relevance>
-		<Category></Category>
+		<Category>Disk Cleanup</Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
 		<SourceReleaseDate>2016-10-25</SourceReleaseDate>

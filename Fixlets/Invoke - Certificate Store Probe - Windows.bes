@@ -33,6 +33,7 @@ delete __createfile
 delete powershell.ps1
 
 createfile until _end_
+#Requires -Version 3.0
 $RegStorage = "HKLM:\Software\C3 Inventory\Certificate Store"
 
 function Write-CertToRegistry{{
@@ -64,7 +65,7 @@ function Write-CertToRegistry{{
 }
 
 #Clean-up previous cert export
-Remove-Item "HKLM:\Software\Certificates" -Recurse
+Remove-Item "HKLM:\Software\Certificates" -Recurse -ErrorAction SilentlyContinue
 
 #Pull all the certificate stores
 $Certificates = Get-ChildItem -Path Cert:\LocalMachine -Recurse
@@ -80,9 +81,9 @@ foreach ($Store in Get-ChildItem -Path Cert:\LocalMachine) {{
 
 #Print probe run timestamp
 $Timestamp = get-date
-New-ItemProperty -Path $Global:RegStorage -Name "Last Updated" -Value $Timestamp | out-null
-New-ItemProperty -Path $Global:RegStorage -Name "Last Updated Date" -Value $Timestamp.ToString("ddd, dd MMM yyyy") | out-null
-New-ItemProperty -Path $Global:RegStorage -Name "Last Updated Time" -Value $Timestamp.ToString("HH:mm:ss") | out-null
+New-ItemProperty -Path $Global:RegStorage -Name "Last Updated" -Value $Timestamp -Force | out-null
+New-ItemProperty -Path $Global:RegStorage -Name "Last Updated Date" -Value $Timestamp.ToString("ddd, dd MMM yyyy") -Force | out-null
+New-ItemProperty -Path $Global:RegStorage -Name "Last Updated Time" -Value $Timestamp.ToString("HH:mm:ss") -Force | out-null
 _end_
 
 move __createfile powershell.ps1

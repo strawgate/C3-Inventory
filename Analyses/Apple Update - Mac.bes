@@ -3,12 +3,15 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Apple Update - Mac</Title>
-		<Description><![CDATA[<P>Provides information about Apple Software Update on Mac OS </P>
+		<Description><![CDATA[<P>Provides information about Apple Software Update on Mac OS.</P>
+<P>The missing updates relies on the last time Apple Update performed a check -- the data is as old as the last check.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>mac of operating system</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2016-05-06</SourceReleaseDate>
 		<Domain>BES </Domain>
 		<Property Name="Apple Update - Last Successful Update - Mac" ID="1" EvaluationPeriod="P1D">date "LastSuccessfulDate" of dictionary of file "com.apple.SoftwareUpdate.plist" of folder "/Library/Preferences"</Property>
+		<Property Name="Apple Update - Missing Updates - Mac" ID="2" EvaluationPeriod="P1D"><![CDATA[(string "Display Name" of it & " " & string "Display Version" of it) of dictionaries of values of array "RecommendedUpdates" of dictionaries of files "/Library/Preferences/com.apple.SoftwareUpdate.plist"]]></Property>
+		<Property Name="Apple Update - Catalog Server - Mac" ID="3" EvaluationPeriod="PT1H">string "AppleCatalogURL" of dictionaries of files "/Library/Preferences/com.apple.SoftwareUpdate.plist" | "Apple Production"</Property>
 	</Analysis>
 </BES>

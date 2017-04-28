@@ -50,7 +50,7 @@ param (
 function write-log {{
     param (
         $Message,
-        [ValidateSet("Verbose",‚??Grant‚?ù,"Revoke")] 
+        [ValidateSet("Verbose","Grant","Revoke")] 
         $Type = "Verbose"
     )
 

@@ -2,7 +2,7 @@
 
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
-		<Title>Vulnerabilities - Intel SA 00075 Probe - Windows</Title>
+		<Title>Vulnerabilities - Intel SA 00075 - Windows</Title>
 		<Description><![CDATA[<P>This Analysis provides the results for the the Intel SA 00075 Probe on a system to determine if it is vulnerable. </P>
 <P>Please use the Fixlet: <STRONG>Invoke - Intel SA 00075 Probe - Windows </STRONG>to populate results for a system.</P>
 <P>A value of Vulnerable means your firmware version is vulnerable to the exploit. A value of Exposed means that you are vulnerable and the required processes for exploitation are currently exposed.</P>
@@ -14,5 +14,6 @@
 		<Domain>BESC</Domain>
 		<Property Name="Intel SA 00075 - Vulnerable - Windows" ID="1" EvaluationPeriod="PT30M">(if (it = 1) then ("Vulnerable") else ("Not Vulnerable")) of (value "Vulnerable" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Intel\Setup and Configuration Software\INTEL-SA-00075 Discovery Tool\ME Firmware Information" of x32 registry)</Property>
 		<Property Name="Intel SA 00075 - Exposed - Windows" ID="2" EvaluationPeriod="PT30M">(if (it = 1) then ("Exposed") else ("Not Exposed")) of (value "Exposed" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Intel\Setup and Configuration Software\INTEL-SA-00075 Discovery Tool\ME Firmware Information" of x32 registry)</Property>
+		<Property Name="Intel SA 00075 - Last Scan - Windows" ID="3" EvaluationPeriod="PT30M">value "Scan Date" of key "HKEY_LOCAL_MACHINE\SOFTWARE\Intel\Setup and Configuration Software\INTEL-SA-00075 Discovery Tool" of x32 registry</Property>
 	</Analysis>
 </BES>

@@ -28,24 +28,22 @@ prefetch unzip.exe sha1:e1652b058195db3f5f754b7ab430652ae04a50b8 size:167936 htt
 
 utility __Download\unzip.exe
 
-parameter "baseFolder" =  "__Download/"
-
 waithidden __Download\unzip.exe -o "__Download\Intel-SA-00075_1.0.1.6.zip" -d "__Download"	
 
 override wait
 hidden=true
 completion=job
-wait "__Download\Windows\Intel-SA-00075-console.exe" -f -p "__Download\Windows"
+wait "__Download\Windows\Intel-SA-00075-console.exe" -f -p "__Download"
 
-if {exists files whose (name of it ends with ".xml") of folder "__Download\Windows"}
+if {exists files whose (name of it ends with ".xml") of folder "__Download" of (client folder of current site)}
 
-	if {exists (it as text) whose (it = "Vulnerable") of selects "System/System_Status/System_Risk" of xml documents of files whose (name of it ends with ".xml") of folder "__Download\Windows"} 
+	if {exists (it as text) whose (it = "Vulnerable") of selects "System/System_Status/System_Risk" of xml documents of files whose (name of it ends with ".xml") of folder "__Download" of (client folder of current site)} 
 		regset "[HKEY_LOCAL_MACHINE\SOFTWARE\Intel\Setup and Configuration Software\INTEL-SA-00075 Discovery Tool\ME Firmware Information]" "Vulnerable"=dword:00000001
 	else 
 		regset "[HKEY_LOCAL_MACHINE\SOFTWARE\Intel\Setup and Configuration Software\INTEL-SA-00075 Discovery Tool\ME Firmware Information]" "Vulnerable"=dword:00000000
 	endif
 
-	if {exists (it as text) whose (it = "Exposed") of selects "System/System_Status/System_Exposure" of xml documents of files whose (name of it ends with ".xml") of folder "__Download\Windows"} 
+	if {exists (it as text) whose (it = "Exposed") of selects "System/System_Status/System_Exposure" of xml documents of files whose (name of it ends with ".xml") of folder "__Download" of (client folder of current site)} 
 		regset "[HKEY_LOCAL_MACHINE\SOFTWARE\Intel\Setup and Configuration Software\INTEL-SA-00075 Discovery Tool\ME Firmware Information]" "Exposed"=dword:00000001
 	else 
 		regset "[HKEY_LOCAL_MACHINE\SOFTWARE\Intel\Setup and Configuration Software\INTEL-SA-00075 Discovery Tool\ME Firmware Information]" "Exposed"=dword:00000000

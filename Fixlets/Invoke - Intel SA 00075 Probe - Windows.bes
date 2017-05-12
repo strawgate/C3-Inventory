@@ -5,10 +5,13 @@
 		<Title>Invoke - Intel SA 00075 Probe - Windows</Title>
 		<Description><![CDATA[<P>This Fixlet invokes the Intel SA 00075 Probe on a system to determine if it is vulnerable. The results of this fixlet are provided in the Analysis:&nbsp;<STRONG>Vulnerabilities - Intel SA 00075 - Windows.</STRONG></P>
 <P>This Fixlet will always be relevant -- take care when choosing reapplication criteria.</P>
+<P>Per the <A href="https://downloadcenter.intel.com/download/26781">Unprovisioning Guide</A>, if the Fixlet: <STRONG>Invoke - Intel SA 00075 Unprovision Active Management Technology - Windows</STRONG> has been run and a reboot has not occurred, this Fixlet will not be relevant. The Fixlet is also not relevant for one minute after system reboot.</P>
 <P>More information on this vulnerability is available here: <A href="https://security-center.intel.com/advisory.aspx?intelid=INTEL-SA-00075&amp;languageid=en-fr">https://security-center.intel.com/advisory.aspx?intelid=INTEL-SA-00075&amp;languageid=en-fr</A></P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>Windows of operating system</Relevance>
 		<Relevance>(brand string of main processor as lowercase) contains "intel"</Relevance>
+		<Relevance>not pending restart "IntelSA00075"</Relevance>
+		<Relevance><![CDATA[uptime of operating system > 1*minute]]></Relevance>
 		<Category></Category>
 		<Source>Internal</Source>
 		<SourceID></SourceID>
@@ -49,6 +52,8 @@ if {exists files whose (name of it ends with ".xml") of folder "__Download" of (
 		regset "[HKEY_LOCAL_MACHINE\SOFTWARE\Intel\Setup and Configuration Software\INTEL-SA-00075 Discovery Tool\ME Firmware Information]" "Exposed"=dword:00000000
 	endif
 endif
+
+regset "[HKEY_LOCAL_MACHINE\SOFTWARE\Intel\Setup and Configuration Software\INTEL-SA-00075 Discovery Tool]" "C3Scan"="{now as string}"
 </ActionScript>
 			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
 		</DefaultAction>

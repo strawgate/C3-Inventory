@@ -1,20 +1,154 @@
 The goal of C3 Inventory is to provide expansive inventory capabilities for organizations to inventory and assess their endpoint and server environments. For more information on C3 in general please see the [C3 Homepage.](http://c3.strawgate.com)
 
+# Inventory Capabilities
+
+## Active Directory
+
+#### Active Directory
+
+The Active Directory content provides basic information related to the Active Directory domain endpoints are members of.
+
+* [Active Directory - Win\Mac](https://bigfix.me/analysis/details/2998539)
+ * Errors
+ * Group Membership
+> As the "Group Membership" property provides recursive group membership, this property is
+> especially useful for identifying members of the Domain Administrators (or other high-privilege
+> groups).
+ * Last Query Time
+ * NetBIOS Domain Name
+ * Organizational Unit
+
+
+* [Invoke - Active Directory Domain Join - Windows](https://www.bigfix.me/fixlet/details/22887)
+> This fixlet provides a secure mechanism to perform remote domain joins in your environment. The Active Directory content available includes:
+
+### Group Policy
+
+The Group Policy content provides advanced information related to the current Group Policy applied to the Endpoint. This information is especially useful when troubleshooting Group Policy issues.
+
+* [Group Policy - Windows](https://bigfix.me/analysis/details/2998487)
+ * Applied Group Policies
+> Lists each applied Group Policy, what OU it's applied to and it's GUID
+ * Assigned Software Installations
+ * Average Network wait
+ * Current AD Site
+ * Current AD Domain Controller
+ * Enforced Group Policies
+ * Extensions with Debug/Tracing
+ * Locally Group Policy Settings
+> Lists each applied setting registry path and its current value
+ * Slow Link Status
+ * Startup Scripts
+ * Shutdown Scripts
+
+
+* [Invoke - Group Policy Refresh - Windows](https://www.bigfix.me/fixlet/details/22887)
+* [Invoke - Reset Local Group Policy - Windows](https://bigfix.me/fixlet/details/22647)
+> Deletes and resets the Local Group Policy store.
+
+### Users and Groups
+
+* [Users - Win\Mac]()
+* [Users - Windows]()
+* [Groups - Win\Mac]()
+
+## Applications
+
+### Inventory
+
+## Applications (Specific)
+
+### CommVault
+
+### Correlog
+
+### NXLog
+
+### Microsoft IIS
+
+### Microsoft SQL
+
+### Microsoft SCCM
+
+## BIOS
+
+### UEFI
+
+### Secure Boot
+
+### Trusted Platform Module
+
+## Certificates
+
+### Certificate Store
+
+## Mobile Device Management
+
+### Apple Configuration Profiles
+
+## Hardware
+
+## Network
+
+## Temporary Administrators
+
+## Operating System
+
+### Launch Daemons/Agents
+
+### Network Shares
+
+### Pagefile
+
+### Pending Restart
+
+### Printers
+
+### Updates
+
+### Scheduled Tasks
+
+### Services
+
+### Pagefile
+
+### Volumes
+
+## Users and Groups
+
+## Virtualization
+
+### Hyper-V Guest and Host
+
+### VMWare ESXi
+
 # Basic Content
 
+* Active Directory
 * Applications
+  * CommVault
+  * Correlog
+  * NXLog
+  * Microsoft IIS
+  * Microsoft SQL
+  * Microsoft SCCM
+* Certificates
+* Configuration Profiles
 * Group Policy
 * Hardware
 * Hyper-V Guest and Host
+* Launch Agents and Launch Daemons
 * Network
+* Network Shares
 * Operating System
 * Pagefile
 * Pending Restart
 * Printer
+* Scheduled Tasks
 * Services
-* Users
 * Trusted Platform Module
 * UEFI and Secure Boot
+* Update Settings
 * Users and Groups
 * VMWare Guest
 * Volumes

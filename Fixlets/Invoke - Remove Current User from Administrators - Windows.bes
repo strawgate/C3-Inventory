@@ -3,7 +3,8 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Fixlet>
 		<Title>Invoke - Remove Current User from Administrators - Windows</Title>
-		<Description><![CDATA[<P>This Fixlet removes the currently logged on user to the Administrators group.</P>
+		<Description><![CDATA[<P>This Fixlet removes the currently logged on user from the Administrators group.</P>
+<P><STRONG>Applicability Note: </STRONG>This Fixlet will be relevant only if the currently logged on user is explicitly a member of the Administrators group. This Fixlet will not be relevant if there are no logged on users or if there is more than one logged on user.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>/* exclude Built-In Administrator */ component string of sid of logged on user does not start with "S-1-5-21-" or component string of sid of logged on user does not end with "-500"</Relevance>

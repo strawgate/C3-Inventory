@@ -4,6 +4,7 @@
 	<Fixlet>
 		<Title>Invoke - Add Current User to Administrators - Windows</Title>
 		<Description><![CDATA[<P>This Fixlet adds the currently logged on user to the Administrators group.</P>
+<P><STRONG>Applicability Note: </STRONG>This Fixlet will only be relevant if the currently logged on user is not a part of the Administrators group. This Fixlet will not be relevant if the currently logged on user is a&nbsp;part of a group that is part of the Administrators Group. This Fixlet will not be relevant if there are no logged on users or if there is more than one logged on user.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
 		<Relevance>exists logged on user</Relevance>

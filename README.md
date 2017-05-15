@@ -2,13 +2,19 @@ C3 Inventory provide's expansive inventory capabilities for organizations lookin
 
 # Inventory Capabilities
 
+Documentation on this page is organized into categories of content (Active Directory, Applications, etc). Within each category there are sub categories defined (Group Policy, Users and Groups, etc). Each Sub Category will outline what Analyses, Fixlets, and Tasks make up that piece of functionality.
+
+For certain content there are instructions to help get started with that content. Under each Analysis is a list of example properties you can gather using that analysis. If there is a sentence of information under a property the intention is for that to further describe the propery itself.
+
+Every Fixlet and Analysis is a hyperlink to the content on BigFix.Me but we highly recommend setting up the [BigFix.Me Sync Tool](http://c3.strawgate.com/#automatic-content-syncing-bigfixme-sync-tool).
+
 ## Active Directory
 
 #### Active Directory
 
-Basic information covering the Active Directory domain that endpoints are bound to.
+Basic information covering the Active Directory domain that endpoints are bound to. 
 
-* [Active Directory - Win\Mac (Analysis)](https://bigfix.me/analysis/details/2998539)
+* [Active Directory - Win\Mac](https://bigfix.me/analysis/details/2998539)
  * Errors
  * Group Membership
 > This property provides recursive group membership which is especially useful for identifying devices with membership in high-privilege groups
@@ -17,7 +23,7 @@ Basic information covering the Active Directory domain that endpoints are bound 
  * Organizational Unit
 
 
-* [Invoke - Active Directory Domain Join - Windows (Fixlet)](https://www.bigfix.me/fixlet/details/22887)
+* [Invoke - Active Directory Domain Join - Windows](https://www.bigfix.me/fixlet/details/22887)
 > Provides a secure mechanism to perform remote domain joins in your environment.
 
 ### Group Policy
@@ -516,7 +522,7 @@ One of the most effective ways to use temporary administrator content is to just
 
 # Support
 
-If you're having issues with the content feel free to create issues in the repository or contact me on the BigFix forum.
+If you're having issues with the content feel free to create issues in the [Github Repository for this site](https://github.com/strawgate/C3-Inventory) or contact me on the [BigFix forum](https://forum.bigfix.com/users/strawgate).
 
 # Contributing
 

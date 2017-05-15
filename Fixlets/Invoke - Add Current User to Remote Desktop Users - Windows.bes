@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
+	<Fixlet>
+		<Title>Invoke - Add Current User to Remote Desktop Users - Windows</Title>
+		<Description><![CDATA[<P>This Fixlet adds the currently logged on user to the Remote Desktop Users group.</P>
+<P><STRONG>Applicability Note: </STRONG>This Fixlet will not be relevant if the currently logged on user is a part of the Remote Desktop Users group or the Administrators Group. This Fixlet will not be relevant if the currently logged on user is a&nbsp;part of a group that is part of the Administrators Group or the Remote Desktop Users group. This Fixlet will not be relevant if there are no logged on users or if there is more than one logged on user.</P>
+<P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
+		<Relevance>windows of operating system</Relevance>
+		<Relevance>/* exclude Built-In Administrator */ component string of sid of logged on user does not start with "S-1-5-21-" or component string of sid of logged on user does not end with "-500"</Relevance>
+		<Relevance>exists logged on user</Relevance>
+		<Relevance>not exists elements of intersection of ( /*IS THE LOGGED IN USER AN ADMINISTRATOR? */ set of ( /* User's SID and Group Memberships */ ((sids of groups of logged on user of active directory) as string); /*User Group Memberships */ (sid of logged on user) as string /*Users SID*/ ); ( ( set of ( /*Users and Groups in Administrators */ sids of members of local group "administrators" as string) ) + ( set of ( /*Users and Groups in Remote Desktop Users */ sids of members of local group "remote desktop users" as string) ) ) )</Relevance>
+		<Category>Administrative Rights</Category>
+		<Source>Internal</Source>
+		<SourceID></SourceID>
+		<SourceReleaseDate>2016-04-25</SourceReleaseDate>
+		<SourceSeverity></SourceSeverity>
+		<CVENames></CVENames>
+		<SANSID></SANSID>
+		<Domain>BESC</Domain>
+		<DefaultAction ID="Action1">
+			<Description>
+				<PreLink>Click </PreLink>
+				<Link>here</Link>
+				<PostLink> to deploy this action.</PostLink>
+			</Description>
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">// Enter your action script here
+
+wait net localgroup "Remote Desktop Users" "{sid of current user}" /add</ActionScript>
+		</DefaultAction>
+	</Fixlet>
+</BES>

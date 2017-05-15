@@ -3,7 +3,12 @@
 <BES xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BES.xsd">
 	<Analysis>
 		<Title>Users - Win\Mac</Title>
-		<Description><![CDATA[Provides information on the User's of the system 
+		<Description><![CDATA[<P>This Analysis provides&nbsp;the following information for the currently active user of the system.</P>
+<UL>
+<LI>Whether the current user is an explicit administrators (Not through nested group membership)
+<LI>Recursive Active Directory Group membership of the current user</LI></UL>
+<P>This Analysis also provides a list of all User Profiles on the disk.</P>
+<P><STRONG>Note: </STRONG>The "Explicit Administrator" property only reports true if the user explicitely an Administrator. That means their name is listed in the Admin group of the system. If the user is a member of a group that is a member of the Administrators group that will not be reflected here. To view Implicit Administrative rights please see the "<STRONG>Current User - Administrator - Windows</STRONG>" property of the Analysis: <STRONG>Users - Windows</STRONG></P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system or mac of operating system</Relevance>
 		<Relevance>not in proxy agent context</Relevance>

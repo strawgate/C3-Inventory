@@ -26,17 +26,14 @@
 				<Link>here</Link>
 				<PostLink> to deploy this action.</PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">prefetch Intel-SA-00075_1.0.1.6.zip sha1:2309C2BF2138BF3F3461B9B2EE2475FCDAF82328 size:1231195 https://downloadmirror.intel.com/26755/eng/Intel-SA-00075_1.0.1.6.zip sha256:BF22E5086C01278BFA7CA5F22661A2893025087EE340F2D87EEDE643274DCAD3
-prefetch unzip.exe sha1:e1652b058195db3f5f754b7ab430652ae04a50b8 size:167936 http://software.bigfix.com/download/redist/unzip-5.52.exe
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">prefetch IntelSA00075.msi sha1:AF1E35EA47EAC4D0BDED7B91F5DA87BD4E36513D size:1941504 https://downloadmirror.intel.com/26755/eng/discoveryToolInstaller_1.0.1.39.msi sha256:37F4A31647FE8FB2916BC0AC97D586CC4979DA72B8B615593FDC39F8916FE138
 
-utility __Download\unzip.exe
-
-waithidden __Download\unzip.exe -o "__Download\Intel-SA-00075_1.0.1.6.zip" -d "__Download"	
+waithidden msiexec /i "__Download\IntelSA00075.msi" /qn
 
 override wait
 hidden=true
 completion=job
-wait "__Download\Windows\Intel-SA-00075-console.exe" -f -p "__Download"
+wait "{pathname of file "Intel-SA-00075-console.exe" of folder "Intel\Intel-SA-00075 Discovery Tool\Windows" of program files x32 folder}" -f -p "__Download"
 
 if {exists files whose (name of it ends with ".xml") of folder "__Download" of (client folder of current site)}
 
@@ -54,7 +51,9 @@ if {exists files whose (name of it ends with ".xml") of folder "__Download" of (
 endif
 
 regset "[HKEY_LOCAL_MACHINE\SOFTWARE\Intel\Setup and Configuration Software\INTEL-SA-00075 Discovery Tool]" "C3Scan"="{now as string}"
-</ActionScript>
+
+
+waithidden msiexec /x "__Download\IntelSA00075.msi" /qn</ActionScript>
 			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
 		</DefaultAction>
 	</Fixlet>

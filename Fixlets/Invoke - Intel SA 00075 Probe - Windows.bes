@@ -26,14 +26,20 @@
 				<Link>here</Link>
 				<PostLink> to deploy this action.</PostLink>
 			</Description>
-			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">prefetch IntelSA00075.msi sha1:AF1E35EA47EAC4D0BDED7B91F5DA87BD4E36513D size:1941504 https://downloadmirror.intel.com/26755/eng/discoveryToolInstaller_1.0.1.39.msi sha256:37F4A31647FE8FB2916BC0AC97D586CC4979DA72B8B615593FDC39F8916FE138
+			<ActionScript MIMEType="application/x-Fixlet-Windows-Shell">prefetch 00075.zip sha1:F0B9B673144A4E0EAD3468FD1F24535BC5F98E48 size:7867800 https://downloadmirror.intel.com/26755/eng/Intel-SA-00075%20Detection%20and%20Mitigation%20Tool.zip sha256:AC9D86C677E6006E085E309881A6423384A9D339BEA926D2888BC2D2D96F20D5
 
-waithidden msiexec /i "__Download\IntelSA00075.msi" /qn
+prefetch unzip.exe sha1:e1652b058195db3f5f754b7ab430652ae04a50b8 size:167936 http://software.bigfix.com/download/redist/unzip-5.52.exe
+
+utility __Download\unzip.exe
+
+waithidden __Download\unzip.exe -o "__Download\00075.zip" -d "__Download"
+
+waithidden msiexec /i "__Download\Intel-SA-00075 Detection and Mitigation Tool.msi" /qn
 
 override wait
 hidden=true
 completion=job
-wait "{pathname of file "Intel-SA-00075-console.exe" of folder "Intel\Intel-SA-00075 Discovery Tool\Windows" of program files x32 folder}" -f -p "__Download"
+wait "{pathname of file "Intel-SA-00075-console.exe" of folder "Intel\Intel-SA-00075 Detection and Mitigation Tool" of program files x32 folder}" -Discover -f -p "__Download"
 
 if {exists files whose (name of it ends with ".xml") of folder "__Download" of (client folder of current site)}
 
@@ -53,7 +59,7 @@ endif
 regset "[HKEY_LOCAL_MACHINE\SOFTWARE\Intel\Setup and Configuration Software\INTEL-SA-00075 Discovery Tool]" "C3Scan"="{now as string}"
 
 
-waithidden msiexec /x "__Download\IntelSA00075.msi" /qn</ActionScript>
+waithidden msiexec /x "__Download\Intel-SA-00075 Detection and Mitigation Tool.msi" /qn</ActionScript>
 			<SuccessCriteria Option="RunToCompletion"></SuccessCriteria>
 		</DefaultAction>
 	</Fixlet>

@@ -6,7 +6,7 @@
 		<Description><![CDATA[<P>Provides information on the currently installed Microsoft IIS environment.</P>
 <P>For general information or to report issues with C3 Inventory content please visit GitHub here: <A href="https://github.com/strawgate/C3-Inventory">https://github.com/strawgate/C3-Inventory</A></P>]]></Description>
 		<Relevance>windows of operating system</Relevance>
-		<Relevance>exists service "W3SVC"</Relevance>
+		<Relevance>( exists keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\InetStp" of (x64 registries; x32 registries) ) OR ( exists service "W3SVC" ) OR ( exists (wmis "ROOT\MicrosoftIISv2"; wmis "ROOT\WebAdministration") )</Relevance>
 		<Source>Internal</Source>
 		<SourceReleaseDate>2017-01-11</SourceReleaseDate>
 		<Domain>BESC</Domain>

@@ -1,4 +1,4 @@
-C3 Inventory provide's expansive inventory capabilities for organizations looking to inventory and assess their endpoint and server environments. C3 Inventory is a C3 site -- for more information on C3 please see the [C3 Homepage.](http://c3.strawgate.com)
+C3 Inventory provides expansive inventory capabilities for organizations looking to inventory and assess their endpoint and server environments. C3 Inventory is a C3 site -- for more information on C3 please see the [C3 Homepage.](http://c3.strawgate.com)
 
 # Inventory Capabilities
 
@@ -134,7 +134,7 @@ Using Dell Command | Configure requires the following steps to be completed:
 1. Install Dell Command | Configure
 > The package for Dell Command | Configure is available in the [C3-Patch](../Patch/Index.html) site as Deployment, Updating, and Removal content.
 1. Action [Invoke - Dell Command | Configure Probe - Windows](https://bigfix.me/fixlet/details/21345) as a policy action
-> The probe [Invoke - Dell Command | Configure Probe - Windows](https://bigfix.me/fixlet/details/21345) should be should be actioned to run an unlimited number of times with a delay of however long you find the age of the data to be acceptable (typically once a day is fine).
+> The probe [Invoke - Dell Command | Configure Probe - Windows](https://bigfix.me/fixlet/details/21345) should be actioned to run an unlimited number of times with a delay of however long you find the age of the data to be acceptable (typically once a day is fine).
 
 
 ### Dell Command | Update
@@ -158,7 +158,7 @@ Using Dell Command | Update requires the following steps to be completed:
 1. Install Dell Command | Update
 > The package for Dell Command | Update is available in the [C3-Patch](../Patch/Index.html) site as Deployment, Updating, and Removal content.
 1. Action [Invoke - Dell Command | Update Driver Probe - Windows](https://bigfix.me/fixlet/details/21355) as a policy action
-> The probe [Invoke - Dell Command | Update Driver Probe - Windows](https://bigfix.me/fixlet/details/21355) should be should be actioned to run an unlimited number of times with a delay of however long you find the age of the data to be acceptable (typically once a day is fine).
+> The probe [Invoke - Dell Command | Update Driver Probe - Windows](https://bigfix.me/fixlet/details/21355) should be actioned to run an unlimited number of times with a delay of however long you find the age of the data to be acceptable (typically once a day is fine).
 
 Optionally, you can perform updates using Dell Command | Update:
 
@@ -254,14 +254,14 @@ Using NXLog requires the following steps to be completed:
     1. [Config - NXLog CE Output - to_syslog_bsd - Windows](http://bigfix.me/cdb/fixlet/22554)
 	> If you are forwarding to Syslog choose only this one
 1. Action your baseline as a policy action
-> Your baseline should be should be actioned to run an unlimited number of times with a delay of however long you find the age of the configuration to be acceptable (typically once a day is fine).
+> Your baseline should be actioned to run an unlimited number of times with a delay of however long you find the age of the configuration to be acceptable (typically once a day is fine).
 
 
 ### Microsoft IIS
 
 * [Microsoft IIS - Windows](https://bigfix.me/analysis/details/2998511)
 
-### Mirosoft MDT
+### Microsoft MDT
 
 * [Microsoft Deployment Toolkit - Windows](https://bigfix.me/analysis/details/2998513)
 
@@ -429,7 +429,7 @@ The Certificate Store capabilities of C3 Inventory make auditing Certificates ea
 Using the C3 Certificate Store capabilities of C3 Inventory requires the following steps to be completed:
 
 1. Action [Invoke - Certificate Store Probe - Windows](http://bigfix.me/cdb/fixlet/24040) as a policy action
-> The probe [Invoke - Certificate Store Probe - Windows](http://bigfix.me/cdb/fixlet/24040) should be should be actioned to run an unlimited number of times with a delay of however long you find the age of the data to be acceptable (typically once a day is fine).
+> The probe [Invoke - Certificate Store Probe - Windows](http://bigfix.me/cdb/fixlet/24040) should be actioned to run an unlimited number of times with a delay of however long you find the age of the data to be acceptable (typically once a day is fine).
 
 ### Launch Daemons/Agents
 
@@ -505,7 +505,7 @@ To do this simply use the [Invoke - Add Current User to Authorized Requestors - 
 
 Where the Authorized Requestor model becomes very powerful is when combined with [Invoke - Add Permanent Administrators to Authorized Requestors - Windows](http://bigfix.me/cdb/fixlet/24156) and [Invoke - Convert Permanent Administrators who are Authorized Requestors to Temporary Administrators - Windows](http://bigfix.me/cdb/fixlet/24158).
 
-The idea here is to convert current administrators to authorized requestors, remove their permanent administrator access and replace it with a timed temporary administrative access (up to 5 days). This allows you to convert permanent administartors to temporary administrators!
+The idea here is to convert current administrators to authorized requestors, remove their permanent administrator access and replace it with a timed temporary administrative access (up to 5 days). This allows you to convert permanent administrators to temporary administrators!
 
 ### Special Use Cases
 
